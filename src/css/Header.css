@@ -1,0 +1,176 @@
+/* src/css/Header.css */
+/* Header styling från din ursprungliga CSS */
+.frame-navbar {
+  background: #ffffff;
+  width: 1461px;
+  height: 97px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+
+.logo-frame {
+  display: flex;
+  flex-direction: row;
+  gap: 7px;
+  align-items: center;
+  justify-content: center;
+  width: 257px;
+  height: 69px;
+  position: absolute;
+  left: 17px;
+  top: 11px;
+}
+
+.text {
+  color: #000000;
+  text-align: left;
+  font-family: "AbhayaLibre-Regular", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  position: relative;
+}
+
+.logo {
+  flex-shrink: 0;
+  width: 76px;
+  height: 69px;
+  position: relative;
+  overflow: hidden;
+  object-fit: cover;
+}
+
+.icon-frame {
+  background: #ffffff;
+  width: 59px;
+  height: 55px;
+  position: absolute;
+  left: 1273px;
+  top: 25px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.frame {
+  width: 45px;
+  height: 43px;
+  position: absolute;
+  left: 8px;
+  top: 6px;
+  overflow: visible;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  gap: 100px;
+  align-items: center;
+  justify-content: center;
+  height: 97px;
+  position: absolute;
+  left: 50%;
+  translate: -50%;
+  top: 0px;
+}
+
+.home {
+  color: rgba(245, 52, 52, 0.92);
+  text-align: left;
+  font-family: var(--h2-font-family, "Anton-Regular", sans-serif);
+  font-size: var(--h2-font-size, 20px);
+  font-weight: var(--h2-font-weight, 400);
+  position: relative;
+  cursor: pointer;
+}
+
+.order {
+  color: #f53434;
+  text-align: left;
+  font-family: var(--h2-font-family, "Anton-Regular", sans-serif);
+  font-size: var(--h2-font-size, 20px);
+  font-weight: var(--h2-font-weight, 400);
+  position: relative;
+  cursor: pointer;
+}
+
+.menu {
+  color: #f53434;
+  text-align: left;
+  font-family: var(--h2-font-family, "Anton-Regular", sans-serif);
+  font-size: var(--h2-font-size, 20px);
+  font-weight: var(--h2-font-weight, 400);
+  position: relative;
+  cursor: pointer;
+}
+
+.contact {
+  color: #f53434;
+  text-align: left;
+  font-family: var(--h2-font-family, "Anton-Regular", sans-serif);
+  font-size: var(--h2-font-size, 20px);
+  font-weight: var(--h2-font-weight, 400);
+  position: relative;
+  cursor: pointer;
+}
+
+.sign-in {
+  color: #f53434;
+  text-align: left;
+  font-family: "Anton-Regular", sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  position: relative;
+  cursor: pointer;
+}
+
+/* Mobila justeringar för hamburgermeny */
+@media screen and (max-width: 768px) {
+  .frame-navbar {
+    width: 100%;
+  }
+
+  /* Anpassa hamburger-ikonen för mobil */
+  .icon-frame {
+    z-index: 1000;
+    right: 20px;
+    left: auto;
+  }
+
+  /* Anpassa navbar för mobil */
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    background: white;
+    flex-direction: column;
+    transform: translateX(-100%); /* Göm menyn åt vänster */
+    transition: transform 0.3s ease;
+    z-index: 999;
+    padding-top: 100px;
+    padding-bottom: 30px;
+  }
+
+  /* Visa menyn när den är öppen */
+  .navbar.mobile-open {
+    transform: translateX(0);
+  }
+
+  /* Justera navigationsobjekt för vertikal layout */
+  .navbar > div {
+    margin: 10px 0;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Responsivitet för olika skärmstorlekar */
+@media screen and (max-width: 1460px) {
+  .frame-navbar {
+    width: 100%;
+  }
+}
