@@ -1,0 +1,142 @@
+{
+  "menuItems": [
+    {
+      "id": 1,
+      "name": "Carne Asada",
+      "description": "Beef, Onion, Cilantro, Salsa verde",
+      "price": 90,
+      "category": "Tacos",
+      "image": "/images/carne-asada.jpg",
+      "popular": true
+    },
+    {
+      "id": 2,
+      "name": "Al Pastor",
+      "description": "Pork, Onion, Cilantro, Pineapple, Salsa verde",
+      "price": 90,
+      "category": "Tacos",
+      "image": "/images/al-pastor.jpg",
+      "popular": true
+    },
+    {
+      "id": 3,
+      "name": "Veggie",
+      "description": "Beans, Onion, Cilantro, Salsa verde",
+      "price": 90,
+      "category": "Tacos",
+      "image": "/images/veggie-taco.jpg",
+      "popular": false
+    },
+    {
+      "id": 4,
+      "name": "Combo Plate",
+      "description": "A combo of our three different types of tacos",
+      "price": 90,
+      "category": "Tacos",
+      "image": "/images/combo-plate.jpg",
+      "popular": true
+    },
+    {
+      "id": 5,
+      "name": "Churros",
+      "description": "With cinnamon and sugar",
+      "price": 40,
+      "category": "Desserts",
+      "image": "/images/churros.jpg",
+      "popular": true
+    },
+    {
+      "id": 6,
+      "name": "Tres Leches Cake",
+      "description": "Soaked in condensed milk",
+      "price": 50,
+      "category": "Desserts",
+      "image": "/images/tres-leches.jpg",
+      "popular": false
+    },
+    {
+      "id": 7,
+      "name": "Nachos",
+      "description": "Fried tortillabread with tomato salsa",
+      "price": 50,
+      "category": "Sides",
+      "image": "/images/nachos.jpg",
+      "popular": true
+    },
+    {
+      "id": 8,
+      "name": "Guacamole",
+      "description": "Avocado spread with onion, cilantro, cumin and lime",
+      "price": 40,
+      "category": "Sides",
+      "image": "/images/guacamole.jpg",
+      "popular": true
+    },
+    {
+      "id": 9,
+      "name": "Rice and Beans",
+      "description": "Frijoles with steamed rice",
+      "price": 35,
+      "category": "Sides",
+      "image": "/images/rice-beans.jpg",
+      "popular": false
+    },
+    {
+      "id": 10,
+      "name": "Jarritos - Cola",
+      "description": "Mexican cola soda",
+      "price": 40,
+      "category": "Drinks",
+      "image": "/images/jarritos-cola.jpg",
+      "popular": false
+    },
+    {
+      "id": 11,
+      "name": "Jarritos - Orange",
+      "description": "Mexican orange soda",
+      "price": 40,
+      "category": "Drinks",
+      "image": "/images/jarritos-orange.jpg",
+      "popular": false
+    },
+    {
+      "id": 12,
+      "name": "Jarritos - Lime",
+      "description": "Mexican lime soda",
+      "price": 40,
+      "category": "Drinks",
+      "image": "/images/jarritos-lime.jpg",
+      "popular": false
+    },
+    {
+      "id": 13,
+      "name": "Corona",
+      "description": "Mexican beer",
+      "price": 50,
+      "category": "Drinks",
+      "image": "/images/corona.jpg",
+      "popular": true
+    },
+    {
+      "id": 14,
+      "name": "Michelada",
+      "description": "Beer cocktail with lime juice, spices, and tomato juice",
+      "price": 60,
+      "category": "Drinks",
+      "image": "/images/michelada.jpg",
+      "popular": false
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "user",
+      "password": "password",
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "john@example.com",
+      "favorites": [1, 4, 7, 13]
+    }
+  ],
+  "orders": []
+}
