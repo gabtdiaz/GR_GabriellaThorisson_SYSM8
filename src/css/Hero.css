@@ -1,93 +1,110 @@
 /* src/css/Hero.css */
-/* Hero section styling från din ursprungliga CSS */
+/* Hero section med dimmed bakgrundsbild */
 .heroimg {
-  padding: 314px 591px 314px 591px;
   display: flex;
   flex-direction: column;
   gap: 30px;
   align-items: center;
   justify-content: center;
-  width: 1462px;
+  width: 100%;
+  height: 600px;
+  position: relative;
+  margin-top: 97px;
+}
+
+/* Bakgrundsbilden med dess egna container */
+.hero-background {
   position: absolute;
-  left: 0px;
-  top: 97px;
-  overflow: hidden;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0.4; /* Justera detta värde för att göra bilden mer eller mindre genomskinlig */
+  z-index: 1; /* Se till att bakgrunden hamnar under knapparna */
+}
+
+/* Overlay för att mörkgöra bilden ytterligare om så önskas */
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3); /* Svart overlay med 30% opacitet */
+  z-index: 2; /* Över bakgrunden men under knapparna */
+}
+
+/* Innehållet i hero (knapparna) */
+.hero-content {
+  position: relative;
+  z-index: 3; /* Över både bakgrund och overlay */
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
 }
 
 .menu-btn {
   background: #ff4949;
   border-radius: 5px;
-  padding: 12px 113px 12px 113px;
+  padding: 12px 50px;
   display: flex;
   flex-direction: row;
   gap: 10px;
   align-items: center;
   justify-content: center;
-  align-self: stretch;
-  flex-shrink: 0;
+  width: 200px;
   position: relative;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   overflow: hidden;
   cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.menu-btn:hover {
+  transform: scale(1.2);
 }
 
 .menu2 {
   color: #ffdfd1;
-  text-align: left;
+  text-align: center;
   font-family: var(--h2-font-family, "Anton-Regular", sans-serif);
   font-size: var(--h2-font-size, 20px);
   font-weight: var(--h2-font-weight, 400);
   position: relative;
-  width: 52px;
-  height: 36px;
 }
 
 .order-btn {
   background: #ff4949;
   border-radius: 5px;
-  padding: 12px 111px 12px 111px;
+  padding: 12px 50px;
   display: flex;
   flex-direction: row;
   gap: 10px;
   align-items: center;
   justify-content: center;
-  align-self: stretch;
-  flex-shrink: 0;
+  width: 200px;
   position: relative;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   overflow: hidden;
   cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.order-btn:hover {
+  transform: scale(1.2);
 }
 
 .order-online {
   color: #ffdfd1;
-  text-align: left;
+  text-align: center;
   font-family: var(--h2-font-family, "Anton-Regular", sans-serif);
   font-size: var(--h2-font-size, 20px);
   font-weight: var(--h2-font-weight, 400);
   position: relative;
-}
-
-/* Responsiva justeringar för hero */
-@media screen and (max-width: 768px) {
-  /* Anpassa heroimg för mobil */
-  .heroimg {
-    padding: 200px 20px;
-    width: 100%;
-  }
-
-  /* Mer plats mellan knappar på mobil */
-  .menu-btn,
-  .order-btn {
-    margin: 0 10px;
-    padding: 12px 50px;
-  }
-}
-
-/* Anpassa för mellanstora skärmar */
-@media screen and (max-width: 1460px) {
-  .heroimg {
-    width: 100%;
-    padding: 200px 100px;
-  }
 }

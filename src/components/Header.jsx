@@ -12,13 +12,13 @@ const Header = () => {
     <div className="frame-navbar">
       <div className="logo-frame">
         <div className="text">Text</div>
-        <img className="logo" src="/logo.svg" alt="Restaurangens logotyp" />
+        <img className="logo" src="/logo1.jpg" alt="Restaurangens logotyp" />
         <div className="text">Text</div>
       </div>
 
-      {/* Hamburger-ikon som togglar menyn på mobil */}
+      {/* Hamburger-meny istället för navbar - mobilanpassning */}
       <div className="icon-frame" onClick={toggleMenu}>
-        <img className="frame" src="/frame0.svg" alt="Meny" />
+        <img className="frame" src="/hamburgermenu.png" alt="Meny" />
       </div>
 
       {/* Navigationsmeny med mobil-toggle klass */}
