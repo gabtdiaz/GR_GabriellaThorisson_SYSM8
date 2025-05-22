@@ -1,0 +1,130 @@
+/* src/css/Menu.css */
+
+.menu-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-main {
+  flex: 1;
+  margin-top: 2rem; /* Mellanrum efter navbar */
+}
+
+.menu-hero {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: calc(100vh - 2rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  margin-bottom: 0;
+  position: relative;
+}
+
+/* Overlay för ljusrosa underton */
+.menu-hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.85);
+  pointer-events: none;
+}
+
+.menu-container {
+  width: 100%;
+  max-width: 600px;
+  position: relative; /* För att vara ovanför overlay */
+  z-index: 1;
+}
+
+.menu-card {
+  background: #fceaea;
+  padding: 3rem;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.menu-title {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #8b4513;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+}
+
+.menu-section {
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  color: #f53434;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.menu-section p {
+  color: #333;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+.order-button {
+  background-color: #f53434;
+  color: white;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  /* transition: background-color 0.3s ease; */
+}
+
+.order-button:hover {
+  transform: scale(1.2);
+  /* background-color: #d42c2c; */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .menu-hero {
+    padding: 1rem;
+    min-height: auto;
+  }
+
+  .menu-card {
+    padding: 2rem;
+  }
+
+  .menu-title {
+    font-size: 2rem;
+  }
+
+  .section-title {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .menu-card {
+    padding: 1.5rem;
+  }
+
+  .menu-title {
+    font-size: 1.5rem;
+  }
+
+  .order-button {
+    width: 100%;
+  }
+}

@@ -7,14 +7,14 @@ const Footer = () => {
     <div className="frame-footer">
       <div className="contact-us">Kontakta oss</div>
       <div className="contact-container">
-        <div className="gothenburg-tel-46010101-email-res-mail-com">
+        <div className="goth-contactInfo">
           Göteborg
           <br />
           Tel: +46010101
           <br />
           Email: res@mail.com
         </div>
-        <div className="malm-tel-46010101-email-res-mail-com">
+        <div className="malm-contactInfo">
           Malmö
           <br />
           Tel: +46010101

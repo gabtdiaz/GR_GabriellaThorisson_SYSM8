@@ -90,28 +90,24 @@
   font-weight: var(--h2-font-weight, 400);
   position: relative;
   cursor: pointer;
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  transition: background-color 0.3s ease;
+  /* transition: transform 0.2s ease, opacity 0.2s ease; */
 }
 
 .home:hover {
-  transform: scale(1.2);
-  opacity: 0.8;
+  color: #ff7a7a;
 }
 .order:hover {
-  transform: scale(1.2);
-  opacity: 0.8;
+  color: #f36d6d;
 }
 .menu:hover {
-  transform: scale(1.2);
-  opacity: 0.8;
+  color: #f36d6d;
 }
 .contact:hover {
-  transform: scale(1.2);
-  opacity: 0.8;
+  color: #f36d6d;
 }
 .sign-in:hover {
-  transform: scale(1.2);
-  opacity: 0.8;
+  color: #f36d6d;
 }
 /* Mobila justeringar för hamburgermeny */
 @media screen and (max-width: 768px) {

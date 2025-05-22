@@ -31,8 +31,8 @@
   max-width: 800px;
 }
 
-.gothenburg-tel-46010101-email-res-mail-com,
-.malm-tel-46010101-email-res-mail-com {
+.goth-contactInfo,
+.malm-contactInfo {
   color: #671414;
   text-align: center;
   font-family: var(--p-font-family, "Abel-Regular", sans-serif);
