@@ -1,30 +1,32 @@
-// src/components/MenuItem.jsx
 import React from "react";
+import "../css/MenuItem.css";
 
-const MenuItem = ({ item, variant = "order" }) => {
-  const handleAddToCart = () => {
-    // Här lägg till logik för att lägga till i kundvagn
-    console.log("Added to cart:", item);
-  };
-
-  if (variant === "checkout") {
-    // Smal version för kundvagn - stackad vertikalt
+const MenuItem = ({
+  item,
+  isCheckout = false,
+  onAdd,
+  onRemove,
+  quantity = 0,
+}) => {
+  if (isCheckout) {
+    // Checkout item layout
     return (
-      <div className="checkout-item-card">
-        <img className="checkout-item-img" src={item.image} alt={item.name} />
-        <div className="checkout-item-content">
-          <div className="checkout-item-info">
-            <div className="checkout-item-name">{item.name}</div>
-          </div>
-          <div className="checkout-item-description">{item.description}</div>
-          <div className="checkout-item-price">{item.price}</div>
+      <div className="checkout-item">
+        <img src="combo.jpg" alt={item.name} className="checkout-item-img" />
+        <div className="checkout-item-info">
+          <h3 className="checkout-item-name">{item.name}</h3>
+          <p className="checkout-item-desc">{item.description}</p>
+          <p className="checkout-item-price">{item.price} SEK</p>
         </div>
-        <div className="checkout-controls">
-          <button className="quantity-btn" aria-label="Minska antal">
+        <div className="checkout-item-controls">
+          <button
+            onClick={() => onRemove(item.id)}
+            className="checkout-btn minus"
+          >
             -
           </button>
-          <span className="quantity">1</span>
-          <button className="quantity-btn" aria-label="Öka antal">
+          <span className="checkout-quantity">{quantity}</span>
+          <button onClick={() => onAdd(item.id)} className="checkout-btn plus">
             +
           </button>
         </div>
@@ -32,10 +34,18 @@ const MenuItem = ({ item, variant = "order" }) => {
     );
   }
 
-  // Standard version för order-sidan - exakt som din HTML
+  // OrderPage - MenuItem-card layout
   return (
     <div className="menu-item-card">
-      <img className="item-img" src={item.image} alt={item.name} />
+      {/* Popular bricka */}
+      {item.popular && (
+        <div className="popular-icon">
+          <img className="flame-icon" src="flame-icon.png" alt="Popular" />
+          <span className="popular">Popular</span>
+        </div>
+      )}
+
+      <img src="combo.jpg" alt={item.name} className="item-img" />
       <div className="frame-21">
         <div className="frame-18">
           <div className="combo-plate">{item.name}</div>
@@ -46,42 +56,13 @@ const MenuItem = ({ item, variant = "order" }) => {
           </div>
         </div>
         <div className="frame-20">
-          <div className="_90-sek">{item.price}</div>
+          <div className="_90-sek">{item.price} SEK</div>
         </div>
-        {item.isPopular && (
-          <div className="popular-badge">
-            <svg
-              className="flame-icon"
-              width="12"
-              height="12"
-              viewBox="0 0 16 16"
-              fill="none"
-            >
-              <path
-                d="M8 2C8 2 12 4 12 8C12 10.2091 10.2091 12 8 12C5.79086 12 4 10.2091 4 8C4 6 6 4 6 4C6 4 7 5 8 6C8 4 8 2 8 2Z"
-                fill="#FF6B35"
-              />
-            </svg>
-            <span className="popular-text">Popular</span>
-          </div>
-        )}
       </div>
+
       <div className="frame-22">
-        <div className="frame-plus" onClick={handleAddToCart}>
-          <svg
-            className="plus-logo"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-          >
-            <path
-              d="M12 5V19M5 12H19"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-            />
-          </svg>
+        <div className="frame-plus" onClick={() => onAdd(item.id)}>
+          <img className="plus-logo" src="addplus.png" alt="Add" />
         </div>
       </div>
     </div>

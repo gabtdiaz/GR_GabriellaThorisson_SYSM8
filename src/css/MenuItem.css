@@ -1,0 +1,336 @@
+/* MenuItem.css - Exakt enligt din Figma design */
+
+/* Order page card layout (huvuddesign) */
+.menu-item-card,
+.menu-item-card * {
+  box-sizing: border-box;
+}
+
+.menu-item-card {
+  background: #fff2f2;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  gap: 41px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  flex-shrink: 0;
+  width: 485px;
+  height: 169px;
+  position: relative;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+
+.item-img {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  width: 183px;
+  height: 169px;
+  position: relative;
+  overflow: hidden;
+  object-fit: cover;
+}
+
+.frame-21 {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  align-items: flex-start;
+  justify-content: center;
+  flex-shrink: 0;
+  height: 169px;
+  position: relative;
+}
+
+.frame-18 {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.combo-plate {
+  color: #ff4949;
+  text-align: left;
+  font-family: var(--h2-font-family, "Oswald-SemiBold", sans-serif);
+  font-size: var(--h2-font-size, 20px);
+  font-weight: var(--h2-font-weight, 600);
+  position: relative;
+}
+
+.frame-19 {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.a-combo-of-three-different-types-of-tacos {
+  color: #000000;
+  text-align: left;
+  font-family: var(--p-font-family, "Roboto-Regular", sans-serif);
+  font-size: var(--p-font-size, 16px);
+  font-weight: var(--p-font-weight, 400);
+  position: relative;
+}
+
+.frame-20 {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+}
+
+._90-sek {
+  color: #0400ff;
+  text-align: left;
+  font-family: var(--p-font-family, "Roboto-Regular", sans-serif);
+  font-size: var(--p-font-size, 16px);
+  font-weight: var(--p-font-weight, 400);
+  position: relative;
+}
+
+.frame-22 {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: flex-start;
+  justify-content: flex-end;
+  flex-shrink: 0;
+  width: 61px;
+  height: 169px;
+  position: relative;
+}
+
+.frame-plus {
+  background: #ffffff;
+  border-radius: 0px 0px 0px 20px;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  overflow: visible;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.frame-plus:hover {
+  background: #f5f5f5;
+}
+
+.plus-logo {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  position: relative;
+  overflow: hidden;
+  object-fit: cover;
+}
+
+/* Popular badge */
+.popular-icon,
+.popular-icon * {
+  box-sizing: border-box;
+}
+
+.popular-icon {
+  background: #dddddd;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 150px;
+  position: absolute;
+  left: 30px;
+  top: 20px;
+  z-index: 10;
+}
+
+.flame-icon {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  position: relative;
+  overflow: hidden;
+  object-fit: cover;
+}
+
+.popular {
+  color: #494949;
+  text-align: left;
+  font-family: "Roboto-Italic", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  font-style: italic;
+  position: relative;
+}
+
+/* Checkout item layout */
+.checkout-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: #fff2f2;
+  border-radius: 8px;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+  margin-bottom: 12px;
+}
+
+.checkout-item-img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.checkout-item-info {
+  flex: 1;
+}
+
+.checkout-item-name {
+  color: #ff4949;
+  font-family: "Oswald-SemiBold", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.checkout-item-desc {
+  color: #000000;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 4px;
+}
+
+.checkout-item-price {
+  color: #0400ff;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.checkout-item-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.checkout-btn {
+  width: 32px;
+  height: 32px;
+  background: #f53434;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.checkout-btn:hover {
+  background: #d12929;
+}
+
+.checkout-quantity {
+  font-weight: 500;
+  min-width: 24px;
+  text-align: center;
+  color: #000;
+  font-size: 16px;
+}
+
+/* Responsiv design */
+@media screen and (max-width: 768px) {
+  .menu-item-card {
+    width: 100%;
+    max-width: 485px;
+    margin: 0 auto;
+  }
+
+  .popular-icon {
+    left: 20px;
+    top: 15px;
+    width: 120px;
+  }
+
+  .checkout-item {
+    padding: 12px;
+    gap: 12px;
+  }
+
+  .checkout-item-img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .checkout-item-name {
+    font-size: 16px;
+  }
+
+  .checkout-item-desc {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .menu-item-card {
+    flex-direction: column;
+    height: auto;
+    gap: 0;
+  }
+
+  .item-img {
+    width: 100%;
+    height: 140px;
+  }
+
+  .frame-21 {
+    padding: 16px;
+    height: auto;
+  }
+
+  .frame-22 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50px;
+    height: 50px;
+  }
+
+  .popular-icon {
+    left: 16px;
+    top: 12px;
+    width: 100px;
+  }
+}

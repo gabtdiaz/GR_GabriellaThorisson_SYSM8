@@ -1,489 +1,331 @@
-/* src/css/Order.css */
-
 .order-page {
   min-height: 100vh;
+  background: #ffffff;
   display: flex;
   flex-direction: column;
-  background-color: #fdf7f7;
 }
 
-.order-main {
+.main-content {
+  padding-top: 120px; /* Space för fixed header */
+  padding-bottom: 32px;
   flex: 1;
-  padding-top: 2rem;
 }
 
-/* Filter Section */
-.filters-section {
-  padding: 0 2rem 2rem;
-  background-color: white;
-  border-bottom: 1px solid #e5e5e5;
-}
-
-.filters-container {
-  max-width: 1200px;
+.content-container {
+  max-width: 1400px;
   margin: 0 auto;
+  width: 100%;
+}
+
+/* Filter Chips - exakt som din Figma */
+.filters {
+  padding: 0px 20px 0px 99px;
   display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 22px;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  flex-shrink: 0;
+  position: relative;
+  margin-bottom: 40px;
 }
 
 .filter-chip {
+  border-radius: 8px;
+  border-style: solid;
+  border-color: var(--schemes-outline-variant, #cac4d0);
+  border-width: 1px;
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  height: 32px;
+  position: relative;
+  overflow: hidden;
   background: white;
-  border: 2px solid #e5e5e5;
-  border-radius: 25px;
-  padding: 0.75rem 1.5rem;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-weight: 500;
-  color: #666;
 }
 
 .filter-chip:hover {
-  border-color: #f53434;
-  color: #f53434;
+  background: #f5f5f5;
 }
 
 .filter-chip.active {
   background: #f53434;
   border-color: #f53434;
+}
+
+.filter-chip.active .label-text {
   color: white;
 }
 
-.filter-label {
-  font-size: 1rem;
-}
-
-/* Menu Items Section */
-.menu-items-section {
-  padding: 2rem;
-}
-
-.menu-items-container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.category-heading {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #8b4513;
-  margin-bottom: 2rem;
-  text-align: center;
-}
-
-.menu-items-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  justify-items: center;
-}
-
-/* Menu Item Card - Exakt som din HTML struktur */
-.menu-item-card {
-  background: white;
-  border-radius: 15px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+.state-layer {
+  padding: 6px 16px 6px 16px;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  height: 32px;
   position: relative;
-  width: 100%;
-  max-width: 400px;
-  margin-bottom: 1rem;
-  display: flex;
-  align-items: center;
-  padding: 1rem;
-  gap: 1rem;
 }
 
-.menu-item-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
-}
-
-/* Bild till vänster */
-.item-img {
-  width: 120px;
-  height: 120px;
-  border-radius: 15px;
-  object-fit: cover;
-  flex-shrink: 0;
-}
-
-/* Content container - frame-21 */
-.frame-21 {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-/* Namn - frame-18 */
-.frame-18 {
-  margin-bottom: 0.3rem;
-}
-
-.combo-plate {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #f53434;
-  margin: 0;
-  line-height: 1.2;
-}
-
-/* Beskrivning - frame-19 */
-.frame-19 {
-  margin-bottom: 0.3rem;
-}
-
-.a-combo-of-three-different-types-of-tacos {
-  font-size: 0.85rem;
-  color: #666;
-  line-height: 1.3;
-  margin: 0;
-}
-
-/* Pris - frame-20 */
-.frame-20 {
-  margin-bottom: 0.3rem;
-}
-
-._90-sek {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #4169e1;
-  margin: 0;
-}
-
-/* Popular Badge - under priset */
-.popular-badge {
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  margin-top: 0.3rem;
-}
-
-.popular-text {
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: #ff6b35;
-}
-
-.flame-icon {
-  width: 12px;
-  height: 12px;
-}
-
-/* Plus button container - frame-22 */
-.frame-22 {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-}
-
-.frame-plus {
-  background: #f53434;
-  border: none;
-  border-radius: 50%;
-  width: 35px;
-  height: 35px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  color: white;
-  box-shadow: 0 2px 6px rgba(245, 52, 52, 0.3);
-}
-
-.frame-plus:hover {
-  background: #d42c2c;
-  transform: scale(1.05);
-}
-
-.frame-plus:active {
-  transform: scale(0.95);
-}
-
-.plus-logo {
-  width: 16px;
-  height: 16px;
-}
-
-/* Checkout Item Card - Smal version för kundvagn */
-.checkout-item-card {
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-  margin-bottom: 0.8rem;
-  padding: 0.8rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-  width: 100%;
-  max-width: 300px;
-}
-
-.checkout-item-img {
-  width: 100%;
-  height: 80px;
-  border-radius: 10px;
-  object-fit: cover;
-}
-
-.checkout-item-content {
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-}
-
-.checkout-item-info {
-  margin-bottom: 0.2rem;
-}
-
-.checkout-item-name {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #f53434;
-  margin: 0;
-}
-
-.checkout-item-description {
-  font-size: 0.75rem;
-  color: #666;
-  line-height: 1.2;
-  margin: 0;
-}
-
-.checkout-item-price {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #4169e1;
-  margin: 0;
-}
-
-.checkout-controls {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.8rem;
-  margin-top: 0.5rem;
-}
-
-.quantity-btn {
-  background: #f5f5f5;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  width: 28px;
-  height: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-weight: 600;
-  color: #333;
-  transition: background-color 0.2s ease;
-  font-size: 0.9rem;
-}
-
-.quantity-btn:hover {
-  background: #e5e5e5;
-}
-
-.quantity {
-  font-weight: 600;
-  min-width: 20px;
+.label-text {
+  color: var(--schemes-on-surface-variant, #49454f);
   text-align: center;
-  font-size: 0.9rem;
-}
-
-/* Checkout Item Card (smalare version) */
-.checkout-item-card {
-  background: white;
-  border-radius: 10px;
-  padding: 1rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  margin-bottom: 1rem;
-}
-
-.checkout-item-content {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.checkout-item-img {
-  width: 60px;
-  height: 60px;
-  border-radius: 8px;
-  object-fit: cover;
-  flex-shrink: 0;
-}
-
-.checkout-item-info {
-  flex: 1;
-}
-
-.checkout-item-name {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #333;
-  margin: 0 0 0.25rem 0;
-}
-
-.checkout-item-price {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #f53434;
-  margin: 0;
-}
-
-.checkout-item-controls {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.quantity-btn {
-  background: #f5f5f5;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  width: 30px;
-  height: 30px;
+  font-family: var(--m3-label-large-font-family, "Roboto-Medium", sans-serif);
+  font-size: var(--m3-label-large-font-size, 14px);
+  line-height: var(--m3-label-large-line-height, 20px);
+  letter-spacing: var(--m3-label-large-letter-spacing, 0.1px);
+  font-weight: var(--m3-label-large-font-weight, 500);
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  font-weight: 600;
-  color: #333;
-  transition: background-color 0.2s ease;
 }
 
-.quantity-btn:hover {
-  background: #e5e5e5;
+/* Menu items frame - som din Figma */
+.menuitems-frame {
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 37px;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
 }
 
-.quantity {
-  font-weight: 600;
-  min-width: 20px;
-  text-align: center;
+/* Category section */
+.category-section {
+  width: 100%;
+  margin-bottom: 60px;
 }
 
-/* Responsive Design */
-@media (max-width: 1024px) {
-  .menu-items-grid {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
+.category-header {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  flex-shrink: 0;
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.category-title {
+  color: #671414;
+  text-align: left;
+  font-family: "Anton-Regular", sans-serif;
+  font-size: 36px;
+  font-weight: 400;
+  position: relative;
+}
+
+.category-icon {
+  color: #606266;
+}
+
+/* Category-specific styling */
+.dessert2 {
+  flex-shrink: 0;
+  width: 70px;
+  height: 69px;
+  position: relative;
+  overflow: hidden;
+  object-fit: cover;
+}
+
+.ice-drink {
+  flex-shrink: 0;
+  width: 44px;
+  height: 53px;
+  position: relative;
+  overflow: hidden;
+  object-fit: cover;
+}
+
+/* Items grid - som din Figma layout */
+.items-grid {
+  background: #ffffff;
+  display: flex;
+  flex-direction: row;
+  gap: 49px;
+  row-gap: 74px;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  width: 100%;
+  flex-shrink: 0;
+  position: relative;
+}
+
+/* Tacos section styling */
+.tacos-frame {
+  background: #ffffff;
+  display: flex;
+  flex-direction: row;
+  gap: 49px;
+  row-gap: 74px;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  width: 100%;
+  flex-shrink: 0;
+  height: 447px;
+  position: relative;
+}
+
+/* Sides frame */
+.sides-frame {
+  background: #ffffff;
+  display: flex;
+  flex-direction: row;
+  gap: 355px;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.tacos-frame2 {
+  background: #ffffff;
+  display: flex;
+  flex-direction: row;
+  gap: 49px;
+  row-gap: 74px;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  flex-shrink: 0;
+  width: 1462px;
+  height: 447px;
+  position: relative;
+}
+
+/* Dessert frame */
+.dessert-frame {
+  background: #ffffff;
+  padding: 0px 106px 0px 106px;
+  display: flex;
+  flex-direction: row;
+  gap: 49px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1462px;
+  position: relative;
+}
+
+/* Drinks frame */
+.drinks-frame {
+  background: #ffffff;
+  display: flex;
+  flex-direction: row;
+  gap: 49px;
+  row-gap: 73px;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  width: 100%;
+  flex-shrink: 0;
+  height: 447px;
+  position: relative;
+}
+
+/* Responsiv design */
+@media screen and (max-width: 1200px) {
+  .items-grid {
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 30px;
+    row-gap: 50px;
   }
 
-  .filters-container {
-    padding: 0 1rem;
-  }
-
-  .menu-items-section {
-    padding: 1.5rem;
+  .tacos-frame2,
+  .dessert-frame {
+    width: 100%;
+    padding: 0 20px;
+    height: auto;
   }
 }
 
-@media (max-width: 768px) {
-  .filters-section {
-    padding: 0 1rem 1.5rem;
+@media screen and (max-width: 768px) {
+  .filters {
+    padding: 0 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
   }
 
-  .filters-container {
+  .main-content {
+    padding-top: 110px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .items-grid {
+    gap: 20px;
+    row-gap: 30px;
     justify-content: center;
   }
 
-  .filter-chip {
-    padding: 0.6rem 1.2rem;
-    font-size: 0.9rem;
+  .category-title {
+    font-size: 28px;
   }
 
-  .menu-items-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    max-width: 400px;
-    margin: 0 auto;
+  .tacos-frame,
+  .drinks-frame {
+    height: auto;
+    min-height: 200px;
   }
 
-  .menu-items-section {
-    padding: 1rem;
-  }
-
-  .category-heading {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .menu-item-card {
-    max-width: none;
+  .sides-frame {
+    gap: 50px;
+    justify-content: center;
   }
 }
 
-@media (max-width: 480px) {
-  .order-main {
-    padding-top: 1rem;
-  }
-
-  .filters-container {
-    gap: 0.5rem;
+@media screen and (max-width: 480px) {
+  .filters {
+    gap: 10px;
   }
 
   .filter-chip {
-    padding: 0.5rem 1rem;
-    font-size: 0.85rem;
+    height: 28px;
   }
 
-  .menu-item-card {
-    padding: 1rem;
+  .state-layer {
+    padding: 4px 12px;
+    height: 28px;
   }
 
-  .item-image-container {
-    height: 160px;
+  .label-text {
+    font-size: 12px;
   }
 
-  .item-name {
-    font-size: 1.1rem;
+  .category-title {
+    font-size: 24px;
   }
 
-  .item-description {
-    font-size: 0.85rem;
+  .category-header {
+    margin-bottom: 20px;
   }
 
-  .add-btn {
-    width: 40px;
-    height: 40px;
-  }
-
-  .plus-icon {
-    width: 18px;
-    height: 18px;
-  }
-}
-
-/* Focus states for accessibility */
-.filter-chip:focus,
-.add-btn:focus {
-  outline: 2px solid #f53434;
-  outline-offset: 2px;
-}
-
-/* Loading states */
-.menu-items-grid.loading {
-  opacity: 0.6;
-  pointer-events: none;
-}
-
-/* Animation for filter changes */
-.menu-items-grid {
-  animation: fadeIn 0.3s ease-in;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  .items-grid {
+    gap: 15px;
+    row-gap: 20px;
   }
 }
