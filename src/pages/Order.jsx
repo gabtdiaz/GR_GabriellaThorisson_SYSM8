@@ -138,34 +138,41 @@ const Order = () => {
     <div className="order-page">
       <Header />
       <main className="order-main">
-        {/* Filter Section */}
-        <section className="filters-section">
-          <div className="filters-container">
-            {filters.map((filter) => (
-              <button
-                key={filter}
-                className={`filter-chip ${
-                  activeFilter === filter ? "active" : ""
-                }`}
-                onClick={() => setActiveFilter(filter)}
-              >
-                <div className="filter-label">{filter}</div>
-              </button>
-            ))}
-          </div>
-        </section>
+        {/* Filter Section - exakt som din HTML */}
+        <div className="filters">
+          {filters.map((filter) => (
+            <div
+              key={filter}
+              className={`filter-chip ${
+                activeFilter === filter ? "active" : ""
+              }`}
+              onClick={() => setActiveFilter(filter)}
+            >
+              <div className="state-layer">
+                <div className="label-text">{filter}</div>
+              </div>
+            </div>
+          ))}
+        </div>
 
-        {/* Menu Items Section */}
-        <section className="menu-items-section">
-          <div className="menu-items-container">
-            <h2 className="category-heading">{activeFilter}</h2>
-            <div className="menu-items-grid">
+        {/* Menu Items Frame - exakt som din HTML struktur */}
+        <div className="menuitems-frame">
+          {/* Category Header */}
+          <div className="category-header-section">
+            <div className="category-title-wrapper">
+              <div className="category-title-text">{activeFilter}</div>
+            </div>
+          </div>
+
+          {/* Menu Items - två och två per rad */}
+          <div className="category-frame">
+            <div className="items-row-container">
               {menuData[activeFilter]?.map((item) => (
                 <MenuItem key={item.id} item={item} />
               ))}
             </div>
           </div>
-        </section>
+        </div>
       </main>
       <Footer />
     </div>
