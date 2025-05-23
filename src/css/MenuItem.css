@@ -112,12 +112,22 @@
   position: relative;
 }
 
+.frame-21 {
+  /* Ta bort all absolut positionering */
+  position: static; /* eller relative */
+  /* Ta bort top/right som flyttar texten utanför */
+  width: auto;
+  height: auto;
+  padding: 10px; /* Lägg till lite padding istället */
+  flex: 1; /* Låt den ta upp tillgängligt utrymme */
+}
+
 .frame-22 {
   position: absolute;
-  top: 0px; /* Lite marginal från toppen */
-  right: -55px; /* Lite marginal från höger */
-  width: 100px; /* Mindre bredd */
-  height: 100px; /* Mindre höjd */
+  top: 0px;
+  right: -55px;
+  width: 100px;
+  height: 100px;
   z-index: 20;
   cursor: pointer;
   transition: background-color 0.3s ease;

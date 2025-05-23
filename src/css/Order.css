@@ -133,7 +133,7 @@
 /* Items grid */
 .items-grid {
   background: #ffffff;
-  display: flex;
+  display: grid;
   flex-direction: row;
   gap: 49px;
   row-gap: 74px;

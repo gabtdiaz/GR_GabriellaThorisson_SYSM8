@@ -74,6 +74,24 @@
     },
     {
       "id": 9,
+      "name": "Beans and rice",
+      "description": "Spicy mexican rice with fried beans",
+      "price": 40,
+      "category": "Sides",
+      "image": "frijoles.png",
+      "popular": false
+    },
+    {
+      "id": 10,
+      "name": "Elote",
+      "description": "Corn on the cob with mayo, cotija cheese and tajin",
+      "price": 40,
+      "category": "Sides",
+      "image": "elote.png",
+      "popular": false
+    },
+    {
+      "id": 11,
       "name": "Jarritos - Cola",
       "description": "Mexican cola soda",
       "price": 40,
@@ -82,7 +100,7 @@
       "popular": true
     },
     {
-      "id": 10,
+      "id": 12,
       "name": "Jarritos - Orange",
       "description": "Mexican orange soda",
       "price": 40,
@@ -91,7 +109,7 @@
       "popular": false
     },
     {
-      "id": 11,
+      "id": 13,
       "name": "Jarritos - Lime",
       "description": "Mexican lime soda",
       "price": 40,
@@ -100,7 +118,7 @@
       "popular": false
     },
     {
-      "id": 12,
+      "id": 14,
       "name": "Corona",
       "description": "Mexican beer",
       "price": 50,

@@ -12,7 +12,11 @@ const MenuItem = ({
     // Checkout item layout
     return (
       <div className="checkout-item">
-        <img src="combo.jpg" alt={item.name} className="checkout-item-img" />
+        <img
+          alt={item.name}
+          className="item-img"
+          src={`${item.image}`} // Använd item.image från JSON
+        />
         <div className="checkout-item-info">
           <h3 className="checkout-item-name">{item.name}</h3>
           <p className="checkout-item-desc">{item.description}</p>
@@ -52,13 +56,13 @@ const MenuItem = ({
       />
       <div className="frame-21">
         <div className="frame-18">
-          <div className="combo-plate">{item.name}</div>
+          <div className="dish-name">{item.name}</div>
         </div>
         <div className="frame-19">
-          <div className="a-combo">{item.description}</div>
+          <div className="dish-description">{item.description}</div>
         </div>
         <div className="frame-20">
-          <div className="_90-sek">{item.price} SEK</div>
+          <div className="dish-price">{item.price} SEK</div>
         </div>
       </div>
 
