@@ -3,13 +3,13 @@
 .heroimg {
   display: flex;
   flex-direction: column;
-  gap: 30px;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 600px;
   position: relative;
   margin-top: 97px;
+  margin-bottom: -70px;
 }
 
 /* Bakgrundsbilden med dess egna container */
@@ -70,7 +70,7 @@
 }
 
 .menu2 {
-  color: #ffdfd1;
+  color: #ffebe3;
   text-align: center;
   font-family: var(--h2-font-family, "Anton-Regular", sans-serif);
   font-size: var(--h2-font-size, 20px);
@@ -101,7 +101,7 @@
 }
 
 .order-online {
-  color: #ffdfd1;
+  color: #ffebe3;
   text-align: center;
   font-family: var(--h2-font-family, "Anton-Regular", sans-serif);
   font-size: var(--h2-font-size, 20px);

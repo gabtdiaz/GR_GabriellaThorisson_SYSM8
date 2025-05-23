@@ -5,7 +5,7 @@ import "../css/Footer.css";
 const Footer = () => {
   return (
     <div className="frame-footer">
-      <div className="contact-us">Kontakta oss</div>
+      <div className="contact-us">CONTACT US</div>
       <div className="contact-container">
         <div className="goth-contactInfo">
           Göteborg

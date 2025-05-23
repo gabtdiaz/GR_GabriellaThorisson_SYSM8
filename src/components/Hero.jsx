@@ -19,10 +19,10 @@ const Hero = ({ backgroundImage }) => {
       {/* Innehåll med knappar (full opacitet) */}
       <div className="hero-content">
         <div className="menu-btn">
-          <div className="menu2">MENY</div>
+          <div className="menu2">MENU</div>
         </div>
         <div className="order-btn">
-          <div className="order-online">BESTÄLL ONLINE</div>
+          <div className="order-online">ORDER</div>
         </div>
       </div>
     </div>

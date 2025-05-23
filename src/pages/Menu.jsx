@@ -43,7 +43,6 @@ const Menu = () => {
                 <h2 className="section-title">Drinks</h2>
                 <p>Jarritos - Cola | Lime | Orange</p>
                 <p>Beer - Corona</p>
-                <p>Michelada</p>
               </div>
 
               <button className="order-button">ORDER ONLINE</button>

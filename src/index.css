@@ -9,7 +9,7 @@
   --menu-text: #4e2413;
   --primary-color: #ff4949;
   --secondary-color: #671414;
-  --background-color: #ffffff;
+  --background-color: #fbf4f4;
   --text-dark: #000000;
   --text-light: #ffffff;
 
@@ -23,7 +23,7 @@
   --h1-letter-spacing: 1px;
 
   /* Underrubriker (H2) */
-  --h2-font-family: "Oswald", sans-serif;
+  --h2-font-family: "Oswald";
   --h2-font-size: 24px;
   --h2-line-height: 1.3;
   --h2-font-weight: 600;
@@ -38,7 +38,7 @@
   --h3-font-style: normal;
 
   /* Brödtext */
-  --p-font-family: "Abel", sans-serif;
+  --p-font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   --p-font-size: 16px;
   --p-line-height: 1.6;
   --p-font-weight: 400;

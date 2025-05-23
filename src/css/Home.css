@@ -1,6 +1,4 @@
 /* src/css/Home.css */
-/* Grundläggande styling för hela sidan */
-/* Återställer grundläggande styling för att undvika browser-specifika problem */
 * {
   margin: 0;
   padding: 0;
@@ -14,7 +12,6 @@ body {
 }
 
 .desktop-1 {
-  background: #ffffff;
   width: 100%;
   max-width: 100%;
   margin: 0 auto;

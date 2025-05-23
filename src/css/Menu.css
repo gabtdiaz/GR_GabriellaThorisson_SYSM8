@@ -41,6 +41,7 @@
   max-width: 600px;
   position: relative; /* För att vara ovanför overlay */
   z-index: 1;
+  margin-top: 100px;
 }
 
 .menu-card {
@@ -78,10 +79,11 @@
 
 .order-button {
   background-color: #f53434;
-  color: white;
+  color: #ffebe3;
   padding: 1rem 2rem;
   font-size: 1.2rem;
   font-weight: bold;
+  font-family: var(--h2-font-family, "Anton-Regular", sans-serif);
   border: none;
   border-radius: 8px;
   cursor: pointer;

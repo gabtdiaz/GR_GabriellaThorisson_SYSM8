@@ -9,7 +9,7 @@ const HomePage = () => {
   return (
     <div className="desktop-1">
       <Header />
-      <Hero backgroundImage="/heroimg.jpg" />
+      <Hero backgroundImage="/heroimage.png" />
       <Footer />
     </div>
   );
