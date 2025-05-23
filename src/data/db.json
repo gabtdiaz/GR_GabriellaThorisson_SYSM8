@@ -2,39 +2,39 @@
   "menuItems": [
     {
       "id": 1,
-      "name": "Carne Asada",
-      "description": "Beef, Onion, Cilantro, Salsa verde",
-      "price": 90,
-      "category": "Tacos",
-      "image": "/images/carne-asada.jpg",
-      "popular": true
-    },
-    {
-      "id": 2,
-      "name": "Al Pastor",
-      "description": "Pork, Onion, Cilantro, Pineapple, Salsa verde",
-      "price": 90,
-      "category": "Tacos",
-      "image": "/images/al-pastor.jpg",
-      "popular": true
-    },
-    {
-      "id": 3,
-      "name": "Veggie",
-      "description": "Beans, Onion, Cilantro, Salsa verde",
-      "price": 90,
-      "category": "Tacos",
-      "image": "/images/veggie-taco.jpg",
-      "popular": false
-    },
-    {
-      "id": 4,
       "name": "Combo Plate",
       "description": "A combo of our three different types of tacos",
       "price": 90,
-      "category": "Tacos",
-      "image": "/images/combo-plate.jpg",
+      "category": "Mains",
+      "image": "combo.jpg",
+      "popular": false
+    },
+    {
+      "id": 2,
+      "name": "Carne Asada",
+      "description": "3x tacos with Beef, Onion, Cilantro, Salsa verde",
+      "price": 90,
+      "category": "Mains",
+      "image": "carneasada.jpg",
+      "popular": false
+    },
+    {
+      "id": 3,
+      "name": "Al Pastor",
+      "description": "3x tacos with Pork, Onion, Cilantro, Pineapple, Salsa verde",
+      "price": 90,
+      "category": "Mains",
+      "image": "alpastor.jpg",
       "popular": true
+    },
+    {
+      "id": 4,
+      "name": "Veggie",
+      "description": "3x tacos with Beans, Onion, Cilantro, Salsa verde",
+      "price": 90,
+      "category": "Mains",
+      "image": "veggie.jpg",
+      "popular": false
     },
     {
       "id": 5,
@@ -42,8 +42,8 @@
       "description": "With cinnamon and sugar",
       "price": 40,
       "category": "Desserts",
-      "image": "/images/churros.jpg",
-      "popular": true
+      "image": "churros.png",
+      "popular": false
     },
     {
       "id": 6,
@@ -51,7 +51,7 @@
       "description": "Soaked in condensed milk",
       "price": 50,
       "category": "Desserts",
-      "image": "/images/tres-leches.jpg",
+      "image": "tresleches.png",
       "popular": false
     },
     {
@@ -60,7 +60,7 @@
       "description": "Fried tortillabread with tomato salsa",
       "price": 50,
       "category": "Sides",
-      "image": "/images/nachos.jpg",
+      "image": "nachos.jpg",
       "popular": true
     },
     {
@@ -69,61 +69,43 @@
       "description": "Avocado spread with onion, cilantro, cumin and lime",
       "price": 40,
       "category": "Sides",
-      "image": "/images/guacamole.jpg",
+      "image": "guacamole.jpg",
       "popular": true
     },
     {
       "id": 9,
-      "name": "Rice and Beans",
-      "description": "Frijoles with steamed rice",
-      "price": 35,
-      "category": "Sides",
-      "image": "/images/rice-beans.jpg",
-      "popular": false
-    },
-    {
-      "id": 10,
       "name": "Jarritos - Cola",
       "description": "Mexican cola soda",
       "price": 40,
       "category": "Drinks",
-      "image": "/images/jarritos-cola.jpg",
-      "popular": false
+      "image": "drink1.jpg",
+      "popular": true
     },
     {
-      "id": 11,
+      "id": 10,
       "name": "Jarritos - Orange",
       "description": "Mexican orange soda",
       "price": 40,
       "category": "Drinks",
-      "image": "/images/jarritos-orange.jpg",
+      "image": "drink2.jpg",
       "popular": false
     },
     {
-      "id": 12,
+      "id": 11,
       "name": "Jarritos - Lime",
       "description": "Mexican lime soda",
       "price": 40,
       "category": "Drinks",
-      "image": "/images/jarritos-lime.jpg",
+      "image": "drink3.jpg",
       "popular": false
     },
     {
-      "id": 13,
+      "id": 12,
       "name": "Corona",
       "description": "Mexican beer",
       "price": 50,
       "category": "Drinks",
-      "image": "/images/corona.jpg",
-      "popular": true
-    },
-    {
-      "id": 14,
-      "name": "Michelada",
-      "description": "Beer cocktail with lime juice, spices, and tomato juice",
-      "price": 60,
-      "category": "Drinks",
-      "image": "/images/michelada.jpg",
+      "image": "drink4.jpg",
       "popular": false
     }
   ],

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import MenuItem from "../components/MenuItem";
@@ -31,7 +31,6 @@ const CategorySection = ({ title, items, icon, onAddItem }) => {
     <div className="category-section">
       {/* Category Header */}
       <div className="category-header">
-        {icon && <div className="category-icon">{icon}</div>}
         <h2 className="category-title">{title}</h2>
       </div>
 
@@ -48,127 +47,78 @@ const CategorySection = ({ title, items, icon, onAddItem }) => {
 // Main Order Page Component
 const Order = () => {
   const [activeFilter, setActiveFilter] = useState("All");
+  const [menuData, setMenuData] = useState({
+    Mains: [],
+    Sides: [],
+    Desserts: [],
+    Drinks: [],
+  });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // Sample menu data
-  const menuData = {
-    Mains: [
-      {
-        id: 1,
-        name: "Combo plate",
-        description: "A combo of three different types of tacos",
-        price: "90",
-        popular: true,
-      },
-      {
-        id: 2,
-        name: "Combo plate",
-        description: "A combo of three different types of tacos",
-        price: "90",
-        popular: false,
-      },
-      {
-        id: 3,
-        name: "Combo plate",
-        description: "A combo of three different types of tacos",
-        price: "90",
-        popular: false,
-      },
-      {
-        id: 4,
-        name: "Combo plate",
-        description: "A combo of three different types of tacos",
-        price: "90",
-        popular: false,
-      },
-    ],
-    Sides: [
-      {
-        id: 5,
-        name: "Side Combo",
-        description: "A combo of three different types of tacos",
-        price: "90",
-        popular: true,
-      },
-      {
-        id: 6,
-        name: "Side Combo",
-        description: "A combo of three different types of tacos",
-        price: "90",
-        popular: false,
-      },
-      {
-        id: 7,
-        name: "Side Combo",
-        description: "A combo of three different types of tacos",
-        price: "90",
-        popular: false,
-      },
-      {
-        id: 8,
-        name: "Side Combo",
-        description: "A combo of three different types of tacos",
-        price: "90",
-        popular: false,
-      },
-    ],
-    Desserts: [
-      {
-        id: 9,
-        name: "Sweet Treat",
-        description: "A combo of three different types of tacos",
-        price: "90",
-        popular: false,
-      },
-      {
-        id: 10,
-        name: "Sweet Treat",
-        description: "A combo of three different types of tacos",
-        price: "90",
-        popular: false,
-      },
-    ],
-    Drinks: [
-      {
-        id: 11,
-        name: "Refreshing Drink",
-        description: "A combo of three different types of tacos",
-        price: "90",
-        popular: true,
-      },
-      {
-        id: 12,
-        name: "Refreshing Drink",
-        description: "A combo of three different types of tacos",
-        price: "90",
-        popular: false,
-      },
-      {
-        id: 13,
-        name: "Refreshing Drink",
-        description: "A combo of three different types of tacos",
-        price: "90",
-        popular: false,
-      },
-      {
-        id: 14,
-        name: "Refreshing Drink",
-        description: "A combo of three different types of tacos",
-        price: "90",
-        popular: false,
-      },
-    ],
-  };
+  // Hämta data från API när komponenten laddas
+  useEffect(() => {
+    const fetchMenuData = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch("http://localhost:3001/menuItems"); // Din JSON server URL
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch menu data");
+        }
+
+        const data = await response.json();
+
+        // Gruppera data efter kategori
+        const groupedData = {
+          Mains: data.filter((item) => item.category === "Mains"),
+          Sides: data.filter((item) => item.category === "Sides"),
+          Desserts: data.filter((item) => item.category === "Desserts"),
+          Drinks: data.filter((item) => item.category === "Drinks"),
+        };
+
+        setMenuData(groupedData);
+      } catch (err) {
+        setError(err.message);
+        console.error("Error fetching menu data:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMenuData();
+  }, []); // Tom array betyder att det bara körs en gång när komponenten laddas
 
   const handleAddItem = (itemId) => {
     console.log(`Adding item ${itemId} to cart`);
-    // Här skulle du hantera att lägga till item i cart
+    // Här ska du hantera att lägga till item i cart
   };
 
-  // Category icons - placeholders för dina egna ikoner
-  const categoryIcons = {
-    Desserts: <img src="dessertlogo.png" alt="Desserts" className="dessert2" />,
-    Drinks: <img src="drinklogo.png" alt="Drinks" className="ice-drink" />,
-  };
+  // Visa loading meddelande
+  if (loading) {
+    return (
+      <div className="order-page">
+        <Header />
+        <div className="main-content">
+          <div className="loading">Loading menu...</div>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
+
+  // Visa fel meddelande
+  if (error) {
+    return (
+      <div className="order-page">
+        <Header />
+        <div className="main-content">
+          <div className="error">Error: {error}</div>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
 
   return (
     <div className="order-page">
@@ -187,7 +137,7 @@ const Order = () => {
             // Visa alla kategorier med sina rubriker
             <>
               <CategorySection
-                title="Tacos"
+                title="Mains"
                 items={menuData.Mains}
                 onAddItem={handleAddItem}
               />
@@ -199,22 +149,19 @@ const Order = () => {
               <CategorySection
                 title="Desserts"
                 items={menuData.Desserts}
-                icon={categoryIcons.Desserts}
                 onAddItem={handleAddItem}
               />
               <CategorySection
                 title="Drinks"
                 items={menuData.Drinks}
-                icon={categoryIcons.Drinks}
                 onAddItem={handleAddItem}
               />
             </>
           ) : (
             // Visa bara vald kategori
             <CategorySection
-              title={activeFilter === "Mains" ? "Tacos" : activeFilter}
-              items={menuData[activeFilter]}
-              icon={categoryIcons[activeFilter]}
+              title={activeFilter}
+              items={menuData[activeFilter] || []}
               onAddItem={handleAddItem}
             />
           )}

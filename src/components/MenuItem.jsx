@@ -45,15 +45,17 @@ const MenuItem = ({
         </div>
       )}
 
-      <img src="combo.jpg" alt={item.name} className="item-img" />
+      <img
+        alt={item.name}
+        className="item-img"
+        src={`${item.image}`} // Använd item.image från JSON
+      />
       <div className="frame-21">
         <div className="frame-18">
           <div className="combo-plate">{item.name}</div>
         </div>
         <div className="frame-19">
-          <div className="a-combo-of-three-different-types-of-tacos">
-            {item.description}
-          </div>
+          <div className="a-combo">{item.description}</div>
         </div>
         <div className="frame-20">
           <div className="_90-sek">{item.price} SEK</div>

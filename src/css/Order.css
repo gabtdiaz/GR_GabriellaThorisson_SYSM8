@@ -124,36 +124,13 @@
 .category-title {
   color: #671414;
   text-align: left;
-  font-family: "Anton-Regular", sans-serif;
+  font-family: "Oswald", sans-serif;
   font-size: 36px;
   font-weight: 400;
   position: relative;
 }
 
-.category-icon {
-  color: #606266;
-}
-
-/* Category-specific styling */
-.dessert2 {
-  flex-shrink: 0;
-  width: 70px;
-  height: 69px;
-  position: relative;
-  overflow: hidden;
-  object-fit: cover;
-}
-
-.ice-drink {
-  flex-shrink: 0;
-  width: 44px;
-  height: 53px;
-  position: relative;
-  overflow: hidden;
-  object-fit: cover;
-}
-
-/* Items grid - som din Figma layout */
+/* Items grid */
 .items-grid {
   background: #ffffff;
   display: flex;
