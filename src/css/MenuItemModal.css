@@ -1,3 +1,4 @@
+/* Modal overlay - täcker hela skärmen */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -18,4 +19,276 @@
 .modal-overlay.active {
   opacity: 1;
   visibility: visible;
+}
+
+/* Din ursprungliga CSS från Figma */
+.clicked-menu-item-card,
+.clicked-menu-item-card * {
+  box-sizing: border-box;
+}
+
+.clicked-menu-item-card {
+  background: #fff2f2;
+  border-radius: 15px;
+  width: 540px;
+  height: 560px;
+  position: relative;
+  overflow: hidden;
+  transform: scale(0.8);
+  transition: transform 0.3s ease;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.modal-overlay.active .clicked-menu-item-card {
+  transform: scale(1);
+}
+
+.frame-26 {
+  width: 540px;
+  height: 265px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  overflow: hidden;
+  border-radius: 15px 15px 0 0;
+}
+
+.close {
+  border-radius: 50px;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  left: 491px;
+  top: 8px;
+  overflow: visible;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  z-index: 10;
+}
+
+.close:hover {
+  transform: scale(1.1);
+}
+
+.frame-31 {
+  background: #d9d9d9;
+  width: 540px;
+  height: 87px;
+  position: absolute;
+  left: 50%;
+  translate: -50%;
+  top: 473px;
+  overflow: hidden;
+  border-radius: 0 0 15px 15px;
+}
+
+.add-remove-btns-frame {
+  padding: 10px 0px 0px 0px;
+  width: 510px;
+  height: 66px;
+  position: absolute;
+  left: 50%;
+  translate: -50% -50%;
+  top: 50%;
+}
+
+.frame-34 {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+  justify-content: flex-start;
+  height: 73px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+
+.add-remove {
+  background: #636569;
+  border-radius: 5px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  width: 200px;
+  position: relative;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+
+.frame-30 {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.outline-24-px-minus-circle,
+.outline-24-px-plus-circle {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  position: relative;
+  overflow: visible;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.outline-24-px-minus-circle:hover,
+.outline-24-px-plus-circle:hover {
+  transform: scale(1.1);
+}
+
+.quantity {
+  color: var(--text-white, #ffffff);
+  text-align: center;
+  font-family: "Lato-Bold", sans-serif;
+  font-size: 24px;
+  line-height: 24px;
+  font-weight: 700;
+  position: relative;
+  width: 20px;
+  height: 26px;
+}
+
+.addtocart-btn {
+  background: #4d8be3;
+  border-radius: 5px;
+  padding: 19px 64px 19px 64px;
+  flex-shrink: 0;
+  width: 290px;
+  height: 62px;
+  position: relative;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.addtocart-btn:hover {
+  background: #3a7bc8;
+  transform: translateY(-2px);
+}
+
+.add-to-cart {
+  color: #ffffff;
+  text-align: left;
+  font-family: "Roboto-Bold", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  position: absolute;
+  left: 90px;
+  top: 17px;
+}
+
+.frame-33-modal {
+  width: 540px;
+  height: 218px;
+  position: absolute;
+  left: 0px;
+  top: 265px;
+  overflow: hidden;
+}
+
+.frame-21-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+  justify-content: center;
+  width: 458px;
+  height: 218px;
+  position: absolute;
+  left: 39px;
+  top: 0px;
+}
+
+/* Obs! Lägg inte samma klassnamn så de krockar med  */
+.dish-name-modal {
+  color: #ff4949;
+  text-align: left;
+  font-family: "Oswald-SemiBold", sans-serif;
+  font-size: 36px;
+  font-weight: 600;
+  position: relative;
+}
+
+.frame-19-modal {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.dish-description-modal {
+  color: #000000;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  position: relative;
+  line-height: 1.4;
+}
+
+.frame-20-modal {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.dish-price-modal {
+  color: #0400ff;
+  text-align: left;
+  font-family: "Roboto-Regular", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  position: relative;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+  .clicked-menu-item-card {
+    width: 90vw;
+    height: auto;
+    max-width: 500px;
+  }
+
+  .frame-26,
+  .frame-31,
+  .frame-33 {
+    width: 100%;
+  }
+
+  .add-remove-btns-frame {
+    width: 90%;
+  }
+
+  .frame-34 {
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+  }
+
+  .addtocart-btn {
+    width: 250px;
+  }
+
+  .close {
+    left: calc(100% - 50px);
+  }
 }

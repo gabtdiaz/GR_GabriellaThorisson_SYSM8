@@ -94,22 +94,14 @@
   /* transition: transform 0.2s ease, opacity 0.2s ease; */
 }
 
-.home:hover {
-  color: #ff7a7a;
-}
-.order:hover {
-  color: #f36d6d;
-}
-.menu:hover {
-  color: #f36d6d;
-}
-.contact:hover {
-  color: #f36d6d;
-}
+.contact:hover,
+.menu:hover,
+.order:hover,
+.home:hover,
 .sign-in:hover {
   color: #f36d6d;
 }
-/* Mobila justeringar för hamburgermeny */
+/* Navbarjustering vid mobilanpassning - hambergermeny */
 @media screen and (max-width: 768px) {
   .icon-frame {
     display: block; /* Visa på mobil */

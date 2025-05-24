@@ -1,3 +1,4 @@
+// src/components/MenuItem.jsx
 import React from "react";
 import "../css/MenuItem.css";
 
@@ -7,40 +8,20 @@ const MenuItem = ({
   onAdd,
   onRemove,
   quantity = 0,
+  onCardClick, // Lägg till denna prop
 }) => {
   if (isCheckout) {
-    // Checkout item layout
-    return (
-      <div className="checkout-item">
-        <img
-          alt={item.name}
-          className="item-img"
-          src={`${item.image}`} // Använd item.image från JSON
-        />
-        <div className="checkout-item-info">
-          <h3 className="checkout-item-name">{item.name}</h3>
-          <p className="checkout-item-desc">{item.description}</p>
-          <p className="checkout-item-price">{item.price} SEK</p>
-        </div>
-        <div className="checkout-item-controls">
-          <button
-            onClick={() => onRemove(item.id)}
-            className="checkout-btn minus"
-          >
-            -
-          </button>
-          <span className="checkout-quantity">{quantity}</span>
-          <button onClick={() => onAdd(item.id)} className="checkout-btn plus">
-            +
-          </button>
-        </div>
-      </div>
-    );
+    // Här ska jag skriva checkout kod...
+    return <div className="checkout-item">{/* checkout kod */}</div>;
   }
 
   // OrderPage - MenuItem-card layout
   return (
-    <div className="menu-item-card">
+    <div
+      className="menu-item-card"
+      onClick={() => onCardClick && onCardClick(item)} // Lägg till denna onClick
+      style={{ cursor: "pointer" }} // Visa att det är klickbart
+    >
       {/* Popular bricka */}
       {item.popular && (
         <div className="popular-icon">
@@ -49,11 +30,8 @@ const MenuItem = ({
         </div>
       )}
 
-      <img
-        alt={item.name}
-        className="item-img"
-        src={`${item.image}`} // Använd item.image från JSON
-      />
+      <img alt={item.name} className="item-img" src={`${item.image}`} />
+
       <div className="frame-21">
         <div className="frame-18">
           <div className="dish-name">{item.name}</div>
@@ -67,7 +45,12 @@ const MenuItem = ({
       </div>
 
       <div className="frame-22">
-        <div className="frame-plus" onClick={() => onAdd(item.id)}>
+        <div
+          className="frame-plus"
+          onClick={(e) => {
+            onAdd(item.id);
+          }}
+        >
           <img className="plus-logo" src="addplus.png" alt="Add" />
         </div>
       </div>

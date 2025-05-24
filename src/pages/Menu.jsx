@@ -23,7 +23,7 @@ const Menu = () => {
                   Guacamole - avocado spread w. onion, cilatro, cumin and lime
                 </p>
                 <p>Nachos - fried tortillabread w. tomato salsa</p>
-                <p>Rice and beans - Frijoles with steamed rice</p>
+                <p>Rice and beans - Frijoles with spicy rice</p>
               </div>
 
               <div className="menu-section">

@@ -4,28 +4,33 @@ import "../css/MenuItemModal.css";
 const MenuItemModal = ({ isOpen, onClose, item }) => {
   const [quantity, setQuantity] = useState(1);
 
+  // Stäng modal när man klickar utanför
   const handleOverlayClick = (e) => {
     if (e.target === e.currentTarget) {
       onClose();
     }
   };
 
+  // Öka kvantitet
   const increaseQuantity = () => {
     setQuantity((prev) => prev + 1);
   };
 
+  // Minska kvantitet (minst 1)
   const decreaseQuantity = () => {
     if (quantity > 1) {
       setQuantity((prev) => prev - 1);
     }
   };
 
+  // Lägg till i cart och stäng modal
   const addToCart = () => {
     console.log(`Added ${quantity} ${item?.name} to cart`);
     onClose();
-    setQuantity(1);
+    setQuantity(1); // Reset kvantitet
   };
 
+  // Visa inte modal om den inte är öppen
   if (!isOpen) return null;
 
   return (
@@ -34,11 +39,15 @@ const MenuItemModal = ({ isOpen, onClose, item }) => {
       onClick={handleOverlayClick}
     >
       <div className="clicked-menu-item-card">
+        {/* Bild-sektion med stäng-knapp */}
         <div
           className="frame-26"
           style={{
-            background:
-              item?.image || "linear-gradient(135deg, #ff6b6b, #ffa500)",
+            background: item?.image
+              ? `url(${item.image}) center`
+              : "linear-gradient(135deg, #ff6b6b, #ffa500)",
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
           }}
         >
           <svg
@@ -48,6 +57,7 @@ const MenuItemModal = ({ isOpen, onClose, item }) => {
             height="40"
             viewBox="0 0 40 40"
             fill="none"
+            xmlns="http://www.w3.org/2000/svg"
           >
             <rect width="40" height="40" rx="20" fill="white" />
             <path
@@ -57,11 +67,14 @@ const MenuItemModal = ({ isOpen, onClose, item }) => {
           </svg>
         </div>
 
+        {/* Knappar-sektion (plus/minus och add to cart) */}
         <div className="frame-31">
           <div className="add-remove-btns-frame">
             <div className="frame-34">
+              {/* Plus/Minus knappar */}
               <div className="add-remove">
                 <div className="frame-30">
+                  {/* Minus knapp */}
                   <svg
                     className="outline-24-px-minus-circle"
                     onClick={decreaseQuantity}
@@ -69,6 +82,7 @@ const MenuItemModal = ({ isOpen, onClose, item }) => {
                     height="31"
                     viewBox="0 0 30 31"
                     fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
                       d="M10 14.25C9.30964 14.25 8.75 14.8096 8.75 15.5C8.75 16.1904 9.30964 16.75 10 16.75H20C20.6904 16.75 21.25 16.1904 21.25 15.5C21.25 14.8096 20.6904 14.25 20 14.25H10Z"
@@ -81,7 +95,11 @@ const MenuItemModal = ({ isOpen, onClose, item }) => {
                       fill="white"
                     />
                   </svg>
+
+                  {/* Kvantitet visning */}
                   <div className="quantity">{quantity}</div>
+
+                  {/* Plus knapp */}
                   <svg
                     className="outline-24-px-plus-circle"
                     onClick={increaseQuantity}
@@ -89,6 +107,7 @@ const MenuItemModal = ({ isOpen, onClose, item }) => {
                     height="31"
                     viewBox="0 0 30 31"
                     fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
                       d="M15 9.25C15.6904 9.25 16.25 9.80964 16.25 10.5V14.25H20C20.6904 14.25 21.25 14.8096 21.25 15.5C21.25 16.1904 20.6904 16.75 20 16.75H16.25V20.5C16.25 21.1904 15.6904 21.75 15 21.75C14.3096 21.75 13.75 21.1904 13.75 20.5V16.75H10C9.30964 16.75 8.75 16.1904 8.75 15.5C8.75 14.8096 9.30964 14.25 10 14.25H13.75V10.5C13.75 9.80964 14.3096 9.25 15 9.25Z"
@@ -103,6 +122,8 @@ const MenuItemModal = ({ isOpen, onClose, item }) => {
                   </svg>
                 </div>
               </div>
+
+              {/* Add to cart knapp */}
               <div className="addtocart-btn" onClick={addToCart}>
                 <div className="add-to-cart">Add to cart</div>
               </div>
@@ -110,17 +131,23 @@ const MenuItemModal = ({ isOpen, onClose, item }) => {
           </div>
         </div>
 
-        <div className="frame-33">
-          <div className="frame-21">
-            <div className="combo-plate">{item?.name || "Combo plate"}</div>
-            <div className="frame-19">
-              <div className="a-combo-of-three-different-types-of-tacos">
+        {/* Info-sektion (titel, beskrivning, pris) */}
+        <div className="frame-33-modal">
+          <div className="frame-21-modal">
+            {/* Rätt klassnamn för dish name */}
+            <div className="dish-name-modal">{item?.name || "Combo plate"}</div>
+
+            <div className="frame-19-modal">
+              {/* Rätt klassnamn för dish description */}
+              <div className="dish-description-modal">
                 {item?.description ||
                   "A combo of three different types of tacos"}
               </div>
             </div>
-            <div className="frame-20">
-              <div className="_90-sek">{item?.price || "90 SEK"}</div>
+
+            <div className="frame-20-modal">
+              {/* Rätt klassnamn för dish price */}
+              <div className="dish-price-modal">{item?.price || "90"} SEK</div>
             </div>
           </div>
         </div>
