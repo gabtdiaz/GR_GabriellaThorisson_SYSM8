@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import MenuItem from "../components/MenuItem";
+import MenuItemModal from "../components/MenuItemModal";
 import "../css/Order.css";
 
-// Filter chipsen
+// Filter knappar för att visa olika kategorier
 const FilterChips = ({ activeFilter, setActiveFilter }) => {
   const filters = ["All", "Mains", "Sides", "Desserts", "Drinks"];
 
@@ -25,43 +26,57 @@ const FilterChips = ({ activeFilter, setActiveFilter }) => {
   );
 };
 
-// Category Section Component
-const CategorySection = ({ title, items, icon, onAddItem }) => {
+// En sektion som visar en kategori med titel och dess items
+const CategorySection = ({ title, items, onAddItem, onCardClick }) => {
   return (
     <div className="category-section">
-      {/* Category Header */}
+      {/* Rubrik för kategorin */}
       <div className="category-header">
         <h2 className="category-title">{title}</h2>
       </div>
 
-      {/* Items Grid */}
+      {/* Grid med alla items i kategorin */}
       <div className="items-grid">
         {items.map((item) => (
-          <MenuItem key={item.id} item={item} onAdd={onAddItem} />
+          <MenuItem
+            key={item.id}
+            item={item}
+            onAdd={onAddItem} // När man klickar på plus-knappen
+            onCardClick={onCardClick} //  När man klickar på hela kortet
+          />
         ))}
       </div>
     </div>
   );
 };
 
-// Main Order Page Component
+// Huvudkomponenten för Order-sidan
 const Order = () => {
+  // Vilken filter som är aktiv
   const [activeFilter, setActiveFilter] = useState("All");
+
+  // All menu data från servern
   const [menuData, setMenuData] = useState({
     Mains: [],
     Sides: [],
     Desserts: [],
     Drinks: [],
   });
+
+  // Loading och error states
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Hämta data från API när komponenten laddas
+  // Modal states - för popup-fönstret
+  const [isModalOpen, setIsModalOpen] = useState(false); // Är modalen öppen?
+  const [selectedItem, setSelectedItem] = useState(null); // Vilket item är valt?
+
+  // Hämta menu data från servern när sidan laddas
   useEffect(() => {
     const fetchMenuData = async () => {
       try {
         setLoading(true);
-        const response = await fetch("http://localhost:3001/menuItems"); // Din JSON server URL
+        const response = await fetch("http://localhost:3001/menuItems");
 
         if (!response.ok) {
           throw new Error("Failed to fetch menu data");
@@ -69,7 +84,7 @@ const Order = () => {
 
         const data = await response.json();
 
-        // Gruppera data efter kategori
+        // Sortera data i kategorier
         const groupedData = {
           Mains: data.filter((item) => item.category === "Mains"),
           Sides: data.filter((item) => item.category === "Sides"),
@@ -87,11 +102,24 @@ const Order = () => {
     };
 
     fetchMenuData();
-  }, []); // Tom array betyder att det bara körs en gång när komponenten laddas
+  }, []);
 
+  // När man klickar på plus-knappen
   const handleAddItem = (itemId) => {
     console.log(`Adding item ${itemId} to cart`);
-    // Här ska du hantera att lägga till item i cart
+    // Här kan du lägga till item i shopping cart
+  };
+
+  // När man klickar på hela kortet - öppna modal
+  const handleCardClick = (item) => {
+    setSelectedItem(item); // Spara vilket item som valdes
+    setIsModalOpen(true); // Öppna modalen
+  };
+
+  // Stäng modalen
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedItem(null);
   };
 
   // Visa loading meddelande
@@ -120,55 +148,68 @@ const Order = () => {
     );
   }
 
+  // Huvudinnehållet på sidan
   return (
     <div className="order-page">
       <Header />
 
-      {/* Main Content */}
       <div className="main-content">
+        {/* Filter knappar */}
         <FilterChips
           activeFilter={activeFilter}
           setActiveFilter={setActiveFilter}
         />
 
         <div className="content-container">
-          {/* Show all categories or filtered */}
+          {/* Visa antingen alla kategorier eller bara den valda */}
           {activeFilter === "All" ? (
-            // Visa alla kategorier med sina rubriker
+            // Visa alla kategorier
             <>
               <CategorySection
                 title="Mains"
                 items={menuData.Mains}
                 onAddItem={handleAddItem}
+                onCardClick={handleCardClick}
               />
               <CategorySection
                 title="Sides"
                 items={menuData.Sides}
                 onAddItem={handleAddItem}
+                onCardClick={handleCardClick}
               />
               <CategorySection
                 title="Desserts"
                 items={menuData.Desserts}
                 onAddItem={handleAddItem}
+                onCardClick={handleCardClick}
               />
               <CategorySection
                 title="Drinks"
                 items={menuData.Drinks}
                 onAddItem={handleAddItem}
+                onCardClick={handleCardClick}
               />
             </>
           ) : (
-            // Visa bara vald kategori
+            // Visa bara den valda kategorin
             <CategorySection
               title={activeFilter}
               items={menuData[activeFilter] || []}
               onAddItem={handleAddItem}
+              onCardClick={handleCardClick}
             />
           )}
         </div>
       </div>
 
       <Footer />
+
+      {/* Modal popup - visas bara när isModalOpen är true */}
+      <MenuItemModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        item={selectedItem}
+      />
     </div>
   );
 };
