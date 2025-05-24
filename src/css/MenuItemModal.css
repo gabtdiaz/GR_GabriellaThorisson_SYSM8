@@ -21,7 +21,6 @@
   visibility: visible;
 }
 
-/* Din ursprungliga CSS från Figma */
 .clicked-menu-item-card,
 .clicked-menu-item-card * {
   box-sizing: border-box;

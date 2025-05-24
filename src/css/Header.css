@@ -15,23 +15,23 @@
 
 .logo-frame {
   display: flex;
-  flex-direction: row;
-  gap: 7px;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 257px;
-  height: 69px;
+  width: 150px;
+  height: 90px;
   position: absolute;
-  left: 17px;
-  top: 11px;
+  left: 17px; /* Justera för att passa din layout */
+  top: 5px;
 }
 
 .text {
   color: #000000;
-  text-align: left;
-  font-family: "AbhayaLibre-Regular", sans-serif;
+  text-align: center;
+  font-family: "Oswald", sans-serif;
   font-size: 16px;
   font-weight: 400;
+  align-items: center;
   position: relative;
 }
 
@@ -42,6 +42,7 @@
   position: relative;
   overflow: hidden;
   object-fit: cover;
+  margin-bottom: -7px;
 }
 
 .icon-frame {
@@ -94,6 +95,9 @@
   /* transition: transform 0.2s ease, opacity 0.2s ease; */
 }
 
+.home {
+  margin-left: 50px;
+}
 .contact:hover,
 .menu:hover,
 .order:hover,

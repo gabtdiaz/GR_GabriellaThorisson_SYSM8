@@ -20,9 +20,8 @@ const Header = () => {
   return (
     <div className="frame-navbar">
       <div className="logo-frame" onClick={() => navigate("/")}>
-        <div className="text">Text</div>
         <img className="logo" src="/logo1.jpg" alt="Restaurant logo" />
-        <div className="text">Text</div>
+        <div className="text">Alma Mexicana</div>
       </div>
 
       {/* Hamburgermeny istället för navbar - vid mobilskärmar */}
@@ -32,11 +31,21 @@ const Header = () => {
 
       {/* Navigationsmeny med mobil-toggle klass */}
       <div className={`navbar ${menuOpen ? "mobile-open" : ""}`}>
-        <div className="home">HOME</div>
-        <div className="order">ORDER</div>
-        <div className="menu">MENU</div>
-        <div className="contact">CONTACT US</div>
-        <div className="sign-in">LOGIN</div>
+        <div className="home" onClick={() => navigate("/")}>
+          HOME
+        </div>
+        <div className="menu" onClick={() => navigate("/menu")}>
+          MENU
+        </div>
+        <div className="order" onClick={() => navigate("/order")}>
+          ORDER
+        </div>
+        <div className="contact" onClick={() => navigate("/")}>
+          CONTACT
+        </div>
+        <div className="sign-in" onClick={() => navigate("/")}>
+          LOGIN
+        </div>
       </div>
     </div>
   );

@@ -68,12 +68,12 @@ const MenuItemModal = ({ isOpen, onClose, item }) => {
         </div>
 
         {/* Knappar-sektion (plus/minus och add to cart) */}
-        <div className="frame-31">
+        <div className="frame-31-modal">
           <div className="add-remove-btns-frame">
-            <div className="frame-34">
+            <div className="frame-34-modal">
               {/* Plus/Minus knappar */}
               <div className="add-remove">
-                <div className="frame-30">
+                <div className="frame-30-modal">
                   {/* Minus knapp */}
                   <svg
                     className="outline-24-px-minus-circle"
