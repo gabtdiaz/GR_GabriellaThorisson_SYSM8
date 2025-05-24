@@ -68,12 +68,12 @@ const MenuItemModal = ({ isOpen, onClose, item }) => {
         </div>
 
         {/* Knappar-sektion (plus/minus och add to cart) */}
-        <div className="frame-31-modal">
+        <div className="frame-31">
           <div className="add-remove-btns-frame">
-            <div className="frame-34-modal">
+            <div className="frame-34">
               {/* Plus/Minus knappar */}
               <div className="add-remove">
-                <div className="frame-30-modal">
+                <div className="frame-30">
                   {/* Minus knapp */}
                   <svg
                     className="outline-24-px-minus-circle"
@@ -132,7 +132,7 @@ const MenuItemModal = ({ isOpen, onClose, item }) => {
         </div>
 
         {/* Info-sektion (titel, beskrivning, pris) */}
-        <div className="frame-33-modal">
+        <div className="frame-33">
           <div className="frame-21-modal">
             {/* Rätt klassnamn för dish name */}
             <div className="dish-name-modal">{item?.name || "Combo plate"}</div>

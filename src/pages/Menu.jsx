@@ -2,9 +2,11 @@
 import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { useNavigate } from "react-router-dom";
 import "../css/Menu.css";
 
 const Menu = () => {
+  const navigate = useNavigate();
   return (
     <div className="menu-page">
       <Header />
@@ -45,7 +47,12 @@ const Menu = () => {
                 <p>Beer - Corona</p>
               </div>
 
-              <button className="order-button">ORDER ONLINE</button>
+              <button
+                className="order-button"
+                onClick={() => navigate("/order")}
+              >
+                ORDER ONLINE
+              </button>
             </div>
           </div>
         </section>

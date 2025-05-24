@@ -23,6 +23,7 @@
   position: absolute;
   left: 17px; /* Justera för att passa din layout */
   top: 5px;
+  cursor: pointer;
 }
 
 .text {
@@ -105,6 +106,21 @@
 .sign-in:hover {
   color: #f36d6d;
 }
+
+.show-order-btn {
+  visibility: hidden; /* Dölj knappen som standard */
+  background-color: #4d8be3;
+  color: #ffffff;
+  font-family: "Oswald";
+  font-size: var(--h2-font-size, 20px);
+  font-weight: var(--h2-font-weight, 400);
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  padding: 5pc, 5px, 5px, 5px;
+  border-radius: 5px;
+}
+
 /* Navbarjustering vid mobilanpassning - hambergermeny */
 @media screen and (max-width: 768px) {
   .icon-frame {
