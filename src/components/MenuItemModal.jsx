@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useCart } from "../context/cartContext"; // Import cart context
+import React, { useState, useEffect } from "react";
+import { useCart } from "../context/cartContext";
 import "../css/MenuItemModal.css";
 
 const MenuItemModal = ({ isOpen, onClose, item, onAddToCart }) => {
@@ -7,6 +7,13 @@ const MenuItemModal = ({ isOpen, onClose, item, onAddToCart }) => {
 
   // Använd cart context
   const { addToCart } = useCart();
+
+  // Resetta quantity till 1 varje gång modalen öppnas
+  useEffect(() => {
+    if (isOpen) {
+      setQuantity(1);
+    }
+  }, [isOpen]);
 
   // Stäng modal när man klickar utanför
   const handleOverlayClick = (e) => {
@@ -27,7 +34,7 @@ const MenuItemModal = ({ isOpen, onClose, item, onAddToCart }) => {
     }
   };
 
-  // Lägg till i cart och stäng modal - NU MED RIKTIG FUNKTIONALITET
+  // Lägg till i cart och stäng modal
   const handleAddToCart = () => {
     if (!item) return;
 
@@ -36,14 +43,8 @@ const MenuItemModal = ({ isOpen, onClose, item, onAddToCart }) => {
 
     console.log(`Added ${quantity} ${item.name} to cart`);
 
-    // REMOVE: Ta bort onAddToCart callback för att undvika dubbel-add
-    // if (onAddToCart) {
-    //   onAddToCart(item, quantity);
-    // }
-
-    // Stäng modal och reset quantity
+    // Stäng modal (quantity resettas automatiskt via useEffect när isOpen blir false)
     onClose();
-    setQuantity(1);
   };
 
   // Visa inte modal om den inte är öppen
@@ -57,7 +58,7 @@ const MenuItemModal = ({ isOpen, onClose, item, onAddToCart }) => {
       <div className="clicked-menu-item-card">
         {/* Bild-sektion med stäng-knapp */}
         <div
-          className="frame-26"
+          className="frame-26" // Ändra klassnamn om du har tid?
           style={{
             background: item?.image
               ? `url(${item.image}) center`
@@ -66,88 +67,37 @@ const MenuItemModal = ({ isOpen, onClose, item, onAddToCart }) => {
             backgroundRepeat: "no-repeat",
           }}
         >
-          <svg
-            className="close"
-            onClick={onClose}
-            width="40"
-            height="40"
-            viewBox="0 0 40 40"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <rect width="40" height="40" rx="20" fill="white" />
-            <path
-              d="M10.6667 31.6666L8.33337 29.3333L17.6667 19.9999L8.33337 10.6666L10.6667 8.33325L20 17.6666L29.3334 8.33325L31.6667 10.6666L22.3334 19.9999L31.6667 29.3333L29.3334 31.6666L20 22.3333L10.6667 31.6666Z"
-              fill="#1d1b20"
-            />
-          </svg>
+          {/* Enkel stäng-knapp */}
+          <button className="modal-close-btn" onClick={onClose}>
+            ✕
+          </button>
         </div>
 
         {/* Knappar-sektion (plus/minus och add to cart) */}
         <div className="frame-31">
           <div className="add-remove-btns-frame">
             <div className="frame-34">
-              {/* Plus/Minus knappar */}
-              <div className="add-remove">
-                <div className="frame-30">
-                  {/* Minus knapp */}
-                  <svg
-                    className="outline-24-px-minus-circle"
-                    onClick={decreaseQuantity}
-                    width="30"
-                    height="31"
-                    viewBox="0 0 30 31"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    style={{
-                      cursor: quantity > 1 ? "pointer" : "not-allowed",
-                      opacity: quantity > 1 ? 1 : 0.5,
-                    }}
-                  >
-                    <path
-                      d="M10 14.25C9.30964 14.25 8.75 14.8096 8.75 15.5C8.75 16.1904 9.30964 16.75 10 16.75H20C20.6904 16.75 21.25 16.1904 21.25 15.5C21.25 14.8096 20.6904 14.25 20 14.25H10Z"
-                      fill="white"
-                    />
-                    <path
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                      d="M15 1.75C7.40608 1.75 1.25 7.90608 1.25 15.5C1.25 23.0939 7.40608 29.25 15 29.25C22.5939 29.25 28.75 23.0939 28.75 15.5C28.75 7.90608 22.5939 1.75 15 1.75ZM3.75 15.5C3.75 9.2868 8.7868 4.25 15 4.25C21.2132 4.25 26.25 9.2868 26.25 15.5C26.25 21.7132 21.2132 26.75 15 26.75C8.7868 26.75 3.75 21.7132 3.75 15.5Z"
-                      fill="white"
-                    />
-                  </svg>
+              {/* Plus/Minus knappar - samma stil som Cart */}
+              <div className="modal-quantity-section">
+                <button
+                  className="modal-minus-btn"
+                  onClick={decreaseQuantity}
+                  disabled={quantity <= 1}
+                >
+                  -
+                </button>
 
-                  {/* Kvantitet visning */}
-                  <div className="quantity">{quantity}</div>
+                <span className="modal-quantity-number">{quantity}</span>
 
-                  {/* Plus knapp */}
-                  <svg
-                    className="outline-24-px-plus-circle"
-                    onClick={increaseQuantity}
-                    width="30"
-                    height="31"
-                    viewBox="0 0 30 31"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    style={{ cursor: "pointer" }}
-                  >
-                    <path
-                      d="M15 9.25C15.6904 9.25 16.25 9.80964 16.25 10.5V14.25H20C20.6904 14.25 21.25 14.8096 21.25 15.5C21.25 16.1904 20.6904 16.75 20 16.75H16.25V20.5C16.25 21.1904 15.6904 21.75 15 21.75C14.3096 21.75 13.75 21.1904 13.75 20.5V16.75H10C9.30964 16.75 8.75 16.1904 8.75 15.5C8.75 14.8096 9.30964 14.25 10 14.25H13.75V10.5C13.75 9.80964 14.3096 9.25 15 9.25Z"
-                      fill="white"
-                    />
-                    <path
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                      d="M1.25 15.5C1.25 7.90608 7.40608 1.75 15 1.75C22.5939 1.75 28.75 7.90608 28.75 15.5C28.75 23.0939 22.5939 29.25 15 29.25C7.40608 29.25 1.25 23.0939 1.25 15.5ZM15 4.25C8.7868 4.25 3.75 9.2868 3.75 15.5C3.75 21.7132 8.7868 26.75 15 26.75C21.2132 26.75 26.25 21.7132 26.25 15.5C26.25 9.2868 21.2132 4.25 15 4.25Z"
-                      fill="white"
-                    />
-                  </svg>
-                </div>
+                <button className="modal-plus-btn" onClick={increaseQuantity}>
+                  +
+                </button>
               </div>
 
-              {/* Add to cart knapp - NU MED RIKTIG FUNKTIONALITET */}
+              {/* Add to cart knapp */}
               <div className="addtocart-btn" onClick={handleAddToCart}>
                 <div className="add-to-cart">
-                  Add {quantity > 1 ? `${quantity} ` : ""}to cart
+                  ADD {quantity > 1 ? `${quantity} ` : ""}TO CART
                 </div>
               </div>
             </div>
@@ -160,7 +110,6 @@ const MenuItemModal = ({ isOpen, onClose, item, onAddToCart }) => {
             <div className="dish-name-modal">{item?.name || "Combo plate"}</div>
 
             <div className="frame-19-modal">
-              {/* Rätt klassnamn för dish description */}
               <div className="dish-description-modal">
                 {item?.description ||
                   "A combo of three different types of tacos"}
@@ -168,15 +117,8 @@ const MenuItemModal = ({ isOpen, onClose, item, onAddToCart }) => {
             </div>
 
             <div className="frame-20-modal">
-              {/* Rätt klassnamn för dish price */}
               <div className="dish-price-modal">
-                {quantity > 1 && (
-                  <>
-                    {item?.price || "90"} SEK × {quantity} ={" "}
-                    <strong>{(item?.price || 90) * quantity} SEK</strong>
-                  </>
-                )}
-                {quantity === 1 && <>{item?.price || "90"} SEK</>}
+                <strong>{(item?.price || 90) * quantity} SEK</strong>
               </div>
             </div>
           </div>

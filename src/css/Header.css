@@ -1,5 +1,3 @@
-/* src/css/Header.css */
-/* Header styling med förbättrad responsivitet */
 .frame-navbar {
   background: #ffffff;
   width: 100%; /* 100% istället för fast bredd */
@@ -111,20 +109,20 @@
 .show-order-btn {
   background-color: #4d8be3;
   color: #ffffff;
-  font-family: "Oswald";
+  font-family: var(--h2-font-family, "Anton-Regular", sans-serif);
   font-size: 16px;
   font-weight: 400;
   position: absolute;
-  right: 20px; /* Till höger på desktop */
+  right: 20px; /* Till höger på desktopsidan */
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
-  padding: 10px 15px;
+  padding: 10px 30px;
   border: none;
   border-radius: 5px;
   white-space: nowrap;
-  z-index: 1001; /* Över allt annat */
+  z-index: 1001; /* Synas över allt annat */
 }
 
 .show-order-btn:hover {

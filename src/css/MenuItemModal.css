@@ -52,21 +52,31 @@
   border-radius: 15px 15px 0 0;
 }
 
-.close {
-  border-radius: 50px;
+/* Enkel stäng-knapp */
+.modal-close-btn {
+  background: white;
+  border: none;
+  border-radius: 50%;
   width: 40px;
   height: 40px;
   position: absolute;
-  left: 491px;
+  right: 8px;
   top: 8px;
-  overflow: visible;
   cursor: pointer;
-  transition: transform 0.2s ease;
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  transition: all 0.2s ease;
   z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-.close:hover {
+.modal-close-btn:hover {
   transform: scale(1.1);
+  background: #f0f0f0;
 }
 
 .frame-31 {
@@ -103,59 +113,55 @@
   top: 0px;
 }
 
-.add-remove {
-  background: #636569;
+/* Nya quantity knappar - samma stil som Cart men större */
+.modal-quantity-section {
+  display: flex;
+  align-items: center;
+  gap: 16px;
   border-radius: 5px;
   padding: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  align-items: flex-start;
-  justify-content: flex-start;
-  flex-shrink: 0;
   width: 200px;
-  position: relative;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  overflow: hidden;
+  justify-content: center;
 }
 
-.frame-30 {
+.modal-minus-btn,
+.modal-plus-btn {
+  background: #4d8be3;
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 24px;
+  font-weight: bold;
+  transition: all 0.2s ease;
   display: flex;
-  flex-direction: row;
-  gap: 16px;
   align-items: center;
   justify-content: center;
-  align-self: stretch;
-  flex-shrink: 0;
-  position: relative;
 }
 
-.outline-24-px-minus-circle,
-.outline-24-px-plus-circle {
-  flex-shrink: 0;
-  width: 30px;
-  height: 30px;
-  position: relative;
-  overflow: visible;
-  cursor: pointer;
-  transition: transform 0.2s ease;
+.modal-minus-btn:hover,
+.modal-plus-btn:hover {
+  background: #357abd;
+  transform: scale(1.05);
 }
 
-.outline-24-px-minus-circle:hover,
-.outline-24-px-plus-circle:hover {
-  transform: scale(1.1);
+.modal-minus-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
 }
 
-.quantity {
-  color: var(--text-white, #ffffff);
+.modal-quantity-number {
+  color: #333;
   text-align: center;
   font-family: "Lato-Bold", sans-serif;
   font-size: 24px;
   line-height: 24px;
   font-weight: 700;
   position: relative;
-  width: 20px;
-  height: 26px;
+  min-width: 30px;
 }
 
 .addtocart-btn {
@@ -179,13 +185,14 @@
 
 .add-to-cart {
   color: #ffffff;
-  text-align: left;
-  font-family: "Roboto-Bold", sans-serif;
+  text-align: center;
+  align-items: center;
+  font-family: var(--h2-font-family, "Anton-Regular", sans-serif);
   font-size: 24px;
   font-weight: 700;
   position: absolute;
   left: 90px;
-  top: 17px;
+  top: 10px;
 }
 
 .frame-33 {
@@ -210,11 +217,10 @@
   top: 0px;
 }
 
-/* Obs! Lägg inte samma klassnamn så de krockar med  */
 .dish-name-modal {
   color: #ff4949;
   text-align: left;
-  font-family: "Oswald-SemiBold", sans-serif;
+  font-family: "Oswald", sans-serif;
   font-size: 36px;
   font-weight: 600;
   position: relative;
@@ -233,7 +239,7 @@
 .dish-description-modal {
   color: #000000;
   text-align: left;
-  font-family: "Roboto-Regular", sans-serif;
+  font-family: var(--p-font-family, "Roboto-Regular", sans-serif);
   font-size: 20px;
   font-weight: 400;
   position: relative;
@@ -283,11 +289,23 @@
     align-items: center;
   }
 
+  .modal-quantity-section {
+    width: 180px;
+  }
+
+  .modal-minus-btn,
+  .modal-plus-btn {
+    width: 35px;
+    height: 35px;
+    font-size: 20px;
+  }
+
   .addtocart-btn {
     width: 250px;
   }
 
-  .close {
-    left: calc(100% - 50px);
+  .modal-close-btn {
+    right: 8px;
+    top: 8px;
   }
 }
