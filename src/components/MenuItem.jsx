@@ -32,19 +32,19 @@ const MenuItem = ({
 
       <img alt={item.name} className="item-img" src={`${item.image}`} />
 
-      <div className="frame-21">
-        <div className="frame-18">
+      <div className="dish-info">
+        <div className="dish-name-frame">
           <div className="dish-name">{item.name}</div>
         </div>
-        <div className="frame-19">
+        <div className="dish-description-frame">
           <div className="dish-description">{item.description}</div>
         </div>
-        <div className="frame-20">
+        <div className="dish-price-frame">
           <div className="dish-price">{item.price} SEK</div>
         </div>
       </div>
 
-      <div className="frame-22">
+      <div className="menu-item-card-plusBox">
         <div
           className="frame-plus"
           onClick={(e) => {
