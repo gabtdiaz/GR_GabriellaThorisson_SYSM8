@@ -36,10 +36,10 @@ const MenuItemModal = ({ isOpen, onClose, item, onAddToCart }) => {
 
     console.log(`Added ${quantity} ${item.name} to cart`);
 
-    // Anropa onAddToCart callback om den finns (från Order.jsx)
-    if (onAddToCart) {
-      onAddToCart(item, quantity);
-    }
+    // REMOVE: Ta bort onAddToCart callback för att undvika dubbel-add
+    // if (onAddToCart) {
+    //   onAddToCart(item, quantity);
+    // }
 
     // Stäng modal och reset quantity
     onClose();

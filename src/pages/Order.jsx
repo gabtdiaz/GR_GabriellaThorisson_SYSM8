@@ -137,13 +137,6 @@ const Order = () => {
     setSelectedItem(null);
   };
 
-  // Funktion för att lägga till item från modal (kan ha custom options)
-  const handleAddFromModal = (item, quantity = 1, customizations = {}) => {
-    addToCart(item, quantity, customizations);
-    console.log(`Added ${item.name} (x${quantity}) to cart from modal`);
-    closeModal();
-  };
-
   // Visa loading meddelande
   if (loading) {
     return (
@@ -231,7 +224,6 @@ const Order = () => {
         isOpen={isModalOpen}
         onClose={closeModal}
         item={selectedItem}
-        onAddToCart={handleAddFromModal}
       />
     </div>
   );
