@@ -50,17 +50,9 @@ const Header = () => {
         <div className="sign-in" onClick={() => handleNavigation("/")}>
           LOGIN
         </div>
-
-        {/* Mobil version av cart-knappen - visas i menyn */}
-        <button
-          className={`show-order-btn-mobile ${!hasItems() ? "hidden" : ""}`}
-          onClick={() => handleNavigation("/cart")}
-        >
-          SHOW ORDER ({getTotalItems()})
-        </button>
       </div>
 
-      {/* Desktop version av cart-knappen - till höger om navbar */}
+      {/* Show order knapp, placeras utanför navbar! ska alltid synas om det finns varor i varukorg.*/}
       <button
         className={`show-order-btn ${!hasItems() ? "hidden" : ""}`}
         onClick={() => navigate("/cart")}

@@ -107,25 +107,54 @@
   color: #f36d6d;
 }
 
+/* SHOW ORDER knapp - Desktop version */
 .show-order-btn {
-  visibility: hidden; /* Dölj knappen som standard */
   background-color: #4d8be3;
   color: #ffffff;
   font-family: "Oswald";
-  font-size: var(--h2-font-size, 20px);
-  font-weight: var(--h2-font-weight, 400);
-  position: relative;
+  font-size: 16px;
+  font-weight: 400;
+  position: absolute;
+  right: 20px; /* Till höger på desktop */
+  top: 50%;
+  transform: translateY(-50%);
   cursor: pointer;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-  padding: 5pc, 5px, 5px, 5px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  padding: 10px 15px;
+  border: none;
   border-radius: 5px;
+  white-space: nowrap;
+  z-index: 1001; /* Över allt annat */
 }
 
-/* Navbarjustering vid mobilanpassning - hambergermeny */
+.show-order-btn:hover {
+  background-color: #3a7bd1;
+  transform: translateY(-50%) scale(1.05);
+}
+
+/* Dölj knappen som standard */
+.show-order-btn.hidden {
+  display: none;
+}
+
+/* Navbarjustering vid mobilanpassning - hamburgermeny */
 @media screen and (max-width: 768px) {
   .icon-frame {
     display: block; /* Visa på mobil */
     z-index: 1001;
+  }
+
+  /* SHOW ORDER knapp - Mobil version (till vänster om hamburgern) */
+  .show-order-btn {
+    right: 90px; /* Till vänster om hamburger-ikonen (som är på right: 20px) */
+    font-size: 14px;
+    padding: 8px 12px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .show-order-btn:hover {
+    transform: translateY(-50%) scale(1.05);
   }
 
   .navbar {
@@ -152,5 +181,28 @@
     padding: 10px;
     width: 100%;
     text-align: center;
+  }
+}
+
+/* Extra små skärmar */
+@media screen and (max-width: 480px) {
+  .show-order-btn {
+    right: 80px; /* Lite närmare hamburger på mycket små skärmar */
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+
+  .logo-frame {
+    left: 10px; /* Mindre marginal på små skärmar */
+    width: 120px;
+  }
+
+  .text {
+    font-size: 14px;
+  }
+
+  .logo {
+    width: 60px;
+    height: 55px;
   }
 }

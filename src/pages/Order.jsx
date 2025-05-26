@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import MenuItem from "../components/MenuItem";
 import MenuItemModal from "../components/MenuItemModal";
+import Cart from "../components/Cart";
 import { useCart } from "../context/cartContext";
 import "../css/Order.css";
 
@@ -70,6 +71,9 @@ const Order = () => {
   // Loading och error states
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  // Cart state - för att visa varukorgen eller ej
+  const [showCart, setShowCart] = useState(false);
 
   // Modal states - för popup-fönstret
   const [isModalOpen, setIsModalOpen] = useState(false); // Är modalen öppen?
