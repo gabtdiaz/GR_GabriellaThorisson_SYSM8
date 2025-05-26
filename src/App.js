@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// import { CartProvider } from "./context/CartContext";
+import { CartProvider } from "./context/cartContext";
 import Home from "./pages/Home";
 import Menu from "./pages/Menu";
 import Order from "./pages/Order";
@@ -12,22 +12,22 @@ import "./App.css";
 
 function App() {
   return (
-    //<CartProvider>
-    <Router>
-      <div className="app">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/menu" element={<Menu />} />
-          <Route path="/order" element={<Order />} />
+    <CartProvider>
+      <Router>
+        <div className="app">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/menu" element={<Menu />} />
+            <Route path="/order" element={<Order />} />
 
-          {/* <Route path="/cart" element={<Cart />} />
+            {/* <Route path="/cart" element={<Cart />} />
             <Route path="/payment" element={<Payment />} />
             <Route path="/confirmation" element={<Confirmation />} />
             <Route path="/signin" element={<SignIn />} /> */}
-        </Routes>
-      </div>
-    </Router>
-    //</CartProvider>
+          </Routes>
+        </div>
+      </Router>
+    </CartProvider>
   );
 }
 

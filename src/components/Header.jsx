@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useCart } from "../context/cartContext";
 import "../css/Header.css"; // Separat css för header
 
 const Header = () => {
-  // State för att hålla koll om mobilmenyn är öppen lr stängd
+  // State för att hålla koll om mobilmenyn är öppen eller stängd
   const [menuOpen, setMenuOpen] = useState(false);
-  const [orderUpdated, setOrderUpdated] = useState(false);
+
+  // Använd cart context istället för localStorage direkt
+  const { hasItems, getTotalItems } = useCart();
 
   const navigate = useNavigate();
 
@@ -14,7 +17,7 @@ const Header = () => {
   };
 
   const handleNavigation = (path) => {
-    setMenuOpen(!menuOpen); // Byter från true till false eller tvärtom
+    setMenuOpen(false); // Stäng menyn när man navigerar
     navigate(path); // Navigerar till den valda sidan
   };
 
@@ -47,9 +50,22 @@ const Header = () => {
         <div className="sign-in" onClick={() => handleNavigation("/")}>
           LOGIN
         </div>
+
+        {/* Mobil version av cart-knappen - visas i menyn */}
+        <button
+          className={`show-order-btn-mobile ${!hasItems() ? "hidden" : ""}`}
+          onClick={() => handleNavigation("/cart")}
+        >
+          SHOW ORDER ({getTotalItems()})
+        </button>
       </div>
-      <button className="show-order-btn" onClick={() => navigate("/cart")}>
-        SHOW ORDER
+
+      {/* Desktop version av cart-knappen - till höger om navbar */}
+      <button
+        className={`show-order-btn ${!hasItems() ? "hidden" : ""}`}
+        onClick={() => navigate("/cart")}
+      >
+        SHOW ORDER ({getTotalItems()})
       </button>
     </div>
   );

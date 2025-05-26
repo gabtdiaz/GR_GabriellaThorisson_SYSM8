@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import MenuItem from "../components/MenuItem";
 import MenuItemModal from "../components/MenuItemModal";
+import { useCart } from "../context/cartContext";
 import "../css/Order.css";
 
 // Filter knappar för att visa olika kategorier
@@ -52,6 +53,9 @@ const CategorySection = ({ title, items, onAddItem, onCardClick }) => {
 
 // Huvudkomponenten för Order-sidan
 const Order = () => {
+  // Använd cart context istället för lokal state
+  const { addToCart } = useCart();
+
   // Vilken filter som är aktiv
   const [activeFilter, setActiveFilter] = useState("All");
 
@@ -104,10 +108,21 @@ const Order = () => {
     fetchMenuData();
   }, []);
 
-  // När man klickar på plus-knappen
+  // När man klickar på plus-knappen - öppna modal istället
   const handleAddItem = (itemId) => {
-    console.log(`Adding item ${itemId} to cart`);
-    // Här kan du lägga till item i shopping cart
+    // Hitta itemet i menuData
+    const allItems = [
+      ...menuData.Mains,
+      ...menuData.Sides,
+      ...menuData.Desserts,
+      ...menuData.Drinks,
+    ];
+
+    const item = allItems.find((menuItem) => menuItem.id === itemId);
+
+    if (item) {
+      handleCardClick(item); // Öppna modal istället för att lägga till direkt
+    }
   };
 
   // När man klickar på hela kortet - öppna modal
@@ -120,6 +135,13 @@ const Order = () => {
   const closeModal = () => {
     setIsModalOpen(false);
     setSelectedItem(null);
+  };
+
+  // Funktion för att lägga till item från modal (kan ha custom options)
+  const handleAddFromModal = (item, quantity = 1, customizations = {}) => {
+    addToCart(item, quantity, customizations);
+    console.log(`Added ${item.name} (x${quantity}) to cart from modal`);
+    closeModal();
   };
 
   // Visa loading meddelande
@@ -209,6 +231,7 @@ const Order = () => {
         isOpen={isModalOpen}
         onClose={closeModal}
         item={selectedItem}
+        onAddToCart={handleAddFromModal}
       />
     </div>
   );

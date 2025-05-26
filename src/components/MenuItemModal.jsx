@@ -1,8 +1,12 @@
 import React, { useState } from "react";
+import { useCart } from "../context/cartContext"; // Import cart context
 import "../css/MenuItemModal.css";
 
-const MenuItemModal = ({ isOpen, onClose, item }) => {
+const MenuItemModal = ({ isOpen, onClose, item, onAddToCart }) => {
   const [quantity, setQuantity] = useState(1);
+
+  // Använd cart context
+  const { addToCart } = useCart();
 
   // Stäng modal när man klickar utanför
   const handleOverlayClick = (e) => {
@@ -23,11 +27,23 @@ const MenuItemModal = ({ isOpen, onClose, item }) => {
     }
   };
 
-  // Lägg till i cart och stäng modal
-  const addToCart = () => {
-    console.log(`Added ${quantity} ${item?.name} to cart`);
+  // Lägg till i cart och stäng modal - NU MED RIKTIG FUNKTIONALITET
+  const handleAddToCart = () => {
+    if (!item) return;
+
+    // Lägg till i cart via context
+    addToCart(item, quantity);
+
+    console.log(`Added ${quantity} ${item.name} to cart`);
+
+    // Anropa onAddToCart callback om den finns (från Order.jsx)
+    if (onAddToCart) {
+      onAddToCart(item, quantity);
+    }
+
+    // Stäng modal och reset quantity
     onClose();
-    setQuantity(1); // Reset kvantitet
+    setQuantity(1);
   };
 
   // Visa inte modal om den inte är öppen
@@ -83,6 +99,10 @@ const MenuItemModal = ({ isOpen, onClose, item }) => {
                     viewBox="0 0 30 31"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
+                    style={{
+                      cursor: quantity > 1 ? "pointer" : "not-allowed",
+                      opacity: quantity > 1 ? 1 : 0.5,
+                    }}
                   >
                     <path
                       d="M10 14.25C9.30964 14.25 8.75 14.8096 8.75 15.5C8.75 16.1904 9.30964 16.75 10 16.75H20C20.6904 16.75 21.25 16.1904 21.25 15.5C21.25 14.8096 20.6904 14.25 20 14.25H10Z"
@@ -108,6 +128,7 @@ const MenuItemModal = ({ isOpen, onClose, item }) => {
                     viewBox="0 0 30 31"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
+                    style={{ cursor: "pointer" }}
                   >
                     <path
                       d="M15 9.25C15.6904 9.25 16.25 9.80964 16.25 10.5V14.25H20C20.6904 14.25 21.25 14.8096 21.25 15.5C21.25 16.1904 20.6904 16.75 20 16.75H16.25V20.5C16.25 21.1904 15.6904 21.75 15 21.75C14.3096 21.75 13.75 21.1904 13.75 20.5V16.75H10C9.30964 16.75 8.75 16.1904 8.75 15.5C8.75 14.8096 9.30964 14.25 10 14.25H13.75V10.5C13.75 9.80964 14.3096 9.25 15 9.25Z"
@@ -123,9 +144,11 @@ const MenuItemModal = ({ isOpen, onClose, item }) => {
                 </div>
               </div>
 
-              {/* Add to cart knapp */}
-              <div className="addtocart-btn" onClick={addToCart}>
-                <div className="add-to-cart">Add to cart</div>
+              {/* Add to cart knapp - NU MED RIKTIG FUNKTIONALITET */}
+              <div className="addtocart-btn" onClick={handleAddToCart}>
+                <div className="add-to-cart">
+                  Add {quantity > 1 ? `${quantity} ` : ""}to cart
+                </div>
               </div>
             </div>
           </div>
@@ -134,7 +157,6 @@ const MenuItemModal = ({ isOpen, onClose, item }) => {
         {/* Info-sektion (titel, beskrivning, pris) */}
         <div className="frame-33">
           <div className="frame-21-modal">
-            {/* Rätt klassnamn för dish name */}
             <div className="dish-name-modal">{item?.name || "Combo plate"}</div>
 
             <div className="frame-19-modal">
@@ -147,7 +169,15 @@ const MenuItemModal = ({ isOpen, onClose, item }) => {
 
             <div className="frame-20-modal">
               {/* Rätt klassnamn för dish price */}
-              <div className="dish-price-modal">{item?.price || "90"} SEK</div>
+              <div className="dish-price-modal">
+                {quantity > 1 && (
+                  <>
+                    {item?.price || "90"} SEK × {quantity} ={" "}
+                    <strong>{(item?.price || 90) * quantity} SEK</strong>
+                  </>
+                )}
+                {quantity === 1 && <>{item?.price || "90"} SEK</>}
+              </div>
             </div>
           </div>
         </div>
