@@ -3,7 +3,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import MenuItem from "../components/MenuItem";
 import MenuItemModal from "../components/MenuItemModal";
-import Cart from "../components/Cart";
+
 import { useCart } from "../context/cartContext";
 import "../css/Order.css";
 

@@ -4,9 +4,7 @@ import { CartProvider } from "./context/cartContext";
 import Home from "./pages/Home";
 import Menu from "./pages/Menu";
 import Order from "./pages/Order";
-// import Payment from "./pages/Payment";
-// import Confirmation from "./pages/Confirmation";
-// import SignIn from "./pages/SignIn";
+import Cart from "./pages/Cart";
 import "./App.css";
 
 function App() {
@@ -18,6 +16,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/menu" element={<Menu />} />
             <Route path="/order" element={<Order />} />
+            <Route path="/cart" element={<Cart />} />
             {/* fler routes läggs till här */}
           </Routes>
         </div>
