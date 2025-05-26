@@ -4,7 +4,7 @@ import { CartProvider } from "./context/cartContext";
 import Home from "./pages/Home";
 import Menu from "./pages/Menu";
 import Order from "./pages/Order";
-// import Cart from "./pages/Cart";
+import Cart from "./pages/Cart";
 // import Payment from "./pages/Payment";
 // import Confirmation from "./pages/Confirmation";
 // import SignIn from "./pages/SignIn";
@@ -19,11 +19,8 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/menu" element={<Menu />} />
             <Route path="/order" element={<Order />} />
-
-            {/* <Route path="/cart" element={<Cart />} />
-            <Route path="/payment" element={<Payment />} />
-            <Route path="/confirmation" element={<Confirmation />} />
-            <Route path="/signin" element={<SignIn />} /> */}
+            <Route path="/cart" element={<Cart />} />
+            {/* fler routes läggs till här */}
           </Routes>
         </div>
       </Router>
