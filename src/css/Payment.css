@@ -1,3 +1,209 @@
-import React, { useState } from "react";
-import { useCart } from "../context/cartContext";
-import "./components/Payment.css";
+/* src/components/Payment.css */
+
+.payment-section {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  height: fit-content;
+}
+
+.payment-header {
+  background: #671414;
+  color: white;
+  padding: 20px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.payment-title {
+  font-family: "Oswald", sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.payment-close-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.payment-close-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.payment-content {
+  padding: 24px;
+}
+
+/* Delivery info */
+.delivery-info {
+  margin-bottom: 20px;
+  padding: 16px;
+  background: #e8f4fd;
+  border-radius: 8px;
+  border-left: 4px solid #4d8be3;
+}
+
+.delivery-info h3 {
+  font-family: "Oswald", sans-serif;
+  color: #333;
+  margin: 0 0 8px 0;
+  font-size: 16px;
+}
+
+.delivery-info p {
+  margin: 4px 0;
+  color: #555;
+  font-family: "Roboto", sans-serif;
+}
+
+/* Payment Summary */
+.payment-summary {
+  margin-bottom: 24px;
+  padding: 16px;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.payment-summary h3 {
+  font-family: "Oswald", sans-serif;
+  color: #333;
+  margin: 0 0 12px 0;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  color: #333;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+}
+
+.payment-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  color: #671414;
+  border-top: 2px solid #e5e5e5;
+  margin-top: 12px;
+  padding-top: 12px;
+}
+
+/* Payment Methods */
+.payment-methods {
+  margin-bottom: 24px;
+}
+
+.payment-methods h3 {
+  font-family: "Oswald", sans-serif;
+  color: #333;
+  margin: 0 0 16px 0;
+}
+
+.payment-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border: 2px solid #e5e5e5;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.payment-option:hover {
+  border-color: #4d8be3;
+}
+
+.payment-option input[type="radio"] {
+  margin: 0;
+}
+
+/* Payment Form */
+.payment-form {
+  margin-bottom: 24px;
+}
+
+.card-form input,
+.swish-form input {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #e5e5e5;
+  border-radius: 6px;
+  font-size: 16px;
+  margin-bottom: 12px;
+  transition: border-color 0.2s ease;
+  box-sizing: border-box;
+}
+
+.card-form input:focus,
+.swish-form input:focus {
+  outline: none;
+  border-color: #4d8be3;
+}
+
+.card-details {
+  display: flex;
+  gap: 12px;
+}
+
+.card-details input {
+  flex: 1;
+}
+
+/* Pay Button */
+.pay-button {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 16px 32px;
+  border-radius: 8px;
+  font-family: "Roboto-Bold", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.2s ease;
+}
+
+.pay-button:hover:not(:disabled) {
+  background: #218838;
+}
+
+.pay-button:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .payment-content {
+    padding: 20px;
+  }
+
+  .payment-title {
+    font-size: 20px;
+  }
+
+  .delivery-info,
+  .payment-summary {
+    padding: 12px;
+  }
+
+  .payment-option {
+    padding: 10px;
+  }
+}

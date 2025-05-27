@@ -1,3 +1,5 @@
+/* src/css/Cart.css - Utan Payment styles */
+
 .cart-page {
   min-height: 100vh;
   background-color: #fff2f2;
@@ -180,7 +182,7 @@
   background: rgba(231, 76, 60, 0.1);
 }
 
-/* Om varukorge är tom */
+/* Om varukorgen är tom */
 .cart-empty-state {
   text-align: center;
   padding: 80px 40px;
@@ -248,192 +250,6 @@
   color: #671414;
 }
 
-.show-order-button {
-  background: #4d8be3;
-  color: white;
-  border: none;
-  padding: 20px 32px;
-  border-radius: 8px;
-  font-family: "Roboto-Bold", sans-serif;
-  font-size: 18px;
-  font-weight: 600;
-  cursor: pointer;
-  width: 100%;
-  transition: background-color 0.2s ease;
-}
-
-.show-button:hover {
-  background: #357abd;
-}
-
-/* Höger sida - Payment Section */
-.cart-right-section {
-  width: 400px;
-  flex-shrink: 0;
-  animation: slideInFromRight 0.3s ease-out;
-}
-
-@keyframes slideInFromRight {
-  from {
-    transform: translateX(50px);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-.payment-section {
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-  overflow: hidden;
-  height: fit-content;
-}
-
-.payment-header {
-  background: #671414;
-  color: white;
-  padding: 20px 24px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.payment-title {
-  font-family: "Oswald", sans-serif;
-  font-size: 24px;
-  font-weight: 600;
-  margin: 0;
-}
-
-.payment-close-btn {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 24px;
-  cursor: pointer;
-  padding: 4px 8px;
-  border-radius: 4px;
-  transition: background-color 0.2s ease;
-}
-
-.payment-close-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.payment-content {
-  padding: 24px;
-}
-
-.payment-summary {
-  margin-bottom: 24px;
-  padding: 16px;
-  background: #f8f9fa;
-  border-radius: 8px;
-}
-
-.payment-summary h3 {
-  font-family: "Oswald", sans-serif;
-  color: #333;
-  margin: 0 0 12px 0;
-}
-
-.payment-total {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-family: "Roboto", sans-serif;
-  font-size: 18px;
-  color: #671414;
-}
-
-.payment-methods {
-  margin-bottom: 24px;
-}
-
-.payment-methods h3 {
-  font-family: "Oswald", sans-serif;
-  color: #333;
-  margin: 0 0 16px 0;
-}
-
-.payment-option {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px;
-  border: 2px solid #e5e5e5;
-  border-radius: 8px;
-  margin-bottom: 8px;
-  cursor: pointer;
-  transition: border-color 0.2s ease;
-}
-
-.payment-option:hover {
-  border-color: #4d8be3;
-}
-
-.payment-option input[type="radio"] {
-  margin: 0;
-}
-
-.payment-form {
-  margin-bottom: 24px;
-}
-
-.card-form input,
-.swish-form input {
-  width: 100%;
-  padding: 12px;
-  border: 2px solid #e5e5e5;
-  border-radius: 6px;
-  font-size: 16px;
-  margin-bottom: 12px;
-  transition: border-color 0.2s ease;
-}
-
-.card-form input:focus,
-.swish-form input:focus {
-  outline: none;
-  border-color: #4d8be3;
-}
-
-.card-details {
-  display: flex;
-  gap: 12px;
-}
-
-.card-details input {
-  flex: 1;
-}
-
-.pay-button {
-  background: #28a745;
-  color: white;
-  border: none;
-  padding: 16px 32px;
-  border-radius: 8px;
-  font-family: "Roboto-Bold", sans-serif;
-  font-size: 18px;
-  font-weight: 600;
-  cursor: pointer;
-  width: 100%;
-  transition: background-color 0.2s ease;
-}
-
-.pay-button:hover:not(:disabled) {
-  background: #218838;
-}
-
-.pay-button:disabled {
-  background: #6c757d;
-  cursor: not-allowed;
-}
-
-/* Lägg till dessa CSS-regler i slutet av din Cart.css */
-
 /* Customer Fields Section */
 .customer-fields {
   margin: 24px 0;
@@ -472,42 +288,39 @@
   color: #666;
 }
 
-/* Delivery info i payment section */
-.delivery-info {
-  margin-bottom: 20px;
-  padding: 16px;
-  background: #e8f4fd;
+.show-order-button {
+  background: #4d8be3;
+  color: white;
+  border: none;
+  padding: 20px 32px;
   border-radius: 8px;
-  border-left: 4px solid #4d8be3;
+  font-family: "Roboto-Bold", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.2s ease;
 }
 
-.delivery-info h3 {
-  font-family: "Oswald", sans-serif;
-  color: #333;
-  margin: 0 0 8px 0;
-  font-size: 16px;
+.show-order-button:hover {
+  background: #357abd;
 }
 
-.delivery-info p {
-  margin: 4px 0;
-  color: #555;
-  font-family: "Roboto", sans-serif;
+/* Höger sida - Payment Section */
+.cart-right-section {
+  width: 400px;
+  flex-shrink: 0;
+  animation: slideInFromRight 0.3s ease-out;
 }
 
-/* Responsive för customer fields */
-@media screen and (max-width: 768px) {
-  .customer-fields {
-    margin: 16px 0;
-    padding: 16px;
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(50px);
+    opacity: 0;
   }
-
-  .customer-fields-title {
-    font-size: 16px;
-  }
-
-  .customer-input {
-    padding: 10px;
-    font-size: 14px;
+  to {
+    transform: translateX(0);
+    opacity: 1;
   }
 }
 
@@ -556,7 +369,17 @@
     font-size: 16px;
   }
 
-  .payment-content {
-    padding: 20px;
+  .customer-fields {
+    margin: 16px 0;
+    padding: 16px;
+  }
+
+  .customer-fields-title {
+    font-size: 16px;
+  }
+
+  .customer-input {
+    padding: 10px;
+    font-size: 14px;
   }
 }

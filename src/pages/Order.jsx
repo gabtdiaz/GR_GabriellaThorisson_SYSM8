@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 import MenuItem from "../components/MenuItem";
 import MenuItemModal from "../components/MenuItemModal";
 
-import { useCart } from "../context/cartContext";
+// import { useCart } from "../context/cartContext";
 import "../css/Order.css";
 
 // Filter knappar för att visa olika kategorier
@@ -55,7 +55,7 @@ const CategorySection = ({ title, items, onAddItem, onCardClick }) => {
 // Huvudkomponenten för Order-sidan
 const Order = () => {
   // Använd cart context istället för lokal state
-  const { addToCart } = useCart();
+  // const { addToCart } = useCart();
 
   // Vilken filter som är aktiv
   const [activeFilter, setActiveFilter] = useState("All");
@@ -73,7 +73,7 @@ const Order = () => {
   const [error, setError] = useState(null);
 
   // Cart state - för att visa varukorgen eller ej
-  const [showCart, setShowCart] = useState(false);
+  // const [showCart, setShowCart] = useState(false);
 
   // Modal states - för popup-fönstret
   const [isModalOpen, setIsModalOpen] = useState(false); // Är modalen öppen?
@@ -184,25 +184,25 @@ const Order = () => {
             // Visa alla kategorier
             <>
               <CategorySection
-                title="MAINS"
+                title="Mains"
                 items={menuData.Mains}
                 onAddItem={handleAddItem}
                 onCardClick={handleCardClick}
               />
               <CategorySection
-                title="SIDES"
+                title="Sides"
                 items={menuData.Sides}
                 onAddItem={handleAddItem}
                 onCardClick={handleCardClick}
               />
               <CategorySection
-                title="DESSERTS"
+                title="Desserts"
                 items={menuData.Desserts}
                 onAddItem={handleAddItem}
                 onCardClick={handleCardClick}
               />
               <CategorySection
-                title="DRINKS"
+                title="Drinks"
                 items={menuData.Drinks}
                 onAddItem={handleAddItem}
                 onCardClick={handleCardClick}

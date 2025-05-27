@@ -44,9 +44,6 @@ const Header = () => {
         <div className="order" onClick={() => handleNavigation("/order")}>
           ORDER
         </div>
-        <div className="contact" onClick={() => handleNavigation("/")}>
-          CONTACT
-        </div>
         <div className="sign-in" onClick={() => handleNavigation("/")}>
           LOGIN
         </div>
