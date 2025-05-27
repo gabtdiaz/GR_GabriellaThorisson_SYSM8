@@ -171,7 +171,6 @@ const Order = () => {
   return (
     <div className="order-page">
       <Header />
-
       <div className="main-content">
         {/* Filter knappar */}
         <FilterChips
@@ -185,25 +184,25 @@ const Order = () => {
             // Visa alla kategorier
             <>
               <CategorySection
-                title="Mains"
+                title="MAINS"
                 items={menuData.Mains}
                 onAddItem={handleAddItem}
                 onCardClick={handleCardClick}
               />
               <CategorySection
-                title="Sides"
+                title="SIDES"
                 items={menuData.Sides}
                 onAddItem={handleAddItem}
                 onCardClick={handleCardClick}
               />
               <CategorySection
-                title="Desserts"
+                title="DESSERTS"
                 items={menuData.Desserts}
                 onAddItem={handleAddItem}
                 onCardClick={handleCardClick}
               />
               <CategorySection
-                title="Drinks"
+                title="DRINKS"
                 items={menuData.Drinks}
                 onAddItem={handleAddItem}
                 onCardClick={handleCardClick}

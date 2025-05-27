@@ -27,7 +27,7 @@
 }
 
 .clicked-menu-item-card {
-  background: #fff2f2;
+  background: #fffbfb;
   border-radius: 15px;
   width: 540px;
   height: 560px;
@@ -80,7 +80,7 @@
 }
 
 .frame-31 {
-  background: #f0f0f0;
+  background-color: #fffbfb;
   width: 540px;
   height: 87px;
   position: absolute;

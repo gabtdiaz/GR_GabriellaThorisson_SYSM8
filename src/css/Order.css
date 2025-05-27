@@ -44,7 +44,7 @@
   height: 32px;
   position: relative;
   overflow: hidden;
-  background: rgb(250, 250, 250);
+  background: #fffbfb;
   cursor: pointer;
   transition: all 0.3s ease;
 }

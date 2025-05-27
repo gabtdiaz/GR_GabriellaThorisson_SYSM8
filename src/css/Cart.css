@@ -1,6 +1,6 @@
 .cart-page {
   min-height: 100vh;
-  background-color: #f8f9fa;
+  background-color: #fff2f2;
   display: flex;
   flex-direction: column;
 }
@@ -248,11 +248,11 @@
   color: #671414;
 }
 
-.cart-checkout-button {
+.show-order-button {
   background: #4d8be3;
   color: white;
   border: none;
-  padding: 16px 32px;
+  padding: 20px 32px;
   border-radius: 8px;
   font-family: "Roboto-Bold", sans-serif;
   font-size: 18px;
@@ -262,7 +262,7 @@
   transition: background-color 0.2s ease;
 }
 
-.cart-checkout-button:hover {
+.show-button:hover {
   background: #357abd;
 }
 

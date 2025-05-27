@@ -203,9 +203,9 @@ const Cart = () => {
           {/* Vänster sida - Cart Items */}
           <div className="cart-left-section">
             <div className="cart-header-section">
-              <h1 className="cart-page-title">Your cart</h1>
+              <h1 className="cart-page-title">YOUR CART</h1>
               <button className="cart-back-link" onClick={handleGoBack}>
-                ← Go Back
+                ← GO BACK
               </button>
             </div>
 
@@ -251,7 +251,7 @@ const Cart = () => {
                   </div>
 
                   <button
-                    className="cart-checkout-button"
+                    className="show-order-button"
                     onClick={handleContinueToCheckout}
                   >
                     Continue to Checkout
