@@ -5,7 +5,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import "../css/Cart.css";
 
-// Cart Item Component - för vänster sida
+// Cart Item Component - samma som innan
 const CartItem = ({ item, index, onUpdateQuantity, onRemoveItem }) => {
   const handleQuantityIncrease = () => {
     onUpdateQuantity(index, item.quantity + 1);
@@ -24,19 +24,14 @@ const CartItem = ({ item, index, onUpdateQuantity, onRemoveItem }) => {
   return (
     <article className="cart-product-item">
       <div className="cart-product-content">
-        {/* Produktbild */}
         <img
           src={item.image || "/placeholder-food.jpg"}
           alt={item.name}
           className="cart-product-image"
         />
-
-        {/* Produktinfo */}
         <div className="cart-product-info">
           <h3 className="cart-product-name">{item.name}</h3>
         </div>
-
-        {/* Quantity kontroller */}
         <div className="cart-quantity-section">
           <button
             className="cart-minus-btn"
@@ -45,22 +40,16 @@ const CartItem = ({ item, index, onUpdateQuantity, onRemoveItem }) => {
           >
             -
           </button>
-
           <span className="cart-quantity-number">{item.quantity}</span>
-
           <button className="cart-plus-btn" onClick={handleQuantityIncrease}>
             +
           </button>
         </div>
-
-        {/* Pris */}
         <div className="cart-price-section">
           <span className="cart-product-price">
             {item.price * item.quantity} SEK
           </span>
         </div>
-
-        {/* Ta bort knapp */}
         <button className="cart-delete-btn" onClick={handleRemoveItem}>
           <img src="/trashcan.png" alt="Ta bort" />
         </button>
@@ -69,22 +58,70 @@ const CartItem = ({ item, index, onUpdateQuantity, onRemoveItem }) => {
   );
 };
 
-// Payment Component - för höger sida (när checkout är aktivt)
-const PaymentSection = ({ cartItems, getTotalPrice, onClose }) => {
+// Payment Component - uppdaterad för att ta emot kunduppgifter
+const PaymentSection = ({
+  cartItems,
+  getTotalPrice,
+  customerInfo,
+  onClose,
+}) => {
   const [paymentMethod, setPaymentMethod] = useState("card");
   const [isProcessing, setIsProcessing] = useState(false);
+  const { clearCart } = useCart();
 
-  // Beräkna totalpris live (inklusive leverans)
-  const totalWithDelivery = getTotalPrice() + 49;
+  const totalWithDelivery = getTotalPrice() + 39;
 
-  const handlePayment = () => {
+  const handlePayment = async () => {
     setIsProcessing(true);
-    // Simulera betalning
-    setTimeout(() => {
+
+    try {
+      // Skapa order objekt
+      const orderData = {
+        userId: null, // Gästbeställning
+        guestInfo: customerInfo,
+        items: cartItems.map((item) => ({
+          id: item.id,
+          name: item.name,
+          price: item.price,
+          quantity: item.quantity,
+          customizations: item.customizations || {},
+        })),
+        total: totalWithDelivery,
+        status: "pending",
+        paymentMethod: paymentMethod,
+        deliveryAddress: customerInfo.address,
+        createdAt: new Date().toISOString(),
+      };
+
+      // Skicka order till JSON server
+      const response = await fetch("http://localhost:3001/orders", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(orderData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to create order");
+      }
+
+      const createdOrder = await response.json();
+
+      // Simulera betalning
+      setTimeout(() => {
+        setIsProcessing(false);
+        alert(
+          `Order #${createdOrder.id} placed successfully! Thank you ${customerInfo.name}!`
+        );
+        clearCart();
+        onClose();
+      }, 2000);
+    } catch (error) {
+      console.error("Order creation failed:", error);
       setIsProcessing(false);
-      alert("Payment Successful! Thank you for your order!");
-      onClose();
-    }, 2000);
+      alert("Ett fel uppstod vid beställningen. Försök igen.");
+    }
   };
 
   return (
@@ -97,6 +134,16 @@ const PaymentSection = ({ cartItems, getTotalPrice, onClose }) => {
       </div>
 
       <div className="payment-content">
+        {/* Visa kunduppgifter */}
+        <div className="delivery-info">
+          <h3>DELIVERY TO:</h3>
+          <p>
+            <strong>{customerInfo.name}</strong>
+          </p>
+          <p>{customerInfo.address}</p>
+          <p>{customerInfo.phone}</p>
+        </div>
+
         <div className="payment-summary">
           <h3>ORDER SUMMARY</h3>
           <div className="summary-row">
@@ -170,9 +217,14 @@ const PaymentSection = ({ cartItems, getTotalPrice, onClose }) => {
 const Cart = () => {
   const { cartItems, updateQuantity, removeFromCart, getTotalPrice, hasItems } =
     useCart();
-
   const navigate = useNavigate();
+
   const [showPayment, setShowPayment] = useState(false);
+  const [customerInfo, setCustomerInfo] = useState({
+    name: "",
+    phone: "",
+    address: "",
+  });
 
   const handleUpdateQuantity = (itemIndex, newQuantity) => {
     updateQuantity(itemIndex, newQuantity);
@@ -183,6 +235,15 @@ const Cart = () => {
   };
 
   const handleContinueToCheckout = () => {
+    // Enkel validering
+    if (
+      !customerInfo.name.trim() ||
+      !customerInfo.phone.trim() ||
+      !customerInfo.address.trim()
+    ) {
+      alert("Vänligen fyll i alla fält för leverans");
+      return;
+    }
     setShowPayment(true);
   };
 
@@ -192,6 +253,13 @@ const Cart = () => {
 
   const handleGoBack = () => {
     navigate(-1);
+  };
+
+  const handleCustomerInfoChange = (field, value) => {
+    setCustomerInfo((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
   };
 
   return (
@@ -246,8 +314,42 @@ const Cart = () => {
                     </div>
                     <div className="summary-row total-row">
                       <strong>Total</strong>
-                      <strong>{getTotalPrice() + 49} SEK</strong>
+                      <strong>{getTotalPrice() + 39} SEK</strong>
                     </div>
+                  </div>
+
+                  {/* ENKLA KUNDUPPGIFTER - 3 fält */}
+                  <div className="customer-fields">
+                    <h3 className="customer-fields-title">
+                      Delivery Information
+                    </h3>
+                    <input
+                      type="text"
+                      placeholder="Your Name *"
+                      value={customerInfo.name}
+                      onChange={(e) =>
+                        handleCustomerInfoChange("name", e.target.value)
+                      }
+                      className="customer-input"
+                    />
+                    <input
+                      type="tel"
+                      placeholder="Phone Number *"
+                      value={customerInfo.phone}
+                      onChange={(e) =>
+                        handleCustomerInfoChange("phone", e.target.value)
+                      }
+                      className="customer-input"
+                    />
+                    <input
+                      type="text"
+                      placeholder="Delivery Address *"
+                      value={customerInfo.address}
+                      onChange={(e) =>
+                        handleCustomerInfoChange("address", e.target.value)
+                      }
+                      className="customer-input"
+                    />
                   </div>
 
                   <button
@@ -267,6 +369,7 @@ const Cart = () => {
               <PaymentSection
                 cartItems={cartItems}
                 getTotalPrice={getTotalPrice}
+                customerInfo={customerInfo}
                 onClose={handleClosePayment}
               />
             </div>

@@ -138,5 +138,38 @@
       "favorites": [1, 4, 7, 13]
     }
   ],
-  "orders": []
+  "orders": [
+    {
+      "id": 1,
+      "userId": 1,
+      "guestInfo": null,
+      "items": [],
+      "total": 258,
+      "status": "pending",
+      "deliveryAddress": {},
+      "createdAt": "2025-01-01T12:00:00Z"
+    },
+    {
+      "id": "3dcb",
+      "userId": null,
+      "guestInfo": {
+        "name": "Test",
+        "phone": "0704661914",
+        "address": "Cpsvängen 2"
+      },
+      "items": [
+        {
+          "id": "2",
+          "name": "Carne Asada",
+          "price": 90,
+          "quantity": 1
+        }
+      ],
+      "total": 129,
+      "status": "pending",
+      "paymentMethod": "card",
+      "deliveryAddress": "Cpsvängen 2",
+      "createdAt": "2025-05-27T09:51:24.199Z"
+    }
+  ]
 }
