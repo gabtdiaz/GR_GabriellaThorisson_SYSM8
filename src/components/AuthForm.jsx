@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useAuth } from "../context/authContext";
 import { useNavigate } from "react-router-dom";
+import "../css/AuthForm.css";
 
 const AuthForm = () => {
   // Hämtar login-funktionen från AuthContext
@@ -22,7 +23,7 @@ const AuthForm = () => {
   });
 
   const handleLogin = async (e) => {
-    e.preventDefault(); // Förhindrar att sidan laddas om vid formulärskick
+    e.preventDefault(); // FÖrhindra att sidan ska laddas om när formuläret skickas
 
     try {
       // Hämta användare från JSON server
@@ -33,12 +34,12 @@ const AuthForm = () => {
 
       // Kolla om användare finns och lösenord stämmer
       if (users.length === 0) {
-        throw new Error("Användare hittades inte");
+        throw new Error("User not found");
       }
 
       const user = users[0];
       if (user.password !== form.password) {
-        throw new Error("Fel lösenord");
+        throw new Error("Wrong password");
       }
 
       // Skapa token och spara i AuthContext
@@ -48,7 +49,7 @@ const AuthForm = () => {
       // Skicka användaren vidare
       navigate("/order");
     } catch (error) {
-      alert("Inloggning misslyckades: " + error.message);
+      alert("Login failed: " + error.message);
     }
   };
 
@@ -63,7 +64,7 @@ const AuthForm = () => {
       const existingUsers = await existingResponse.json();
 
       if (existingUsers.length > 0) {
-        throw new Error("Email redan registrerad");
+        throw new Error("Email already registered");
       }
 
       // Skapa ny användare i JSON server
@@ -85,7 +86,7 @@ const AuthForm = () => {
       });
 
       if (!response.ok) {
-        throw new Error("Kunde inte skapa användare");
+        throw new Error("Failed to create user");
       }
 
       const createdUser = await response.json();
@@ -97,7 +98,7 @@ const AuthForm = () => {
       // Skicka användaren vidare
       navigate("/order");
     } catch (error) {
-      alert("Registrering misslyckades: " + error.message);
+      alert("Registration failed: " + error.message);
     }
   };
 
@@ -116,7 +117,7 @@ const AuthForm = () => {
 
   return (
     <div className="auth-container">
-      <h2>{isLogin ? "Logga in" : "Registrera dig"}</h2>
+      <h2>{isLogin ? "LOGIN" : "REGISTER"}</h2>
 
       <form onSubmit={isLogin ? handleLogin : handleRegister}>
         {/* Visar bara namn, telefon och adress om det är registrering */}
@@ -124,21 +125,21 @@ const AuthForm = () => {
           <>
             <input
               type="text"
-              placeholder="Namn"
+              placeholder="Name"
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
               required
             />
             <input
               type="tel"
-              placeholder="Telefonnummer"
+              placeholder="Phone number"
               value={form.phone}
               onChange={(e) => setForm({ ...form, phone: e.target.value })}
               required
             />
             <input
               type="text"
-              placeholder="Adress"
+              placeholder="Address"
               value={form.address}
               onChange={(e) => setForm({ ...form, address: e.target.value })}
               required
@@ -156,18 +157,18 @@ const AuthForm = () => {
         />
         <input
           type="password"
-          placeholder="Lösenord"
+          placeholder="Password"
           value={form.password}
           onChange={(e) => setForm({ ...form, password: e.target.value })}
           required
         />
 
-        <button type="submit">{isLogin ? "Logga in" : "Registrera"}</button>
+        <button type="submit">{isLogin ? "LOGIN" : "REGISTER"}</button>
       </form>
 
       {/* Knapp för att växla mellan login och register */}
       <p>
-        {isLogin ? "Har du inget konto? " : "Har du redan ett konto? "}
+        {isLogin ? "No account? " : "Already have an account? "}
         <button type="button" onClick={toggleMode} className="toggle-btn">
           {isLogin ? "Register here" : "Login here"}
         </button>

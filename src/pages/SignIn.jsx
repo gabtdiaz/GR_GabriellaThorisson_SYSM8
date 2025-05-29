@@ -8,13 +8,11 @@ const SignIn = () => {
   return (
     <div className="signin-page">
       <Header />
-
       <main className="signin-main">
         <div className="signin-container">
           <AuthForm />
         </div>
       </main>
-
       <Footer />
     </div>
   );

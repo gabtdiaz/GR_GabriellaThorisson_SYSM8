@@ -68,7 +68,7 @@
 .navbar {
   display: flex;
   flex-direction: row;
-  gap: 60px; /* Mindre gap för bättre anpassning */
+  gap: 50px; /* Mindre gap för bättre anpassning */
   align-items: center;
   justify-content: center;
   height: 97px;
@@ -94,9 +94,6 @@
   /* transition: transform 0.2s ease, opacity 0.2s ease; */
 }
 
-.home {
-  margin-left: 50px;
-}
 .contact:hover,
 .menu:hover,
 .order:hover,
