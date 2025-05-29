@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/cartContext";
+import { useAuth } from "../context/authContext";
 import "../css/Header.css"; // Separat css för header
 
 const Header = () => {
@@ -9,6 +10,8 @@ const Header = () => {
 
   // Använd cart context istället för localStorage direkt
   const { hasItems, getTotalItems } = useCart();
+
+  const { token, logout } = useAuth();
 
   const navigate = useNavigate();
 
@@ -19,6 +22,12 @@ const Header = () => {
   const handleNavigation = (path) => {
     setMenuOpen(false); // Stäng menyn när man navigerar
     navigate(path); // Navigerar till den valda sidan
+  };
+
+  const handleLogout = () => {
+    logout();
+    setMenuOpen(false);
+    navigate("/"); // Skickar användare till startsidan vid utloggning
   };
 
   return (
@@ -44,9 +53,17 @@ const Header = () => {
         <div className="order" onClick={() => handleNavigation("/order")}>
           ORDER
         </div>
-        <div className="sign-in" onClick={() => handleNavigation("/")}>
-          LOGIN
-        </div>
+
+        {/* Ändra navlänk beroende på om anv är inloggad eller ej (finns token?) */}
+        {token ? (
+          <div className="sign-in" onClick={handleLogout}>
+            LOGOUT
+          </div>
+        ) : (
+          <div className="sign-in" onClick={() => handleNavigation("/signin")}>
+            SIGN IN
+          </div>
+        )}
       </div>
 
       {/* Show order knapp, placeras utanför navbar! ska alltid synas om det finns varor i varukorg.*/}
