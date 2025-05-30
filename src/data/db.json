@@ -135,7 +135,12 @@
       "firstName": "John",
       "lastName": "Doe",
       "email": "john@example.com",
-      "favorites": [1, 4, 7, 13]
+      "favorites": [
+        1,
+        4,
+        7,
+        13
+      ]
     },
     {
       "id": "cb60",
@@ -209,6 +214,50 @@
       "paymentMethod": "swish",
       "deliveryAddress": "Djäknegatan 23",
       "createdAt": "2025-05-27T12:11:58.089Z"
+    },
+    {
+      "id": "1afa",
+      "userId": null,
+      "guestInfo": {
+        "name": "Erik",
+        "phone": "040121212",
+        "address": "Kungsgatan 12"
+      },
+      "items": [
+        {
+          "id": "1",
+          "name": "Combo Plate",
+          "price": 90,
+          "quantity": 1,
+          "customizations": {}
+        },
+        {
+          "id": "7",
+          "name": "Nachos",
+          "price": 50,
+          "quantity": 1,
+          "customizations": {}
+        },
+        {
+          "id": "8",
+          "name": "Guacamole",
+          "price": 40,
+          "quantity": 1,
+          "customizations": {}
+        },
+        {
+          "id": "13",
+          "name": "Jarritos - Lime",
+          "price": 40,
+          "quantity": 1,
+          "customizations": {}
+        }
+      ],
+      "total": 259,
+      "status": "pending",
+      "paymentMethod": "swish",
+      "deliveryAddress": "Kungsgatan 12",
+      "createdAt": "2025-05-30T17:11:32.609Z"
     }
   ]
 }

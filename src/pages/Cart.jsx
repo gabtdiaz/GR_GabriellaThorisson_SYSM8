@@ -1,6 +1,7 @@
 // src/pages/Cart.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useCart } from "../context/cartContext";
+import { useAuth } from "../context/authContext";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -64,6 +65,7 @@ const CartItem = ({ item, index, onUpdateQuantity, onRemoveItem }) => {
 const Cart = () => {
   const { cartItems, updateQuantity, removeFromCart, getTotalPrice, hasItems } =
     useCart();
+  const { token } = useAuth(); // Lägg till auth
   const navigate = useNavigate();
 
   const [showPayment, setShowPayment] = useState(false);
@@ -72,6 +74,22 @@ const Cart = () => {
     phone: "",
     address: "",
   });
+
+  // useEffect för att auto-fylla kunduppgifter om inloggad
+  useEffect(() => {
+    if (token) {
+      // Hämta användardata från localStorage
+      const savedUser = localStorage.getItem("userData");
+      if (savedUser) {
+        const userData = JSON.parse(savedUser);
+        setCustomerInfo({
+          name: userData.name || "",
+          phone: userData.phone || "",
+          address: userData.address || "",
+        });
+      }
+    }
+  }, [token]);
 
   const handleUpdateQuantity = (itemIndex, newQuantity) => {
     updateQuantity(itemIndex, newQuantity);
@@ -88,7 +106,7 @@ const Cart = () => {
       !customerInfo.phone.trim() ||
       !customerInfo.address.trim()
     ) {
-      alert("Vänligen fyll i alla fält för leverans");
+      alert("Please fill in all required fields.");
       return;
     }
     setShowPayment(true);
@@ -168,7 +186,9 @@ const Cart = () => {
                   {/* KUNDUPPGIFTER - 3 fält */}
                   <div className="customer-fields">
                     <h3 className="customer-fields-title">
-                      Delivery Information
+                      {token
+                        ? "Delivery Information (Pre-filled)"
+                        : "Delivery Information"}
                     </h3>
                     <input
                       type="text"
@@ -178,6 +198,7 @@ const Cart = () => {
                         handleCustomerInfoChange("name", e.target.value)
                       }
                       className="customer-input"
+                      disabled={token} // Låst om inloggad
                     />
                     <input
                       type="tel"
@@ -187,6 +208,7 @@ const Cart = () => {
                         handleCustomerInfoChange("phone", e.target.value)
                       }
                       className="customer-input"
+                      disabled={token} // Låst om inloggad
                     />
                     <input
                       type="text"

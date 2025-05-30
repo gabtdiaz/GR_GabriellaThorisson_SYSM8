@@ -7,12 +7,13 @@ import "../css/Account.css";
 
 const Account = () => {
   const { token, logout } = useAuth();
-  const [user, setUser] = useState(null);
   const navigate = useNavigate();
+  const [user, setUser] = useState(null);
   const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Redirecta om man inte är iloggad
+    // Redirect om inte inloggad
     if (!token) {
       navigate("/signin");
       return;
@@ -22,20 +23,23 @@ const Account = () => {
       try {
         // Hämta användardata från localStorage
         const savedUser = localStorage.getItem("userData");
-
         if (savedUser) {
           const userData = JSON.parse(savedUser);
           setUser(userData);
 
-          // Hämta användarens beställningar
-          const orders = await fetch(
-            `http://localhost:3001/orders?userId=${userData.id}`
-          );
-          const userOrders = await orders.json();
-          setOrders(userOrders);
+          // Hämta användarens beställningar endast om userData finns
+          if (userData && userData.id) {
+            const ordersResponse = await fetch(
+              `http://localhost:3001/orders?userId=${userData.id}`
+            );
+            const userOrders = await ordersResponse.json();
+            setOrders(userOrders);
+          }
         }
       } catch (error) {
-        console.error("Error fetching user data:", error);
+        console.error("Kunde inte hämta data:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -46,6 +50,22 @@ const Account = () => {
     logout();
     navigate("/");
   };
+
+  if (loading) {
+    return (
+      <div className="account-page">
+        <Header />
+        <main className="account-main">
+          <div className="loading">Laddar...</div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (!user) {
+    return null; // Redirect sker i useEffect
+  }
 
   return (
     <div className="account-page">
@@ -61,19 +81,19 @@ const Account = () => {
             <div className="info-grid">
               <div className="info-item">
                 <label>Name:</label>
-                <span>{user.name}</span>
+                <span>{user?.name || "N/A"}</span>
               </div>
               <div className="info-item">
                 <label>Email:</label>
-                <span>{user.email}</span>
+                <span>{user?.email || "N/A"}</span>
               </div>
               <div className="info-item">
                 <label>Phone:</label>
-                <span>{user.phone}</span>
+                <span>{user?.phone || "N/A"}</span>
               </div>
               <div className="info-item">
                 <label>Address:</label>
-                <span>{user.address}</span>
+                <span>{user?.address || "N/A"}</span>
               </div>
             </div>
           </section>

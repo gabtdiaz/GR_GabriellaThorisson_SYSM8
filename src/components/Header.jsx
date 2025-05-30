@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/cartContext";
 import { useAuth } from "../context/authContext";
@@ -7,7 +7,6 @@ import "../css/Header.css";
 const Header = () => {
   // State för att hålla koll om mobilmenyn är öppen eller stängd
   const [menuOpen, setMenuOpen] = useState(false);
-  const [user, setUser] = useState(null); // För att spara användardata
 
   // Använd cart context istället för localStorage direkt
   const { hasItems, getTotalItems } = useCart();
@@ -16,38 +15,6 @@ const Header = () => {
   const { token, logout } = useAuth();
 
   const navigate = useNavigate();
-
-  // Hämta användardata när komponenten laddas eller token ändras
-  useEffect(() => {
-    const fetchUserData = async () => {
-      if (token) {
-        try {
-          // Hämta användardata från localStorage först
-          const savedUser = localStorage.getItem("userData");
-          if (savedUser) {
-            setUser(JSON.parse(savedUser));
-          } else {
-            // Om inte i localStorage, hämta från server baserat på token
-            const userId = token.replace("token_", "");
-            const response = await fetch(
-              `http://localhost:3001/users/${userId}`
-            );
-            if (response.ok) {
-              const userData = await response.json();
-              setUser(userData);
-              localStorage.setItem("userData", JSON.stringify(userData));
-            }
-          }
-        } catch (error) {
-          console.error("Error when fetching User data:", error);
-        }
-      } else {
-        setUser(null);
-      }
-    };
-
-    fetchUserData();
-  }, [token]);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -61,7 +28,6 @@ const Header = () => {
   // Logout funktion
   const handleLogout = () => {
     logout();
-    setUser(null);
     setMenuOpen(false);
     navigate("/"); // Skicka användaren till hem efter logout
   };
@@ -91,7 +57,7 @@ const Header = () => {
         </div>
 
         {/* Visa MY ACCOUNT eller SIGN IN */}
-        {token && user ? (
+        {token ? (
           <>
             <div
               className="sign-in"
