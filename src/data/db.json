@@ -135,12 +135,7 @@
       "firstName": "John",
       "lastName": "Doe",
       "email": "john@example.com",
-      "favorites": [
-        1,
-        4,
-        7,
-        13
-      ]
+      "favorites": [1, 4, 7, 13]
     },
     {
       "id": "cb60",
@@ -159,6 +154,15 @@
       "phone": "040121212",
       "address": "Kungsgatan 12",
       "createdAt": "2025-05-30T14:17:47.286Z"
+    },
+    {
+      "id": "50fd",
+      "name": "gabriella thorisson",
+      "email": "gabriella@mail.se",
+      "password": "Abcd1234!",
+      "phone": "0730303030",
+      "address": "Amiralsgatan 30",
+      "createdAt": "2025-05-30T20:48:29.620Z"
     }
   ],
   "orders": [
@@ -168,7 +172,7 @@
       "guestInfo": null,
       "items": [],
       "total": 258,
-      "status": "pending",
+      "status": "confirmed",
       "deliveryAddress": {},
       "createdAt": "2025-01-01T12:00:00Z"
     },
@@ -258,6 +262,28 @@
       "paymentMethod": "swish",
       "deliveryAddress": "Kungsgatan 12",
       "createdAt": "2025-05-30T17:11:32.609Z"
+    },
+    {
+      "id": "9183",
+      "userId": null,
+      "guestInfo": {
+        "name": "Erik",
+        "phone": "040121212",
+        "address": "Kungsgatan 12"
+      },
+      "items": [
+        {
+          "id": "1",
+          "name": "Combo Plate",
+          "price": 90,
+          "quantity": 2
+        }
+      ],
+      "total": 219,
+      "status": "confirmed",
+      "paymentMethod": "swish",
+      "deliveryAddress": "Kungsgatan 12",
+      "createdAt": "2025-05-30T20:29:13.361Z"
     }
   ]
 }

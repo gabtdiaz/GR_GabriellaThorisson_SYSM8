@@ -1,3 +1,4 @@
+// src/pages/Account.jsx
 import React, { useState, useEffect } from "react";
 import { useAuth } from "../context/authContext";
 import { useNavigate } from "react-router-dom";
@@ -10,7 +11,8 @@ const Account = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [orders, setOrders] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedUser, setEditedUser] = useState({});
 
   useEffect(() => {
     // Redirect om inte inloggad
@@ -19,52 +21,77 @@ const Account = () => {
       return;
     }
 
-    const fetchUserData = async () => {
-      try {
-        // Hämta användardata från localStorage
-        const savedUser = localStorage.getItem("userData");
-        if (savedUser) {
-          const userData = JSON.parse(savedUser);
-          setUser(userData);
+    // Hämta användardata från localStorage
+    const savedUser = localStorage.getItem("userData");
+    if (savedUser) {
+      const userData = JSON.parse(savedUser);
+      setUser(userData);
+      setEditedUser(userData);
 
-          // Hämta användarens beställningar endast om userData finns
-          if (userData && userData.id) {
-            const ordersResponse = await fetch(
-              `http://localhost:3001/orders?userId=${userData.id}`
-            );
-            const userOrders = await ordersResponse.json();
-            setOrders(userOrders);
-          }
-        }
-      } catch (error) {
-        console.error("Kunde inte hämta data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchUserData();
+      // Hämta beställningar
+      fetchOrders(userData.id);
+    }
   }, [token, navigate]);
+
+  const fetchOrders = async (userId) => {
+    try {
+      const response = await fetch(
+        `http://localhost:3001/orders?userId=${userId}`
+      );
+      const userOrders = await response.json();
+      setOrders(userOrders);
+    } catch (error) {
+      console.error("Kunde inte hämta beställningar:", error);
+    }
+  };
 
   const handleLogout = () => {
     logout();
     navigate("/");
   };
 
-  if (loading) {
-    return (
-      <div className="account-page">
-        <Header />
-        <main className="account-main">
-          <div className="loading">Laddar...</div>
-        </main>
-        <Footer />
-      </div>
-    );
-  }
+  const toggleEditing = () => {
+    if (isEditing) {
+      // Avbryt editing - återställ till original värden
+      setEditedUser(user);
+    }
+    setIsEditing(!isEditing);
+  };
 
+  const handleInputChange = (field, value) => {
+    setEditedUser((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+  };
+
+  const saveChanges = async () => {
+    try {
+      // Uppdatera användare i JSON server
+      const response = await fetch(`http://localhost:3001/users/${user.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(editedUser),
+      });
+
+      if (response.ok) {
+        const updatedUser = await response.json();
+        setUser(updatedUser);
+        localStorage.setItem("userData", JSON.stringify(updatedUser));
+        setIsEditing(false);
+        alert("Information updated successfully!");
+      }
+    } catch (error) {
+      console.error("Kunde inte uppdatera:", error);
+      alert("Failed to update information");
+    }
+  };
+
+  // Om ingen user data, visa ingenting (redirect sker i useEffect)
   if (!user) {
-    return null; // Redirect sker i useEffect
+    return null;
   }
 
   return (
@@ -77,23 +104,77 @@ const Account = () => {
 
           {/* Användarinfo */}
           <section className="user-info-section">
-            <h2>Personal Information</h2>
+            <div className="section-header">
+              <h2>Personal Information</h2>
+              <div className="edit-buttons">
+                {isEditing ? (
+                  <>
+                    <button className="btn btn-primary" onClick={saveChanges}>
+                      Save
+                    </button>
+                    <button
+                      className="btn btn-secondary"
+                      onClick={toggleEditing}
+                    >
+                      Cancel
+                    </button>
+                  </>
+                ) : (
+                  <button className="btn btn-secondary" onClick={toggleEditing}>
+                    Edit
+                  </button>
+                )}
+              </div>
+            </div>
+
             <div className="info-grid">
               <div className="info-item">
                 <label>Name:</label>
-                <span>{user?.name || "N/A"}</span>
+                {isEditing ? (
+                  <input
+                    type="text"
+                    value={editedUser.name || ""}
+                    onChange={(e) => handleInputChange("name", e.target.value)}
+                    className="edit-input"
+                  />
+                ) : (
+                  <span>{user.name || "N/A"}</span>
+                )}
               </div>
+
               <div className="info-item">
                 <label>Email:</label>
-                <span>{user?.email || "N/A"}</span>
+                <span>{user.email || "N/A"}</span>
               </div>
+
               <div className="info-item">
                 <label>Phone:</label>
-                <span>{user?.phone || "N/A"}</span>
+                {isEditing ? (
+                  <input
+                    type="tel"
+                    value={editedUser.phone || ""}
+                    onChange={(e) => handleInputChange("phone", e.target.value)}
+                    className="edit-input"
+                  />
+                ) : (
+                  <span>{user.phone || "N/A"}</span>
+                )}
               </div>
+
               <div className="info-item">
                 <label>Address:</label>
-                <span>{user?.address || "N/A"}</span>
+                {isEditing ? (
+                  <input
+                    type="text"
+                    value={editedUser.address || ""}
+                    onChange={(e) =>
+                      handleInputChange("address", e.target.value)
+                    }
+                    className="edit-input"
+                  />
+                ) : (
+                  <span>{user.address || "N/A"}</span>
+                )}
               </div>
             </div>
           </section>

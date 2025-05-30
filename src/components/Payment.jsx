@@ -3,7 +3,13 @@ import React, { useState } from "react";
 import { useCart } from "../context/cartContext";
 import "../css/Payment.css";
 
-const Payment = ({ cartItems, getTotalPrice, customerInfo, onClose }) => {
+const Payment = ({
+  cartItems,
+  getTotalPrice,
+  customerInfo,
+  orderMessage,
+  onClose,
+}) => {
   const [paymentMethod, setPaymentMethod] = useState("card");
   const [isProcessing, setIsProcessing] = useState(false);
   const { clearCart } = useCart();
@@ -23,12 +29,13 @@ const Payment = ({ cartItems, getTotalPrice, customerInfo, onClose }) => {
           name: item.name,
           price: item.price,
           quantity: item.quantity,
-          customizations: item.customizations || {},
+          // Customizations borttaget helt
         })),
         total: totalWithDelivery,
-        status: "pending",
+        status: "confirmed", // Ändrat från "pending" till "confirmed"
         paymentMethod: paymentMethod,
         deliveryAddress: customerInfo.address,
+        specialInstructions: orderMessage, // Lägg till meddelandet
         createdAt: new Date().toISOString(),
       };
 
@@ -50,9 +57,15 @@ const Payment = ({ cartItems, getTotalPrice, customerInfo, onClose }) => {
       // Simulera betalning
       setTimeout(() => {
         setIsProcessing(false);
+
+        // Popup-meddelande med bekräftelse
         alert(
-          `Order #${createdOrder.id} placed successfully! Thank you ${customerInfo.name}!`
+          `🎉 Order Confirmed! #${createdOrder.id}\n\n` +
+            `✅ Order confirmation sent to ${customerInfo.phone}\n` +
+            `🕐 Estimated delivery time: 30 minutes\n` +
+            `📍 Delivery to: ${customerInfo.address}\n\n`
         );
+
         clearCart();
         onClose();
       }, 2000);

@@ -1,8 +1,8 @@
-// src/pages/Cart.js
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useCart } from "../context/cartContext";
 import { useAuth } from "../context/authContext";
 import { useNavigate } from "react-router-dom";
+import { useCheckout } from "../hooks/useCheckout"; // Importera hooken
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Payment from "../components/Payment";
@@ -63,34 +63,26 @@ const CartItem = ({ item, index, onUpdateQuantity, onRemoveItem }) => {
 
 // Huvudkomponent för Cart-sidan
 const Cart = () => {
+  // Hooks
   const { cartItems, updateQuantity, removeFromCart, getTotalPrice, hasItems } =
     useCart();
-  const { token } = useAuth(); // Lägg till auth
+  const { token } = useAuth();
   const navigate = useNavigate();
 
-  const [showPayment, setShowPayment] = useState(false);
-  const [customerInfo, setCustomerInfo] = useState({
-    name: "",
-    phone: "",
-    address: "",
-  });
+  // Checkout hook - innehåller all checkout-logik
+  const {
+    customerInfo,
+    orderMessage,
+    isEditing,
+    showPayment,
+    setOrderMessage,
+    setIsEditing,
+    handleCustomerInfoChange,
+    handleContinueToCheckout,
+    handleClosePayment,
+  } = useCheckout();
 
-  // useEffect för att auto-fylla kunduppgifter om inloggad
-  useEffect(() => {
-    if (token) {
-      // Hämta användardata från localStorage
-      const savedUser = localStorage.getItem("userData");
-      if (savedUser) {
-        const userData = JSON.parse(savedUser);
-        setCustomerInfo({
-          name: userData.name || "",
-          phone: userData.phone || "",
-          address: userData.address || "",
-        });
-      }
-    }
-  }, [token]);
-
+  // Cart funktioner
   const handleUpdateQuantity = (itemIndex, newQuantity) => {
     updateQuantity(itemIndex, newQuantity);
   };
@@ -99,32 +91,8 @@ const Cart = () => {
     removeFromCart(itemIndex);
   };
 
-  const handleContinueToCheckout = () => {
-    // Enkel validering
-    if (
-      !customerInfo.name.trim() ||
-      !customerInfo.phone.trim() ||
-      !customerInfo.address.trim()
-    ) {
-      alert("Please fill in all required fields.");
-      return;
-    }
-    setShowPayment(true);
-  };
-
-  const handleClosePayment = () => {
-    setShowPayment(false);
-  };
-
   const handleGoBack = () => {
     navigate(-1);
-  };
-
-  const handleCustomerInfoChange = (field, value) => {
-    setCustomerInfo((prev) => ({
-      ...prev,
-      [field]: value,
-    }));
   };
 
   return (
@@ -183,13 +151,37 @@ const Cart = () => {
                     </div>
                   </div>
 
-                  {/* KUNDUPPGIFTER - 3 fält */}
+                  {/* Meddelande till resturangen */}
+                  <div className="order-message-section">
+                    <h3 className="message-title">Special Instructions</h3>
+                    <textarea
+                      placeholder="Message to the restaurant (optional)..."
+                      value={orderMessage}
+                      onChange={(e) => setOrderMessage(e.target.value)}
+                      className="message-textarea"
+                      rows="3"
+                    />
+                  </div>
+
+                  {/* Kunduppgifter */}
                   <div className="customer-fields">
-                    <h3 className="customer-fields-title">
-                      {token
-                        ? "Delivery Information (Pre-filled)"
-                        : "Delivery Information"}
-                    </h3>
+                    <div className="customer-fields-header">
+                      <h3 className="customer-fields-title">
+                        {token
+                          ? "Delivery Information"
+                          : "Delivery Information"}
+                      </h3>
+                      {token && (
+                        <button
+                          type="button"
+                          className="edit-info-btn"
+                          onClick={() => setIsEditing(!isEditing)}
+                        >
+                          {isEditing ? "Lock" : "Edit"}
+                        </button>
+                      )}
+                    </div>
+
                     <input
                       type="text"
                       placeholder="Your Name *"
@@ -198,7 +190,7 @@ const Cart = () => {
                         handleCustomerInfoChange("name", e.target.value)
                       }
                       className="customer-input"
-                      disabled={token} // Låst om inloggad
+                      disabled={token && !isEditing}
                     />
                     <input
                       type="tel"
@@ -208,7 +200,7 @@ const Cart = () => {
                         handleCustomerInfoChange("phone", e.target.value)
                       }
                       className="customer-input"
-                      disabled={token} // Låst om inloggad
+                      disabled={token && !isEditing}
                     />
                     <input
                       type="text"
@@ -218,6 +210,7 @@ const Cart = () => {
                         handleCustomerInfoChange("address", e.target.value)
                       }
                       className="customer-input"
+                      disabled={token && !isEditing}
                     />
                   </div>
 
@@ -239,6 +232,7 @@ const Cart = () => {
                 cartItems={cartItems}
                 getTotalPrice={getTotalPrice}
                 customerInfo={customerInfo}
+                orderMessage={orderMessage}
                 onClose={handleClosePayment}
               />
             </div>

@@ -1,5 +1,3 @@
-/* src/css/Account.css */
-
 .account-page {
   min-height: 100vh;
   background-color: #fff2f2;
@@ -41,6 +39,37 @@
 /* Personal Information Section */
 .user-info-section {
   margin-bottom: 3rem;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.edit-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.edit-buttons .btn {
+  padding: 8px 16px;
+  font-size: 14px;
+}
+
+.edit-input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 2px solid #f53434;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: border-color 0.2s ease;
+}
+
+.edit-input:focus {
+  outline: none;
+  border-color: #d12929;
 }
 
 .info-grid {
@@ -125,14 +154,14 @@
   text-transform: uppercase;
 }
 
+.order-status.confirmed {
+  background: #d4edda;
+  color: #155724;
+}
+
 .order-status.pending {
   background: #fff3cd;
   color: #856404;
-}
-
-.order-status.completed {
-  background: #d4edda;
-  color: #155724;
 }
 
 .order-status.cancelled {
