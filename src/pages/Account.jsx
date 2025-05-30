@@ -47,7 +47,102 @@ const Account = () => {
     navigate("/");
   };
 
-  return <div></div>;
+  return (
+    <div className="account-page">
+      <Header />
+
+      <main className="account-main">
+        <div className="account-container">
+          <h1>My Account</h1>
+
+          {/* Användarinfo */}
+          <section className="user-info-section">
+            <h2>Personal Information</h2>
+            <div className="info-grid">
+              <div className="info-item">
+                <label>Name:</label>
+                <span>{user.name}</span>
+              </div>
+              <div className="info-item">
+                <label>Email:</label>
+                <span>{user.email}</span>
+              </div>
+              <div className="info-item">
+                <label>Phone:</label>
+                <span>{user.phone}</span>
+              </div>
+              <div className="info-item">
+                <label>Address:</label>
+                <span>{user.address}</span>
+              </div>
+            </div>
+          </section>
+
+          {/* Beställningshistorik */}
+          <section className="orders-section">
+            <h2>Order History</h2>
+            {orders.length === 0 ? (
+              <div className="no-orders">
+                <p>You haven't made any orders yet.</p>
+                <button
+                  className="btn btn-primary"
+                  onClick={() => navigate("/order")}
+                >
+                  Order Now
+                </button>
+              </div>
+            ) : (
+              <div className="orders-list">
+                {orders.map((order) => (
+                  <div key={order.id} className="order-card">
+                    <div className="order-header">
+                      <span className="order-id">Order #{order.id}</span>
+                      <span className="order-date">
+                        {new Date(order.createdAt).toLocaleDateString("sv-SE")}
+                      </span>
+                      <span className={`order-status ${order.status}`}>
+                        {order.status}
+                      </span>
+                    </div>
+
+                    <div className="order-items">
+                      {order.items.map((item, index) => (
+                        <div key={index} className="order-item">
+                          <span>
+                            {item.quantity}x {item.name}
+                          </span>
+                          <span>{item.price * item.quantity} SEK</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="order-total">
+                      <strong>Total: {order.total} SEK</strong>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </section>
+
+          {/* Konto-åtgärder */}
+          <section className="account-actions">
+            <button
+              className="btn btn-primary"
+              onClick={() => navigate("/order")}
+            >
+              Order Food
+            </button>
+            <button className="btn btn-secondary" onClick={handleLogout}>
+              Logout
+            </button>
+          </section>
+        </div>
+      </main>
+
+      <Footer />
+    </div>
+  );
 };
 
 export default Account;
