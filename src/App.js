@@ -7,6 +7,7 @@ import Menu from "./pages/Menu";
 import Order from "./pages/Order";
 import Cart from "./pages/Cart";
 import SignIn from "./pages/SignIn";
+import MyAccount from "./pages/MyAccount";
 
 import "./App.css";
 
@@ -22,6 +23,7 @@ function App() {
               <Route path="/order" element={<Order />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/signin" element={<SignIn />} />
+              <Route path="/account" element={<MyAccount />} />
               {/* fler routes läggs till här */}
             </Routes>
           </div>
