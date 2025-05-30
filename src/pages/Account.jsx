@@ -41,7 +41,7 @@ const Account = () => {
       const userOrders = await response.json();
       setOrders(userOrders);
     } catch (error) {
-      console.error("Kunde inte hämta beställningar:", error);
+      console.error("Error while fetching orders:", error);
     }
   };
 

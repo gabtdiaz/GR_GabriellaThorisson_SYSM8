@@ -44,7 +44,7 @@ const AuthForm = () => {
 
       // Skapa token och spara i AuthContext
       const token = `token_${user.id}`;
-      login(token);
+      login(token, user);
 
       // Skicka användaren vidare
       navigate("/order");

@@ -72,7 +72,7 @@ const Payment = ({
     } catch (error) {
       console.error("Order creation failed:", error);
       setIsProcessing(false);
-      alert("Ett fel uppstod vid beställningen. Försök igen.");
+      alert("An error occurred while processing your order. Please try again.");
     }
   };
 

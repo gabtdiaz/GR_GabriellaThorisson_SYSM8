@@ -8,14 +8,16 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token"));
 
   // Funktion som används för att logga in anv och spara token i localStorage
-  const login = (newToken) => {
-    localStorage.setItem("token", newToken); // Spara token i webbläsarens localStorage
-    setToken(newToken); // Uppdatera token i state
+  const login = (newToken, userData) => {
+    localStorage.setItem("token", newToken);
+    localStorage.setItem("userData", JSON.stringify(userData));
+    setToken(newToken);
   };
 
   // Funktion som använda för att logga ut användaren och ta bort token
   const logout = () => {
     localStorage.removeItem("token"); // Ta bort token från localStorage
+    localStorage.removeItem("userData"); // Ta bort userData från localStorage
     setToken(null); // Nollställ token i state
   };
 
