@@ -7,7 +7,7 @@ import Menu from "./pages/Menu";
 import Order from "./pages/Order";
 import Cart from "./pages/Cart";
 import SignIn from "./pages/SignIn";
-import MyAccount from "./pages/MyAccount";
+import Account from "./pages/Account";
 
 import "./App.css";
 
@@ -23,7 +23,7 @@ function App() {
               <Route path="/order" element={<Order />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/signin" element={<SignIn />} />
-              <Route path="/account" element={<MyAccount />} />
+              <Route path="/account" element={<Account />} />
               {/* fler routes läggs till här */}
             </Routes>
           </div>
