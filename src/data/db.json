@@ -135,12 +135,7 @@
       "firstName": "John",
       "lastName": "Doe",
       "email": "john@example.com",
-      "favorites": [
-        1,
-        4,
-        7,
-        13
-      ]
+      "favorites": [1, 4, 7, 13]
     },
     {
       "id": "cb60",
@@ -150,6 +145,15 @@
       "phone": "0700111111",
       "address": "Djäknegatan 7",
       "createdAt": "2025-05-29T19:49:34.353Z"
+    },
+    {
+      "id": "b32c",
+      "name": "Erik",
+      "email": "erik@mail.se",
+      "password": "hej123",
+      "phone": "040121212",
+      "address": "Kungsgatan 12",
+      "createdAt": "2025-05-30T14:17:47.286Z"
     }
   ],
   "orders": [
@@ -197,8 +201,7 @@
           "id": 2,
           "name": "Carne Asada",
           "price": 90,
-          "quantity": 2,
-          "customizations": {}
+          "quantity": 2
         }
       ],
       "total": 219,

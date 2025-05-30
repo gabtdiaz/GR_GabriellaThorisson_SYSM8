@@ -1,19 +1,53 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/cartContext";
 import { useAuth } from "../context/authContext";
-import "../css/Header.css"; // Separat css för header
+import "../css/Header.css";
 
 const Header = () => {
   // State för att hålla koll om mobilmenyn är öppen eller stängd
   const [menuOpen, setMenuOpen] = useState(false);
+  const [user, setUser] = useState(null); // För att spara användardata
 
   // Använd cart context istället för localStorage direkt
   const { hasItems, getTotalItems } = useCart();
 
+  // Auth context
   const { token, logout } = useAuth();
 
   const navigate = useNavigate();
+
+  // Hämta användardata när komponenten laddas eller token ändras
+  useEffect(() => {
+    const fetchUserData = async () => {
+      if (token) {
+        try {
+          // Hämta användardata från localStorage först
+          const savedUser = localStorage.getItem("userData");
+          if (savedUser) {
+            setUser(JSON.parse(savedUser));
+          } else {
+            // Om inte i localStorage, hämta från server baserat på token
+            const userId = token.replace("token_", "");
+            const response = await fetch(
+              `http://localhost:3001/users/${userId}`
+            );
+            if (response.ok) {
+              const userData = await response.json();
+              setUser(userData);
+              localStorage.setItem("userData", JSON.stringify(userData));
+            }
+          }
+        } catch (error) {
+          console.error("Error when fetching User data:", error);
+        }
+      } else {
+        setUser(null);
+      }
+    };
+
+    fetchUserData();
+  }, [token]);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -24,10 +58,12 @@ const Header = () => {
     navigate(path); // Navigerar till den valda sidan
   };
 
+  // Logout funktion
   const handleLogout = () => {
     logout();
+    setUser(null);
     setMenuOpen(false);
-    navigate("/"); // Skickar användare till startsidan vid utloggning
+    navigate("/"); // Skicka användaren till hem efter logout
   };
 
   return (
@@ -54,11 +90,19 @@ const Header = () => {
           ORDER
         </div>
 
-        {/* Ändra navlänk beroende på om anv är inloggad eller ej (finns token?) */}
-        {token ? (
-          <div className="sign-in" onClick={handleLogout}>
-            LOGOUT
-          </div>
+        {/* Visa MY ACCOUNT eller SIGN IN */}
+        {token && user ? (
+          <>
+            <div
+              className="sign-in"
+              onClick={() => handleNavigation("/account")}
+            >
+              MY ACCOUNT
+            </div>
+            <div className="sign-in" onClick={handleLogout}>
+              LOGOUT
+            </div>
+          </>
         ) : (
           <div className="sign-in" onClick={() => handleNavigation("/signin")}>
             SIGN IN
