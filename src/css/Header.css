@@ -81,8 +81,7 @@
 .home,
 .order,
 .menu,
-.contact,
-.sign-in {
+.contact {
   color: #f53434;
   text-align: left;
   font-family: "Oswald";
@@ -97,9 +96,23 @@
 .contact:hover,
 .menu:hover,
 .order:hover,
-.home:hover,
-.sign-in:hover {
+.home:hover {
   color: #f36d6d;
+}
+
+.sign-in {
+  color: #671414;
+  text-align: left;
+  font-family: "Oswald";
+  font-size: var(--h2-font-size, 20px);
+  font-weight: var(--h2-font-weight, 400);
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.sign-in:hover {
+  color: #a34c4c;
 }
 
 /* SHOW ORDER knapp - Desktop version */
@@ -120,6 +133,7 @@
   border-radius: 5px;
   white-space: nowrap;
   z-index: 1001; /* Synas över allt annat */
+  animation: bounceIn 0.6s ease-out forwards;
 }
 
 .show-order-btn:hover {

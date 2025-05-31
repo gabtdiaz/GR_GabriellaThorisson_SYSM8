@@ -108,20 +108,20 @@ a:hover {
 }
 
 .btn-primary {
-  background-color: #e65100;
+  background-color: #f53434;
   color: #fff;
-  border: 2px solid #e65100;
+  border: 2px solid #f53434;
 }
 
 .btn-primary:hover {
-  background-color: #ff6d00;
-  border-color: #ff6d00;
+  background-color: #f36d6d;
+  border-color: #f36d6d;
 }
 
 .btn-secondary {
   background-color: transparent;
   color: #333;
-  border: 2px solid #e65100;
+  border: 2px solid #f53434;
 }
 
 .btn-secondary:hover {
@@ -164,6 +164,24 @@ a:hover {
   }
   to {
     transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: translateY(-50%) scale(0); /* Behåll translateY(-50%) från original */
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(-50%) scale(1.05);
+    opacity: 1;
+  }
+  70% {
+    transform: translateY(-50%) scale(0.95);
+  }
+  100% {
+    transform: translateY(-50%) scale(1);
     opacity: 1;
   }
 }

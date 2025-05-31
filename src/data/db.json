@@ -133,8 +133,8 @@
       "name": "Erik",
       "email": "erik@mail.se",
       "password": "hej123",
-      "phone": "040121212",
-      "address": "Kungsgatan 12",
+      "phone": "0733303030",
+      "address": "Kungsgatan 10",
       "createdAt": "2025-05-30T14:17:47.286Z"
     },
     {
@@ -147,5 +147,133 @@
       "createdAt": "2025-05-30T20:48:29.620Z"
     }
   ],
-  "orders": []
+  "orders": [
+    {
+      "id": "ad9b",
+      "userId": null,
+      "guestInfo": {
+        "name": "Erik",
+        "phone": "0733303030",
+        "address": "Kungsgatan 10"
+      },
+      "items": [
+        {
+          "id": "1",
+          "name": "Combo Plate",
+          "price": 90,
+          "quantity": 3
+        }
+      ],
+      "total": 309,
+      "status": "confirmed",
+      "paymentMethod": "card",
+      "deliveryAddress": "Kungsgatan 10",
+      "specialInstructions": "",
+      "createdAt": "2025-05-30T22:09:11.805Z"
+    },
+    {
+      "id": "be4b",
+      "userId": null,
+      "guestInfo": {
+        "name": "Erik",
+        "phone": "0733303030",
+        "address": "Kungsgatan 22"
+      },
+      "items": [
+        {
+          "id": "2",
+          "name": "Carne Asada",
+          "price": 90,
+          "quantity": 1
+        },
+        {
+          "id": "4",
+          "name": "Veggie",
+          "price": 90,
+          "quantity": 1
+        },
+        {
+          "id": "12",
+          "name": "Jarritos - Orange",
+          "price": 40,
+          "quantity": 1
+        }
+      ],
+      "total": 259,
+      "status": "confirmed",
+      "paymentMethod": "card",
+      "deliveryAddress": "Kungsgatan 22",
+      "specialInstructions": "",
+      "createdAt": "2025-05-30T23:36:40.010Z"
+    },
+    {
+      "id": "36c2",
+      "userId": null,
+      "guestInfo": {
+        "name": "demie",
+        "phone": "112",
+        "address": "hej 12"
+      },
+      "items": [
+        {
+          "id": "2",
+          "name": "Carne Asada",
+          "price": 90,
+          "quantity": 2
+        }
+      ],
+      "total": 219,
+      "status": "confirmed",
+      "paymentMethod": "card",
+      "deliveryAddress": "hej 12",
+      "specialInstructions": "",
+      "createdAt": "2025-05-30T23:39:28.553Z"
+    },
+    {
+      "id": "c386",
+      "userId": null,
+      "guestInfo": {
+        "name": "gabriella thorisson",
+        "phone": "0730303030",
+        "address": "Amiralsgatan 30"
+      },
+      "items": [
+        {
+          "id": "2",
+          "name": "Carne Asada",
+          "price": 90,
+          "quantity": 1
+        }
+      ],
+      "total": 129,
+      "status": "confirmed",
+      "paymentMethod": "swish",
+      "deliveryAddress": "Amiralsgatan 30",
+      "specialInstructions": "",
+      "createdAt": "2025-05-30T23:41:07.262Z"
+    },
+    {
+      "id": "9266",
+      "userId": null,
+      "guestInfo": {
+        "name": "test",
+        "phone": "112",
+        "address": "test"
+      },
+      "items": [
+        {
+          "id": "1",
+          "name": "Combo Plate",
+          "price": 90,
+          "quantity": 1
+        }
+      ],
+      "total": 129,
+      "status": "confirmed",
+      "paymentMethod": "swish",
+      "deliveryAddress": "test",
+      "specialInstructions": "",
+      "createdAt": "2025-05-31T00:38:10.323Z"
+    }
+  ]
 }

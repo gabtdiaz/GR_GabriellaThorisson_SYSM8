@@ -45,10 +45,11 @@
   flex-direction: column;
   gap: 30px;
   align-items: center;
+  animation: slideUp 0.5s ease-out;
 }
 
 .menu-btn {
-  background: #ff4949;
+  background: #f53434;
   border-radius: 5px;
   padding: 12px 50px;
   display: flex;
@@ -79,7 +80,7 @@
 }
 
 .order-btn {
-  background: #ff4949;
+  background: #f53434;
   border-radius: 5px;
   padding: 12px 50px;
   display: flex;

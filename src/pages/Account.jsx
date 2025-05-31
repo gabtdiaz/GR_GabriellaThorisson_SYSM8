@@ -46,8 +46,11 @@ const Account = () => {
   };
 
   const handleLogout = () => {
-    logout();
-    navigate("/");
+    const confirmLogout = window.confirm("Are you sure you want to logout?");
+    if (confirmLogout) {
+      logout();
+      navigate("/");
+    }
   };
 
   const toggleEditing = () => {
@@ -100,12 +103,10 @@ const Account = () => {
 
       <main className="account-main">
         <div className="account-container">
-          <h1>My Account</h1>
-
           {/* Användarinfo */}
           <section className="user-info-section">
             <div className="section-header">
-              <h2>Personal Information</h2>
+              <h2>PERSONAL INFORMATION</h2>
               <div className="edit-buttons">
                 {isEditing ? (
                   <>
@@ -181,7 +182,7 @@ const Account = () => {
 
           {/* Beställningshistorik */}
           <section className="orders-section">
-            <h2>Order History</h2>
+            <h2>ORDER HISTORY</h2>
             {orders.length === 0 ? (
               <div className="no-orders">
                 <p>You haven't made any orders yet.</p>

@@ -21,11 +21,10 @@ const Menu = () => {
 
               <div className="menu-section">
                 <h2 className="section-title">Sides</h2>
-                <p>
-                  Guacamole - avocado spread w. onion, cilatro, cumin and lime
-                </p>
-                <p>Nachos - fried tortillabread w. tomato salsa</p>
-                <p>Rice and beans - Frijoles with spicy rice</p>
+                <p>Guacamole - Avocado, Onion, Cilatro, Cumin and Lime</p>
+                <p>Nachos - Fried tortillabread, Tomato salsa</p>
+                <p>Rice and beans - Pinto beans, Spicy rice</p>
+                <p>Elote - Corn on the cob, Mayo, Cotija, Tajin and Lime</p>
               </div>
 
               <div className="menu-section">
@@ -38,7 +37,7 @@ const Menu = () => {
               <div className="menu-section">
                 <h2 className="section-title">Desserts</h2>
                 <p>Tres leches cake - Soaked in condensed milk</p>
-                <p>Churros - W. cinnamon and sugar</p>
+                <p>Churros - W. Cinnamon and Sugar</p>
               </div>
 
               <div className="menu-section">

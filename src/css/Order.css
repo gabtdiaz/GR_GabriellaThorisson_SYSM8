@@ -14,6 +14,7 @@
   max-width: 1400px;
   margin: 0 auto;
   width: 100%;
+  animation: slideUp 0.5s ease-out;
 }
 
 /* Filter Chips - exakt som din Figma */
@@ -224,9 +225,14 @@
 }
 
 /* Responsiv design */
-@media screen and (max-width: 1200px) {
+
+/* Tablet/större skärmar */
+@media screen and (max-width: 1400px) {
   .items-grid {
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(450px, 1fr)
+    ); /* Öka minsta bredd */
     gap: 30px;
     row-gap: 50px;
   }
@@ -239,6 +245,25 @@
   }
 }
 
+/* En kolumn för mediumskärmar - undvik överlappning */
+@media screen and (max-width: 1000px) {
+  .items-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    row-gap: 40px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .tacos-frame2,
+  .dessert-frame {
+    width: 100%;
+    padding: 0 20px;
+    height: auto;
+  }
+}
+
+/* Mobil layout */
 @media screen and (max-width: 768px) {
   .filters {
     padding: 0 20px;
@@ -254,9 +279,11 @@
   }
 
   .items-grid {
+    grid-template-columns: 1fr; /* Behåll en kolumn */
     gap: 20px;
     row-gap: 30px;
     justify-content: center;
+    max-width: 100%; /* Full bredd på mobil */
   }
 
   .category-title {
@@ -275,6 +302,7 @@
   }
 }
 
+/* Mycket små skärmar */
 @media screen and (max-width: 480px) {
   .filters {
     gap: 10px;

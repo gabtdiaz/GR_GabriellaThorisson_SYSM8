@@ -69,7 +69,7 @@ const Cart = () => {
   const { token } = useAuth();
   const navigate = useNavigate();
 
-  // Checkout hook - innehåller all checkout-logik
+  // Checkout hook
   const {
     customerInfo,
     orderMessage,
@@ -174,10 +174,10 @@ const Cart = () => {
                       {token && (
                         <button
                           type="button"
-                          className="edit-info-btn"
+                          className="edit-delivery-btn"
                           onClick={() => setIsEditing(!isEditing)}
                         >
-                          {isEditing ? "Lock" : "Edit"}
+                          {isEditing ? "Save Changes" : "Edit"}
                         </button>
                       )}
                     </div>

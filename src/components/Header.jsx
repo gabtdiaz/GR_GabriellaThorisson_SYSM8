@@ -27,9 +27,12 @@ const Header = () => {
 
   // Logout funktion
   const handleLogout = () => {
-    logout();
-    setMenuOpen(false);
-    navigate("/"); // Skicka användaren till hem efter logout
+    const confirmLogout = window.confirm("Are you sure you want to logout?");
+    if (confirmLogout) {
+      logout();
+      setMenuOpen(false);
+      navigate("/"); // Skicka användaren till hem efter logout
+    }
   };
 
   return (
