@@ -45,7 +45,7 @@
   flex-direction: column;
   gap: 30px;
   align-items: center;
-  animation: slideUp 0.5s ease-out;
+  animation: fadeIn 0.2s ease-in;
 }
 
 .menu-btn {
