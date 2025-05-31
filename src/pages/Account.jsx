@@ -122,7 +122,7 @@ const Account = () => {
                   </>
                 ) : (
                   <button className="btn btn-secondary" onClick={toggleEditing}>
-                    Edit
+                    EDIT
                   </button>
                 )}
               </div>
@@ -190,7 +190,7 @@ const Account = () => {
                   className="btn btn-primary"
                   onClick={() => navigate("/order")}
                 >
-                  Order Now
+                  ORDER NOW
                 </button>
               </div>
             ) : (
@@ -233,10 +233,10 @@ const Account = () => {
               className="btn btn-primary"
               onClick={() => navigate("/order")}
             >
-              Order Food
+              ORDER
             </button>
             <button className="btn btn-secondary" onClick={handleLogout}>
-              Logout
+              LOGOUT
             </button>
           </section>
         </div>

@@ -68,9 +68,6 @@ const Header = () => {
             >
               MY ACCOUNT
             </div>
-            <div className="sign-in" onClick={handleLogout}>
-              LOGOUT
-            </div>
           </>
         ) : (
           <div className="sign-in" onClick={() => handleNavigation("/signin")}>

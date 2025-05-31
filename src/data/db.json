@@ -130,7 +130,7 @@
   "users": [
     {
       "id": "b32c",
-      "name": "Erik",
+      "name": "Erik Sellberg",
       "email": "erik@mail.se",
       "password": "hej123",
       "phone": "0733303030",
@@ -274,6 +274,70 @@
       "deliveryAddress": "test",
       "specialInstructions": "",
       "createdAt": "2025-05-31T00:38:10.323Z"
+    },
+    {
+      "id": "6424",
+      "userId": null,
+      "guestInfo": {
+        "name": "gabriella thorisson",
+        "phone": "0730303030",
+        "address": "Amiralsgatan 15"
+      },
+      "items": [
+        {
+          "id": "2",
+          "name": "Carne Asada",
+          "price": 90,
+          "quantity": 1
+        },
+        {
+          "id": "4",
+          "name": "Veggie",
+          "price": 90,
+          "quantity": 1
+        },
+        {
+          "id": "10",
+          "name": "Elote",
+          "price": 40,
+          "quantity": 1
+        },
+        {
+          "id": "12",
+          "name": "Jarritos - Orange",
+          "price": 40,
+          "quantity": 1
+        }
+      ],
+      "total": 299,
+      "status": "confirmed",
+      "paymentMethod": "card",
+      "deliveryAddress": "Amiralsgatan 15",
+      "specialInstructions": "hejhej",
+      "createdAt": "2025-05-31T10:44:21.164Z"
+    },
+    {
+      "id": "5e11",
+      "userId": null,
+      "guestInfo": {
+        "name": "test",
+        "phone": "test",
+        "address": "test"
+      },
+      "items": [
+        {
+          "id": "14",
+          "name": "Corona",
+          "price": 50,
+          "quantity": 1
+        }
+      ],
+      "total": 89,
+      "status": "confirmed",
+      "paymentMethod": "swish",
+      "deliveryAddress": "test",
+      "specialInstructions": "",
+      "createdAt": "2025-05-31T10:45:40.358Z"
     }
   ]
 }
