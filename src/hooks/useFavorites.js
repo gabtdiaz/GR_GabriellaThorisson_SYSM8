@@ -1,0 +1,105 @@
+// src/hooks/useFavorites.js
+import { useState, useEffect } from "react";
+import { useAuth } from "../context/authContext";
+
+export const useFavorites = () => {
+  const { token } = useAuth();
+  const [favorites, setFavorites] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  // Hämta favoriter när komponenten laddas
+  useEffect(() => {
+    if (token) {
+      const userData = localStorage.getItem("userData");
+      if (userData) {
+        const user = JSON.parse(userData);
+        setFavorites(user.favorites || []);
+      }
+    } else {
+      setFavorites([]); // Tom om ej inloggad
+    }
+  }, [token]);
+
+  // Lägg till/ta bort favorit
+  const toggleFavorite = async (itemId) => {
+    if (!token) return; // Bara för inloggade
+
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    const isCurrentlyFavorite = favorites.includes(itemId);
+
+    let newFavorites;
+    if (isCurrentlyFavorite) {
+      // Ta bort från favoriter
+      newFavorites = favorites.filter((id) => id !== itemId);
+    } else {
+      // Lägg till i favoriter
+      newFavorites = [...favorites, itemId];
+    }
+
+    // Uppdatera lokalt först (snabbare UX)
+    setFavorites(newFavorites);
+
+    try {
+      setLoading(true);
+
+      // Uppdatera användare i JSON server
+      const updatedUser = {
+        ...userData,
+        favorites: newFavorites,
+      };
+
+      const response = await fetch(
+        `http://localhost:3001/users/${userData.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updatedUser),
+        }
+      );
+
+      if (response.ok) {
+        // Uppdatera localStorage
+        localStorage.setItem("userData", JSON.stringify(updatedUser));
+      } else {
+        // Återställ om fel
+        setFavorites(favorites);
+      }
+    } catch (error) {
+      console.error("Failed to update favorites:", error);
+      // Återställ om fel
+      setFavorites(favorites);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Kolla om item är favorit
+  const isFavorite = (itemId) => {
+    return favorites.includes(itemId);
+  };
+
+  // Hämta alla favoritprodukter
+  const getFavoriteItems = async () => {
+    if (favorites.length === 0) return [];
+
+    try {
+      const response = await fetch("http://localhost:3001/menuItems");
+      const allItems = await response.json();
+      return allItems.filter((item) => favorites.includes(parseInt(item.id)));
+    } catch (error) {
+      console.error("Failed to fetch favorite items:", error);
+      return [];
+    }
+  };
+
+  return {
+    favorites,
+    toggleFavorite,
+    isFavorite,
+    getFavoriteItems,
+    loading,
+    isLoggedIn: !!token,
+  };
+};

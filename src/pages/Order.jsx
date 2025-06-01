@@ -3,8 +3,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import MenuItem from "../components/MenuItem";
 import MenuItemModal from "../components/MenuItemModal";
-
-// import { useCart } from "../context/cartContext";
+import { useFavorites } from "../hooks/useFavorites";
 import "../css/Order.css";
 
 // Filter knappar för att visa olika kategorier
@@ -54,10 +53,10 @@ const CategorySection = ({ title, items, onAddItem, onCardClick }) => {
 
 // Huvudkomponenten för Order-sidan
 const Order = () => {
-  // Använd cart context istället för lokal state
-  // const { addToCart } = useCart();
+  // Hook för favoriter
+  const { toggleFavorite, isFavorite, isLoggedIn } = useFavorites();
 
-  // Vilken filter som är aktiv
+  // Vilket filter som är aktivt
   const [activeFilter, setActiveFilter] = useState("All");
 
   // All menu data från servern
@@ -68,14 +67,7 @@ const Order = () => {
     Drinks: [],
   });
 
-  // Loading och error states
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  // Cart state - för att visa varukorgen eller ej
-  // const [showCart, setShowCart] = useState(false);
-
-  // Modal states - för popup-fönstret
+  // Modal states
   const [isModalOpen, setIsModalOpen] = useState(false); // Är modalen öppen?
   const [selectedItem, setSelectedItem] = useState(null); // Vilket item är valt?
 
@@ -83,7 +75,6 @@ const Order = () => {
   useEffect(() => {
     const fetchMenuData = async () => {
       try {
-        setLoading(true);
         const response = await fetch("http://localhost:3001/menuItems");
 
         if (!response.ok) {
@@ -102,10 +93,7 @@ const Order = () => {
 
         setMenuData(groupedData);
       } catch (err) {
-        setError(err.message);
         console.error("Error fetching menu data:", err);
-      } finally {
-        setLoading(false);
       }
     };
 
@@ -140,32 +128,6 @@ const Order = () => {
     setIsModalOpen(false);
     setSelectedItem(null);
   };
-
-  // Visa loading meddelande
-  if (loading) {
-    return (
-      <div className="order-page">
-        <Header />
-        <div className="main-content">
-          <div className="loading">Loading menu...</div>
-        </div>
-        <Footer />
-      </div>
-    );
-  }
-
-  // Visa fel meddelande
-  if (error) {
-    return (
-      <div className="order-page">
-        <Header />
-        <div className="main-content">
-          <div className="error">Error: {error}</div>
-        </div>
-        <Footer />
-      </div>
-    );
-  }
 
   // Huvudinnehållet på sidan
   return (
