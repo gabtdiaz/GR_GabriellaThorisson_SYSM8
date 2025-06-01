@@ -210,9 +210,22 @@ const Order = () => {
                 favorites.includes(parseInt(item.id))
               );
 
+              if (favoriteItems.length === 0) {
+                return (
+                  <div className="category-section">
+                    <div className="category-header">
+                      <h2 className="category-title">Favorites</h2>
+                    </div>
+                    <p className="no-favorites-message">
+                      No favorites added yet.
+                    </p>
+                  </div>
+                );
+              }
+
               return (
                 <CategorySection
-                  title="Your Favorites"
+                  title="Favorites"
                   items={favoriteItems}
                   onAddItem={handleAddItem}
                   onCardClick={handleCardClick}

@@ -224,6 +224,15 @@
   position: relative;
 }
 
+.no-favorites-message {
+  width: 100%;
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+  font-style: italic;
+  display: block;
+}
+
 /* Responsiv design */
 
 /* Tablet/större skärmar */
