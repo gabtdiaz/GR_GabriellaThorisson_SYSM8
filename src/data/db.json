@@ -130,7 +130,7 @@
   "users": [
     {
       "id": "b32c",
-      "name": "Erik Sellberg",
+      "name": "Erik",
       "email": "erik@mail.se",
       "password": "hej123",
       "phone": "0733303030",
@@ -338,6 +338,52 @@
       "deliveryAddress": "test",
       "specialInstructions": "",
       "createdAt": "2025-05-31T10:45:40.358Z"
+    },
+    {
+      "id": "f20a",
+      "userId": null,
+      "guestInfo": {
+        "name": "Erik",
+        "phone": "0733303030",
+        "address": "Kungsgatan 10"
+      },
+      "items": [
+        {
+          "id": "5",
+          "name": "Churros",
+          "price": 40,
+          "quantity": 3
+        }
+      ],
+      "total": 159,
+      "status": "confirmed",
+      "paymentMethod": "swish",
+      "deliveryAddress": "Kungsgatan 10",
+      "specialInstructions": "No cinnamon",
+      "createdAt": "2025-06-01T14:20:52.740Z"
+    },
+    {
+      "id": "fe37",
+      "userId": null,
+      "guestInfo": {
+        "name": "Erik",
+        "phone": "0733303030",
+        "address": "Kungsgatan 10"
+      },
+      "items": [
+        {
+          "id": "2",
+          "name": "Carne Asada",
+          "price": 90,
+          "quantity": 3
+        }
+      ],
+      "total": 309,
+      "status": "confirmed",
+      "paymentMethod": "swish",
+      "deliveryAddress": "Kungsgatan 10",
+      "specialInstructions": "",
+      "createdAt": "2025-06-01T19:16:55.743Z"
     }
   ]
 }

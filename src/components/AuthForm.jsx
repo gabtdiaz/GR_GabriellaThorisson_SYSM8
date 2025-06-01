@@ -93,7 +93,7 @@ const AuthForm = () => {
 
       // Logga in användaren direkt efter registrering
       const token = `token_${createdUser.id}`;
-      login(token);
+      login(token, createdUser);
 
       // Skicka användaren vidare
       navigate("/order");

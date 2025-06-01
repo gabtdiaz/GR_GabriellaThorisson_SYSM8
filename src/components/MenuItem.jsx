@@ -20,7 +20,6 @@ const MenuItem = ({
     <div
       className="menu-item-card"
       onClick={() => onCardClick && onCardClick(item)} // Lägg till denna onClick
-      style={{ cursor: "pointer" }} // Visa att det är klickbart
     >
       {/* Popular bricka */}
       {item.popular && (
