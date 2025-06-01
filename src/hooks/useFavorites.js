@@ -5,7 +5,6 @@ import { useAuth } from "../context/authContext";
 export const useFavorites = () => {
   const { token } = useAuth();
   const [favorites, setFavorites] = useState([]);
-  const [loading, setLoading] = useState(false);
 
   // Hämta favoriter när komponenten laddas
   useEffect(() => {
@@ -36,12 +35,10 @@ export const useFavorites = () => {
       newFavorites = [...favorites, itemId];
     }
 
-    // Uppdatera lokalt först (snabbare UX)
+    // Uppdatera lokalt först
     setFavorites(newFavorites);
 
     try {
-      setLoading(true);
-
       // Uppdatera användare i JSON server
       const updatedUser = {
         ...userData,
@@ -70,8 +67,6 @@ export const useFavorites = () => {
       console.error("Failed to update favorites:", error);
       // Återställ om fel
       setFavorites(favorites);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -80,26 +75,10 @@ export const useFavorites = () => {
     return favorites.includes(itemId);
   };
 
-  // Hämta alla favoritprodukter
-  const getFavoriteItems = async () => {
-    if (favorites.length === 0) return [];
-
-    try {
-      const response = await fetch("http://localhost:3001/menuItems");
-      const allItems = await response.json();
-      return allItems.filter((item) => favorites.includes(parseInt(item.id)));
-    } catch (error) {
-      console.error("Failed to fetch favorite items:", error);
-      return [];
-    }
-  };
-
   return {
     favorites,
     toggleFavorite,
     isFavorite,
-    getFavoriteItems,
-    loading,
     isLoggedIn: !!token,
   };
 };

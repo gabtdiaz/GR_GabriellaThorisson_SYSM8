@@ -111,21 +111,19 @@
 }
 
 .dish-info {
-  /* Ta bort all absolut positionering */
-  position: static; /* eller relative */
-  /* Ta bort top/right som flyttar texten utanför */
+  position: static;
   width: auto;
   height: auto;
-  padding: 10px; /* Lägg till lite padding istället */
-  flex: 1; /* Låt den ta upp tillgängligt utrymme */
+  padding: 10px;
+  flex: 1;
 }
 
 .menu-item-card-plusBox {
   position: absolute;
-  top: 0px; /* Lite marginal från toppen */
-  right: -55px; /* Lite marginal från höger */
-  width: 100px; /* Mindre bredd */
-  height: 100px; /* Mindre höjd */
+  top: 0px;
+  right: -55px;
+  width: 100px;
+  height: 100px;
   z-index: 20;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -139,47 +137,6 @@
   overflow: hidden;
   object-fit: cover;
   transition: background-color 0.3s ease;
-}
-
-/* Popular bricka */
-.popular-icon,
-.popular-icon * {
-  box-sizing: border-box;
-}
-
-.popular-icon {
-  background: #dddddd;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: row;
-  gap: 4px;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  width: 150px;
-  position: absolute;
-  left: 30px;
-  top: 20px;
-  z-index: 10;
-}
-
-.flame-icon {
-  flex-shrink: 0;
-  width: 22px;
-  height: 22px;
-  position: relative;
-  overflow: hidden;
-  object-fit: cover;
-}
-
-.popular {
-  color: #494949;
-  text-align: left;
-  font-family: "Roboto-Italic", sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  font-style: italic;
-  position: relative;
 }
 
 /* Checkout item layout */
@@ -261,6 +218,90 @@
   text-align: center;
   color: #000;
   font-size: 16px;
+}
+
+/* Favorit-hjärta styling */
+.favorite-btn {
+  position: absolute;
+  top: 12px;
+  left: 12px; /* Motsatt sida från plus-knappen */
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.favorite-btn:hover {
+  transform: scale(1.1);
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.heart-icon {
+  width: 24px;
+  height: 24px;
+  transition: all 0.2s ease;
+}
+
+/* Grå hjärta när INTE favorit (ditt röda hjärta blir grått) */
+.favorite-btn:not(.is-favorite) .heart-icon {
+  filter: grayscale(100%) opacity(0.6);
+}
+
+/* Fullt rött hjärta när favorit + fylld effekt */
+.favorite-btn.is-favorite .heart-icon {
+  filter: none; /* Behåller den röda färgen */
+  animation: heartbeat 0.6s ease-in-out;
+}
+
+/* Extra fylld effekt för favoriter (ger intryck av ifylld) */
+.favorite-btn.is-favorite {
+  background: rgba(255, 230, 230, 0.95); /* Lätt rosa bakgrund */
+  box-shadow: 0 2px 12px rgba(255, 0, 0, 0.3); /* Röd glöd */
+}
+
+/* Hjärtslag animation */
+@keyframes heartbeat {
+  0% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(1.2);
+  }
+  60% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Se till att menu-item-card har position relative */
+.menu-item-card {
+  position: relative; /* Lägg till om den inte redan finns */
+}
+
+/* Responsiv design för hjärtat */
+@media screen and (max-width: 768px) {
+  .favorite-btn {
+    width: 36px;
+    height: 36px;
+    top: 10px;
+    left: 10px;
+  }
+
+  .heart-icon {
+    width: 20px;
+    height: 20px;
+  }
 }
 
 /* Responsiv design */

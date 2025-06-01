@@ -9,11 +9,16 @@ const MenuItem = ({
   onRemove,
   quantity = 0,
   onCardClick, // Lägg till denna prop
+  toggleFavorite,
+  isFavorite,
+  isLoggedIn,
 }) => {
-  if (isCheckout) {
-    // Här ska jag skriva checkout kod...
-    return <div className="checkout-item">{/* checkout kod */}</div>;
-  }
+  // Hantera favorit-klick
+  const handleFavoriteClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation(); // Förhindra att kortet klickas
+    toggleFavorite(parseInt(item.id));
+  };
 
   // OrderPage - MenuItem-card layout
   return (
@@ -21,12 +26,20 @@ const MenuItem = ({
       className="menu-item-card"
       onClick={() => onCardClick && onCardClick(item)} // Lägg till denna onClick
     >
-      {/* Popular bricka */}
-      {item.popular && (
-        <div className="popular-icon">
-          <img className="flame-icon" src="flame-icon.png" alt="Popular" />
-          <span className="popular">Popular</span>
-        </div>
+      {/* Favorit-hjärta */}
+      {isLoggedIn && (
+        <button
+          className={`favorite-btn ${
+            isFavorite(parseInt(item.id)) ? "is-favorite" : ""
+          }`}
+          onClick={handleFavoriteClick}
+        >
+          <img
+            src="hearticon.png"
+            alt="Add to favorites"
+            className="heart-icon"
+          />
+        </button>
       )}
 
       <img alt={item.name} className="item-img" src={`${item.image}`} />
@@ -47,6 +60,7 @@ const MenuItem = ({
         <div
           className="frame-plus"
           onClick={(e) => {
+            e.stopPropagation(); // Förhindra att kortet klickas
             onAdd(item.id);
           }}
         >

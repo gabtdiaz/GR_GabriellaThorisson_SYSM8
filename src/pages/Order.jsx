@@ -7,8 +7,11 @@ import { useFavorites } from "../hooks/useFavorites";
 import "../css/Order.css";
 
 // Filter knappar för att visa olika kategorier
-const FilterChips = ({ activeFilter, setActiveFilter }) => {
-  const filters = ["All", "Mains", "Sides", "Desserts", "Drinks"];
+const FilterChips = ({ activeFilter, setActiveFilter, isLoggedIn }) => {
+  // Listan av filter ska endat visa favorites om man är inloggad
+  const filters = isLoggedIn
+    ? ["All", "Favorites", "Mains", "Sides", "Desserts", "Drinks"]
+    : ["All", "Mains", "Sides", "Desserts", "Drinks"];
 
   return (
     <div className="filters">
@@ -19,7 +22,9 @@ const FilterChips = ({ activeFilter, setActiveFilter }) => {
           className={`filter-chip ${activeFilter === filter ? "active" : ""}`}
         >
           <div className="state-layer">
-            <div className="label-text">{filter}</div>
+            <div className="label-text">
+              {filter === "Favorites" ? "❤️ Favorites" : filter}
+            </div>
           </div>
         </button>
       ))}
@@ -28,7 +33,13 @@ const FilterChips = ({ activeFilter, setActiveFilter }) => {
 };
 
 // En sektion som visar en kategori med titel och dess items
-const CategorySection = ({ title, items, onAddItem, onCardClick }) => {
+const CategorySection = ({
+  title,
+  items,
+  onAddItem,
+  onCardClick,
+  favoritesProps,
+}) => {
   return (
     <div className="category-section">
       {/* Rubrik för kategorin */}
@@ -44,6 +55,7 @@ const CategorySection = ({ title, items, onAddItem, onCardClick }) => {
             item={item}
             onAdd={onAddItem} // När man klickar på plus-knappen
             onCardClick={onCardClick} //  När man klickar på hela kortet
+            {...favoritesProps} // Skicka favorites props till MenuItem
           />
         ))}
       </div>
@@ -54,7 +66,7 @@ const CategorySection = ({ title, items, onAddItem, onCardClick }) => {
 // Huvudkomponenten för Order-sidan
 const Order = () => {
   // Hook för favoriter
-  const { toggleFavorite, isFavorite, isLoggedIn } = useFavorites();
+  const { toggleFavorite, isFavorite, isLoggedIn, favorites } = useFavorites();
 
   // Vilket filter som är aktivt
   const [activeFilter, setActiveFilter] = useState("All");
@@ -129,6 +141,13 @@ const Order = () => {
     setSelectedItem(null);
   };
 
+  // Favorites props att skicka till MenuItem
+  const favoritesProps = {
+    toggleFavorite,
+    isFavorite,
+    isLoggedIn,
+  };
+
   // Huvudinnehållet på sidan
   return (
     <div className="order-page">
@@ -138,6 +157,7 @@ const Order = () => {
         <FilterChips
           activeFilter={activeFilter}
           setActiveFilter={setActiveFilter}
+          isLoggedIn={isLoggedIn}
         />
 
         <div className="content-container">
@@ -150,26 +170,56 @@ const Order = () => {
                 items={menuData.Mains}
                 onAddItem={handleAddItem}
                 onCardClick={handleCardClick}
+                favoritesProps={favoritesProps}
               />
               <CategorySection
                 title="Sides"
                 items={menuData.Sides}
                 onAddItem={handleAddItem}
                 onCardClick={handleCardClick}
+                favoritesProps={favoritesProps}
               />
               <CategorySection
                 title="Desserts"
                 items={menuData.Desserts}
                 onAddItem={handleAddItem}
                 onCardClick={handleCardClick}
+                favoritesProps={favoritesProps}
               />
               <CategorySection
                 title="Drinks"
                 items={menuData.Drinks}
                 onAddItem={handleAddItem}
                 onCardClick={handleCardClick}
+                favoritesProps={favoritesProps}
               />
             </>
+          ) : activeFilter === "Favorites" ? (
+            // Visa favoriter
+            (() => {
+              // Skapa alla items array för favoriter
+              const allItems = [
+                ...menuData.Mains,
+                ...menuData.Sides,
+                ...menuData.Desserts,
+                ...menuData.Drinks,
+              ];
+
+              // Filtrera favoriter
+              const favoriteItems = allItems.filter((item) =>
+                favorites.includes(parseInt(item.id))
+              );
+
+              return (
+                <CategorySection
+                  title="Your Favorites"
+                  items={favoriteItems}
+                  onAddItem={handleAddItem}
+                  onCardClick={handleCardClick}
+                  favoritesProps={favoritesProps}
+                />
+              );
+            })()
           ) : (
             // Visa bara den valda kategorin
             <CategorySection
@@ -177,6 +227,7 @@ const Order = () => {
               items={menuData[activeFilter] || []}
               onAddItem={handleAddItem}
               onCardClick={handleCardClick}
+              favoritesProps={favoritesProps}
             />
           )}
         </div>
