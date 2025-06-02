@@ -233,7 +233,60 @@
   display: block;
 }
 
-/* Responsiv design */
+/* Sökning */
+.filter-search {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  background: white;
+  border: 2px solid #e5e5e5;
+  border-radius: 25px;
+  padding: 8px 16px;
+  width: 250px;
+  cursor: text;
+}
+
+.search-box:focus-within {
+  border-color: #4d8be3;
+}
+
+.search-icon {
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
+  opacity: 0.6;
+}
+
+.search-input {
+  border: none;
+  outline: none;
+  flex: 1;
+  font-size: 16px;
+  background: transparent;
+  pointer-events: auto;
+}
+
+.search-input::placeholder {
+  color: #999;
+}
+
+/* Mobil */
+@media screen and (max-width: 768px) {
+  .filter-search {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .search-box {
+    width: 100%;
+  }
+}
 
 /* Tablet/större skärmar */
 @media screen and (max-width: 1400px) {

@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import MenuItem from "../components/MenuItem";
 import MenuItemModal from "../components/MenuItemModal";
 import { useFavorites } from "../hooks/useFavorites";
+import SearchBar from "../components/SearchBar";
 import "../css/Order.css";
 
 // Filter knappar för att visa olika kategorier
@@ -70,6 +71,9 @@ const Order = () => {
 
   // Vilket filter som är aktivt
   const [activeFilter, setActiveFilter] = useState("All");
+
+  //Sökfunktion
+  const [search, setSearch] = useState("");
 
   // All menu data från servern
   const [menuData, setMenuData] = useState({
@@ -148,6 +152,14 @@ const Order = () => {
     isLoggedIn,
   };
 
+  // Sökfunktion
+  const filterItems = (items) => {
+    if (!search) return items;
+    return items.filter((item) =>
+      item.name.toLowerCase().includes(search.toLowerCase())
+    );
+  };
+
   // Huvudinnehållet på sidan
   return (
     <div className="order-page">
@@ -159,6 +171,8 @@ const Order = () => {
           setActiveFilter={setActiveFilter}
           isLoggedIn={isLoggedIn}
         />
+        {/* Sökfält */}
+        <SearchBar />
 
         <div className="content-container">
           {/* Visa antingen alla kategorier eller bara den valda */}
@@ -167,28 +181,28 @@ const Order = () => {
             <>
               <CategorySection
                 title="Mains"
-                items={menuData.Mains}
+                items={filterItems(menuData.Mains)}
                 onAddItem={handleAddItem}
                 onCardClick={handleCardClick}
                 favoritesProps={favoritesProps}
               />
               <CategorySection
                 title="Sides"
-                items={menuData.Sides}
+                items={filterItems(menuData.Sides)}
                 onAddItem={handleAddItem}
                 onCardClick={handleCardClick}
                 favoritesProps={favoritesProps}
               />
               <CategorySection
                 title="Desserts"
-                items={menuData.Desserts}
+                items={filterItems(menuData.Desserts)}
                 onAddItem={handleAddItem}
                 onCardClick={handleCardClick}
                 favoritesProps={favoritesProps}
               />
               <CategorySection
                 title="Drinks"
-                items={menuData.Drinks}
+                items={filterItems(menuData.Drinks)}
                 onAddItem={handleAddItem}
                 onCardClick={handleCardClick}
                 favoritesProps={favoritesProps}
