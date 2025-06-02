@@ -31,7 +31,7 @@ const Account = () => {
       // Hämta beställningar
       fetchOrders(userData.id);
     }
-  }, [token, navigate]);
+  }, [token, navigate]); // körs när token eller navigate ändras
 
   const fetchOrders = async (userId) => {
     try {

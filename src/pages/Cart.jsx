@@ -1,3 +1,4 @@
+import React from "react";
 import { useCart } from "../context/cartContext";
 import { useAuth } from "../context/authContext";
 import { useNavigate } from "react-router-dom";

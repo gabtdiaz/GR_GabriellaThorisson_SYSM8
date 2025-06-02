@@ -165,15 +165,16 @@ const Order = () => {
     <div className="order-page">
       <Header />
       <div className="main-content">
-        {/* Filter knappar */}
-        <FilterChips
-          activeFilter={activeFilter}
-          setActiveFilter={setActiveFilter}
-          isLoggedIn={isLoggedIn}
-        />
-        {/* Sökfält */}
-        <SearchBar search={search} setSearch={setSearch} />
-
+        <div className="filters-search-wrapper">
+          {/* Filter knappar */}
+          <FilterChips
+            activeFilter={activeFilter}
+            setActiveFilter={setActiveFilter}
+            isLoggedIn={isLoggedIn}
+          />
+          {/* Sökfält */}
+          <SearchBar search={search} setSearch={setSearch} />
+        </div>
         <div className="content-container">
           {/* Visa antingen alla kategorier eller bara den valda */}
           {activeFilter === "All" ? (
