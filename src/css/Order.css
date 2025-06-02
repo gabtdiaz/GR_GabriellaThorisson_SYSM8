@@ -17,18 +17,23 @@
   animation: fadeIn 0.2s ease-in;
 }
 
-/* Filter Chips - exakt som din Figma */
+/* Både sökbox och filterchips */
+.filters-search-wrapper {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px 0px;
+  gap: 20px;
+}
+
+/* Filter Chips */
 .filters {
-  padding: 0px 20px 0px 99px;
   display: flex;
   flex-direction: row;
   gap: 22px;
   align-items: center;
-  justify-content: flex-start;
-  width: 100%;
-  flex-shrink: 0;
-  position: relative;
-  margin-bottom: 40px;
+  width: 600px;
+  margin-bottom: 10px;
+  margin-left: 20px;
 }
 
 .filter-chip {
@@ -231,61 +236,6 @@
   color: #666;
   font-style: italic;
   display: block;
-}
-
-/* Sökning */
-.filter-search {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
-}
-
-.search-box {
-  display: flex;
-  align-items: center;
-  background: white;
-  border: 2px solid #e5e5e5;
-  border-radius: 25px;
-  padding: 8px 16px;
-  width: 250px;
-  cursor: text;
-}
-
-.search-box:focus-within {
-  border-color: #4d8be3;
-}
-
-.search-icon {
-  width: 18px;
-  height: 18px;
-  margin-right: 10px;
-  opacity: 0.6;
-}
-
-.search-input {
-  border: none;
-  outline: none;
-  flex: 1;
-  font-size: 16px;
-  background: transparent;
-  pointer-events: auto;
-}
-
-.search-input::placeholder {
-  color: #999;
-}
-
-/* Mobil */
-@media screen and (max-width: 768px) {
-  .filter-search {
-    flex-direction: column;
-    gap: 15px;
-  }
-
-  .search-box {
-    width: 100%;
-  }
 }
 
 /* Tablet/större skärmar */

@@ -168,6 +168,21 @@ a:hover {
   }
 }
 
+.slide-in {
+  animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100vw);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
 @keyframes bounceIn {
   0% {
     transform: translateY(-50%) scale(0); /* Behåll translateY(-50%) från original */

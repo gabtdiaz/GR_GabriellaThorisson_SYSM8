@@ -172,7 +172,7 @@ const Order = () => {
           isLoggedIn={isLoggedIn}
         />
         {/* Sökfält */}
-        <SearchBar />
+        <SearchBar search={search} setSearch={setSearch} />
 
         <div className="content-container">
           {/* Visa antingen alla kategorier eller bara den valda */}

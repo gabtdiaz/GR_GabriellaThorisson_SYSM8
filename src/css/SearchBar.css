@@ -1,20 +1,16 @@
-/* Sökning */
-.filter-search {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
-}
-
 .search-box {
   display: flex;
   align-items: center;
   background: white;
   border: 2px solid #e5e5e5;
-  border-radius: 25px;
-  padding: 8px 16px;
-  width: 250px;
-  cursor: text;
+  border-radius: 8px;
+  padding: 4px 12px;
+  width: 200px;
+  height: 32px;
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-top: -40px;
+  margin-right: 20px;
 }
 
 .search-box:focus-within {
@@ -22,19 +18,21 @@
 }
 
 .search-icon {
-  width: 18px;
-  height: 18px;
-  margin-right: 10px;
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
   opacity: 0.6;
+  flex-shrink: 0;
 }
 
 .search-input {
   border: none;
   outline: none;
   flex: 1;
-  font-size: 16px;
+  font-size: 14px;
   background: transparent;
-  pointer-events: auto;
+  height: 20px;
+  line-height: 20px;
 }
 
 .search-input::placeholder {
@@ -43,12 +41,14 @@
 
 /* Mobil */
 @media screen and (max-width: 768px) {
-  .filter-search {
+  .filters-search-wrapper {
     flex-direction: column;
-    gap: 15px;
+    gap: 15px; /* Detta ska ge mellanrum på mobil */
   }
 
   .search-box {
-    width: 100%;
+    width: 30%;
+    margin-top: 10px;
+    align-content: center;
   }
 }
