@@ -4,7 +4,7 @@ Jag har skapat en resturanghemsida som erbjuder hemleverans.
 
 Detta är en Single Page Application som är skapat med React. Detta betyder att allt laddas en gång (ex. global data), och innehåll (html, komponenter) byts ut med hjälp av React Router när användaren navigerar, vilket ger en snabb och smidig upplevelse.
 
-# MappStruktur
+# Mappstruktur
 
 Jag använder "/pages" för hela sidor, "/components" för återanvändbara delar, "/context" för s.k global data som behövs överallt och "/hooks" för återanvändbar logik.
 
