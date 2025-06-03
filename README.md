@@ -20,25 +20,25 @@ Varukorg och inloggningsdata behövde vara tillgänglig på alla sidor så att a
 
 - Ex: Cartlogik behövs i header (visa antal), ordersidan (lägg till) och cartsidan(visa/ändra). Detta hämtas direkt från cartContext, slipper alltså skicka data via props genom flera komponenter och min App.js omsluts endast med CartProvider.
 
-JSON server som backend istället för en riktig databas. Perfekt för en prototyp så jag kunde fokusera mer på frontenden.
+Hade en JSON server som backend istället för en riktig databas. Perfekt för en prototyp så jag kunde fokusera mer på frontenden.
 
 LocalStorage, så varukorg och inloggning kan finnas kvar när man uppdaterar sidan. Som användare kan man navigera runt utan att förlora ex sin varukorg. Användaren hålls även inloggad.
 
 # Utmaningar
 
-Att lära sig Context API, istället för att skicka props överallt som jag gjorde i början. Bättre när data behövs på flera ställen.
+- Att lära sig Context API, istället för att skicka props överallt som jag gjorde i början. Bättre när data behövs på flera ställen.
 
-Favoritfunktionen
-Implementerades sent, krävde inloggning, och en mängd UI/databas uppdateringar. Löste det genom att skapa en egen hook för favoriter som hanterade logiken på ett ställe.
+- Favoritfunktionen
+  Implementerades sent, krävde inloggning, och en mängd UI/databas uppdateringar. Löste det genom att skapa en egen hook för favoriter som hanterade logiken på ett ställe.
 
-Responsiv design
-Att få allt att fungera både på desktop och mobil var svårare än väntat och mycket tidskrävande.
+- Responsiv design
+  Att få allt att fungera både på desktop och mobil var svårare än väntat och mycket tidskrävande.
 
-State management
-Hade state överallt vilket blev rörigt. Custom hooks som useCheckout hälpte mig att organisera logiken bättre.
+- State management
+  Hade state överallt vilket blev rörigt. Custom hooks som useCheckout hälpte mig att organisera logiken bättre.
 
-Att skilja på backend och frontend "logik"
-Det var en utmaning att lista ut var all kod skulle placeras. Vad bör finnas i en "page" och vad bör hanteras via hooks eller context?
+- Att skilja på backend och frontend "logik"
+  Det var en utmaning att lista ut var all kod skulle placeras. Vad bör finnas i en "page" och vad bör hanteras via hooks eller context?
 
 # Viktiga beslut
 
@@ -47,14 +47,14 @@ Beslut: Separata komponenter för många delar
 - Lättare att underhålla och testa
 - Koden blir renare, kan återanvända komponeneter
 
-Beslut: Modal för produktval istället för direkt tillägg i varukorg vid Card click.
+Beslut: Modal för produktval istället för direkt tillägg i varukorg vid card click.
 
 - Bättre användarupplevelse (Tack Wolt för inspo<3)
 - Mer kod men mycket bättre UX
 
 Beslut: Använda Hassans Authcontext struktur
 
-- Fungerade direkt i mitt projekt
+- Fungerade direkt i mitt projekt (tack<3)
 
 # Insikter och lärdomar
 
