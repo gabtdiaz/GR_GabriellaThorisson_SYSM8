@@ -43,7 +43,7 @@
 @media screen and (max-width: 768px) {
   .filters-search-wrapper {
     flex-direction: column;
-    gap: 15px; /* Detta ska ge mellanrum på mobil */
+    gap: 15px;
   }
 
   .search-box {

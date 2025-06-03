@@ -32,7 +32,7 @@ const Payment = ({
           // Customizations borttaget helt
         })),
         total: totalWithDelivery,
-        status: "confirmed", // Ändrat från "pending" till "confirmed"
+        status: "confirmed", // Alltid "confirmed"
         paymentMethod: paymentMethod,
         deliveryAddress: customerInfo.address,
         specialInstructions: orderMessage, // Lägg till meddelandet

@@ -257,7 +257,6 @@
   }
 }
 
-/* En kolumn för mediumskärmar - undvik överlappning */
 @media screen and (max-width: 1000px) {
   .items-grid {
     grid-template-columns: 1fr;
@@ -291,11 +290,11 @@
   }
 
   .items-grid {
-    grid-template-columns: 1fr; /* Behåll en kolumn */
+    grid-template-columns: 1fr;
     gap: 20px;
     row-gap: 30px;
     justify-content: center;
-    max-width: 100%; /* Full bredd på mobil */
+    max-width: 100%;
   }
 
   .category-title {
@@ -314,7 +313,7 @@
   }
 }
 
-/* Mycket små skärmar */
+/* små skärmar */
 @media screen and (max-width: 480px) {
   .filters {
     gap: 10px;

@@ -68,6 +68,6 @@ Användarupplevelse, lika viktigt som funktionalitet
 Att dela upp logik i hooks, komponenter för UI
 
 - Lättare att förstå och utveckla med bättre separation.
-- Kunde ha lagt till många fler komponenter än vad det blev, ex för alla formulär, för att ha renare pages. Har fortfarande en del backend logik i mina pages exempelvis i ex i min Order Page hanteras fetchning av menu item data och Account Page hanteras fetchning av user orders. Kunde skapat en custom hook för API-anrop.
+- Kunde ha lagt till många fler komponenter än vad det blev, ex för alla formulär, för att ha renare pages. Har fortfarande en del backend logik i mina pages exempelvis i min Order Page hanteras fetchning av menu item data och Account Page hanteras fetchning av user orders. Kunde skapat en custom hook för API-anrop istället för att sköta detta direkt i dessa komponenter.
 
 Projektet har gett mig bättre förståelse för hur moderna appar är uppbyggda och hur viktigt det är att strukturera kod från ett underhållningsperspektiv. Lika viktigt är en snygg och tilltalande design och UX för att användaren ska vilja komma tillbaka. Nästa gång hade jag planerat datastrukturen bättre och delat upp logiken ännu mer.

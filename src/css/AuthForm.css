@@ -80,13 +80,13 @@
 }
 
 .toggle-btn:hover {
-  color: #f36d6d; /* Använder din hover color */
+  color: #f36d6d;
 }
 
-/* Responsive design - använder dina breakpoints */
+/* Responsive design */
 @media (max-width: 768px) {
   .auth-container {
-    margin: 150px 20px 40px 20px; /* Ökar till 150px margin-top för mobil */
+    margin: 150px 20px 40px 20px;
     padding: 30px 20px;
     justify-content: center;
   }

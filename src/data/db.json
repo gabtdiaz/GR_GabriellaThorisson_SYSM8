@@ -124,7 +124,8 @@
       "createdAt": "2025-05-30T14:17:47.286Z",
       "favorites": [
         1,
-        2
+        2,
+        3
       ]
     },
     {
@@ -378,6 +379,29 @@
       "deliveryAddress": "Kungsgatan 10",
       "specialInstructions": "",
       "createdAt": "2025-06-01T19:16:55.743Z"
+    },
+    {
+      "id": "f138",
+      "userId": null,
+      "guestInfo": {
+        "name": "Erik",
+        "phone": "0733303030",
+        "address": "Kungsgatan 10"
+      },
+      "items": [
+        {
+          "id": "2",
+          "name": "Carne Asada",
+          "price": 90,
+          "quantity": 1
+        }
+      ],
+      "total": 129,
+      "status": "confirmed",
+      "paymentMethod": "card",
+      "deliveryAddress": "Kungsgatan 10",
+      "specialInstructions": "",
+      "createdAt": "2025-06-03T18:59:36.319Z"
     }
   ]
 }

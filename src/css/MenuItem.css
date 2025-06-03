@@ -224,7 +224,7 @@
 .favorite-btn {
   position: absolute;
   top: 12px;
-  left: 12px; /* Motsatt sida från plus-knappen */
+  left: 12px;
   background: rgba(255, 255, 255, 0.9);
   border: none;
   border-radius: 50%;
@@ -251,24 +251,21 @@
   transition: all 0.2s ease;
 }
 
-/* Grå hjärta när INTE favorit (ditt röda hjärta blir grått) */
 .favorite-btn:not(.is-favorite) .heart-icon {
   filter: grayscale(100%) opacity(0.6);
 }
 
-/* Fullt rött hjärta när favorit + fylld effekt */
 .favorite-btn.is-favorite .heart-icon {
-  filter: none; /* Behåller den röda färgen */
+  filter: none;
   animation: heartbeat 0.6s ease-in-out;
 }
 
-/* Extra fylld effekt för favoriter (ger intryck av ifylld) */
 .favorite-btn.is-favorite {
-  background: rgba(255, 230, 230, 0.95); /* Lätt rosa bakgrund */
-  box-shadow: 0 2px 12px rgba(255, 0, 0, 0.3); /* Röd glöd */
+  background: rgba(255, 230, 230, 0.95);
+  box-shadow: 0 2px 12px rgba(255, 0, 0, 0.3);
 }
 
-/* Hjärtslag animation */
+/* hjärtslag animation */
 @keyframes heartbeat {
   0% {
     transform: scale(1);
@@ -284,9 +281,8 @@
   }
 }
 
-/* Se till att menu-item-card har position relative */
 .menu-item-card {
-  position: relative; /* Lägg till om den inte redan finns */
+  position: relative;
 }
 
 /* Responsiv design för hjärtat */

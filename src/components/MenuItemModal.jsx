@@ -43,7 +43,7 @@ const MenuItemModal = ({ isOpen, onClose, item, onAddToCart }) => {
 
     console.log(`Added ${quantity} ${item.name} to cart`);
 
-    // Stäng modal (quantity resettas automatiskt via useEffect när isOpen blir false)
+    // Stäng modal (kvanitet resettas automatiskt via useEffect när isOpen blir false)
     onClose();
   };
 

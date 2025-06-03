@@ -56,7 +56,7 @@ const Header = () => {
           MENU
         </div>
         <div className="order" onClick={() => handleNavigation("/order")}>
-          ORDER
+          ORDER DELIVERY
         </div>
 
         {/* Visa MY ACCOUNT eller SIGN IN */}
