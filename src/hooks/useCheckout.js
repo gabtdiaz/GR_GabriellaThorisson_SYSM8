@@ -15,9 +15,10 @@ export const useCheckout = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [showPayment, setShowPayment] = useState(false);
 
-  // Auto-fylla användardata om inloggad
+  // Autoifyllning av användardata om man är inloggad
   useEffect(() => {
     if (token) {
+      // Om användaren är inloggad
       const savedUser = localStorage.getItem("userData");
       if (savedUser) {
         const userData = JSON.parse(savedUser);
@@ -26,10 +27,10 @@ export const useCheckout = () => {
           phone: userData.phone || "",
           address: userData.address || "",
         });
-        setIsEditing(false);
+        setIsEditing(false); // Låser formuläret
       }
     } else {
-      setIsEditing(true);
+      setIsEditing(true); // Öppnar formuläret
     }
   }, [token]);
 

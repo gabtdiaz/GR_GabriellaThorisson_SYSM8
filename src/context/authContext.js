@@ -18,12 +18,13 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     localStorage.removeItem("token"); // Ta bort token från localStorage
     localStorage.removeItem("userData"); // Ta bort userData från localStorage
-    setToken(null); // Nollställ token i state
+    setToken(null); // Nollställ token
   };
 
   return (
     <AuthContext.Provider value={{ token, login, logout }}>
-      {children} {/* Renderar alla komponenter som är barn till AuthProvider */}
+      {children}{" "}
+      {/* Skickar till alla komponenter som är barn till authProvider. (Inom <AuthProvider>) */}
     </AuthContext.Provider>
   );
 };

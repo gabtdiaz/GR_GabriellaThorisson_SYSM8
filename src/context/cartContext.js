@@ -1,4 +1,3 @@
-// src/contexts/CartContext.js
 import React, { createContext, useContext, useState, useEffect } from "react";
 
 // Skapa Context
@@ -16,53 +15,35 @@ export const useCart = () => {
 // Cart Provider component
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   // Ladda cart från localStorage när app startar
   useEffect(() => {
-    const loadCart = () => {
-      try {
-        const savedCart = localStorage.getItem("cartItems");
-        if (savedCart) {
-          setCartItems(JSON.parse(savedCart));
-        }
-      } catch (error) {
-        console.error("Error loading cart from localStorage:", error);
-        setCartItems([]);
-      } finally {
-        setLoading(false);
+    try {
+      const savedCart = localStorage.getItem("cartItems");
+      if (savedCart) {
+        setCartItems(JSON.parse(savedCart));
       }
-    };
-
-    loadCart();
+    } catch (error) {
+      console.error("Error loading cart from localStorage:", error);
+      setCartItems([]);
+    }
   }, []);
 
   // Spara cart till localStorage när den ändras
   useEffect(() => {
-    if (!loading) {
-      try {
-        localStorage.setItem("cartItems", JSON.stringify(cartItems));
-        // Trigga event för Header-komponenten
-        window.dispatchEvent(new Event("cartUpdated"));
-      } catch (error) {
-        console.error("Error saving cart to localStorage:", error);
-      }
-    }
-  }, [cartItems, loading]);
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
 
   // Lägg till item i cart
-  const addToCart = (item, quantity = 1, customizations = {}) => {
+  const addToCart = (item, quantity = 1) => {
     setCartItems((prevItems) => {
-      // Kolla om exakt samma item redan finns (med samma customizations)
+      // Kolla om exakt samma item redan finns
       const existingItemIndex = prevItems.findIndex(
-        (cartItem) =>
-          cartItem.id === item.id &&
-          JSON.stringify(cartItem.customizations) ===
-            JSON.stringify(customizations)
+        (cartItem) => cartItem.id === item.id
       );
 
       if (existingItemIndex >= 0) {
-        // Öka quantity på befintligt item
+        // Öka kvantiteten på befintligt item
         const updatedItems = [...prevItems];
         updatedItems[existingItemIndex] = {
           ...updatedItems[existingItemIndex],
@@ -78,10 +59,9 @@ export const CartProvider = ({ children }) => {
           image: item.image,
           category: item.category,
           quantity: quantity,
-          customizations: customizations,
-          addedAt: Date.now(), // För att ha unik identifierare om behövs
+          addedAt: Date.now(),
         };
-        return [...prevItems, newItem];
+        return [...prevItems, newItem]; // Sparar listan av items med den nya uppdaterade
       }
     });
   };
@@ -93,7 +73,7 @@ export const CartProvider = ({ children }) => {
     );
   };
 
-  // Uppdatera quantity för ett item
+  // Uppdatera kvaniteten för ett item
   const updateQuantity = (itemIndex, newQuantity) => {
     if (newQuantity <= 0) {
       removeFromCart(itemIndex);
@@ -136,7 +116,6 @@ export const CartProvider = ({ children }) => {
   // Värden som ska vara tillgängliga för alla komponenter
   const value = {
     cartItems,
-    loading,
     addToCart,
     removeFromCart,
     updateQuantity,
@@ -146,5 +125,5 @@ export const CartProvider = ({ children }) => {
     hasItems,
   };
 
-  return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
+  return <CartContext.Provider value={value}>{children}</CartContext.Provider>; //Delar ut data till alla barnkomponenter. (Allt inom CartProvider)
 };

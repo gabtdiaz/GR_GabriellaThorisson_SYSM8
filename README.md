@@ -1,70 +1,73 @@
-# Getting Started with Create React App
+# Arkitektur och uppbyggnad
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Detta är en Single Page Application som är skapat med React. Detta betyder att allt laddas en gång (ex. global data), och innehåll (html, komponenter) byts ut med hjälp av React Router när användaren navigerar, vilket ger en snabb och smidig upplevelse.
 
-## Available Scripts
+# MappStruktur
 
-In the project directory, you can run:
+Jag använder "/pages" för hela sidor, "/components" för återanvändbara delar, "/context" för s.k global data som behövs överallt och "/hooks" för återanvändbar logik.
 
-### `npm start`
+# Tekniska lösningar
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+UseState & UseEffect
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Jag använde useState som hanterar data som behöver förändras och trigga ändringar i UI på mina sidor. Exempel: activeFilter (filtrerar mellan menuItems), sökfunktion, menuData, isModalOpen i Order Page och showPayment. När värden ändras eller användaren klickar runt måste UI reflektera detta. UseState Används även i formulärhantering för att kunna spåra och visa vad användaren skriver i realtid (eller i sökfunktionen).
 
-### `npm test`
+UseEffect används vid API-anrop, hämtar menuData när order komponenten laddas eller att cart sparas till localStorage när den ändras, eller triggar events när cart uppdateras. UseEffect används även vid navigering baserat på autentisering eööer hämtning av användardata när token finns.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Varukorg och inloggningsdata behövde vara tillgänglig på alla sidor så att användaren kan navigera genom sidor utan att datan försvinner. Context API löste detta utan att behöva skicka props genom många nivåer.
 
-### `npm run build`
+- Ex: Cartlogik behövs i header (visa antal), ordersidan (lägg till) och cartsidan(visa/ändra). Detta hämtas direkt från cartContext, slipper alltså skicka data via props genom flera komponenter och min App.js omsluts endast med CartProvider.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+JSON server som backend istället för en riktig databas. Perfekt för en prototyp så jag kunde fokusera mer på frontenden.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+LocalStorage, så varukorg och inloggning kan finnas kvar när man uppdaterar sidan. Som användare kan man navigera runt utan att förlora ex sin varukorg. Användaren hålls även inloggad.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Utmaningar
 
-### `npm run eject`
+Att lära sig Context API, istället för att skicka props överallt som jag gjorde i början. Bättre när data behövs på flera ställen.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Favoritfunktionen
+Implementerades sent, krävde inloggning, och en mängd UI/databas uppdateringar. Löste det genom att skapa en egen hook för favoriter som hanterade logiken på ett ställe.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Responsiv design
+Att få allt att fungera både på desktop och mobil var svårare än väntat och mycket tidskrävande.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+State management
+Hade state överallt vilket blev rörigt. Custom hooks som useCheckout hälpte mig att organisera logiken bättre.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Att skilja på backend och frontend "logik"
+Det var en utmaning att lista ut var all kod skulle placeras. Vad bör finnas i en "page" och vad bör hanteras via hooks eller context?
 
-## Learn More
+# Viktiga beslut
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Beslut: Separata komponenter för många delar
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Lättare att underhålla och testa
+- Koden blir renare, kan återanvända komponeneter
 
-### Code Splitting
+Beslut: Modal för produktval istället för direkt tillägg i varukorg vid Card click.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Bättre användarupplevelse (Tack Wolt för inspo<3)
+- Mer kod men mycket bättre UX
 
-### Analyzing the Bundle Size
+Beslut: Använda Hassans Authcontext struktur
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- Fungerade direkt i mitt projekt
 
-### Making a Progressive Web App
+# Insikter och lärdomar
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Planering är allt!
 
-### Advanced Configuration
+- Önskar att jag hade tänkt igenom datastrukturen mer från början. Lägga till favorites i slutet krävde ändringar i många filer. (Var dock osäker om jag skulle hinna med VG-delar)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Användarupplevelse, lika viktigt som funktionalitet
 
-### Deployment
+- Features som ex autoifyllning för inloggade användare gör stor skillnad för UX! Man vill att det ska flyta på och gå snabbt.
+- Att använda snygga och "logiska" effekter, animationer och färgsättningar lyfter applikationen
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Att dela upp logik i hooks, komponenter för UI
 
-### `npm run build` fails to minify
+- Lättare att förstå och utveckla med bättre separation.
+- Kunde ha lagt till många fler komponenter än vad det blev, ex för alla formulär, för att ha renare pages. Har fortfarande en del backend logik i mina pages exempelvis i ex i min Order Page hanteras fetchning av menu item data och Account Page hanteras fetchning av user orders. Kunde skapat en custom hook för API-anrop.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Projektet har gett mig bättre förståelse för hur moderna appar är uppbyggda och hur viktigt det är att strukturera kod från ett underhållningsperspektiv. Lika viktigt är en snygg och tilltalande design och UX för att användaren ska vilja komma tillbaka. Nästa gång hade jag planerat datastrukturen bättre och delat upp logiken ännu mer.

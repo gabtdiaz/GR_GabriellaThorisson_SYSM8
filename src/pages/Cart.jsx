@@ -167,9 +167,7 @@ const Cart = () => {
                   <div className="customer-fields">
                     <div className="customer-fields-header">
                       <h3 className="customer-fields-title">
-                        {token
-                          ? "Delivery Information"
-                          : "Delivery Information"}
+                        Delivery Information
                       </h3>
                       {token && (
                         <button
