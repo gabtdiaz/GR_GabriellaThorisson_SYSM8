@@ -1,4 +1,3 @@
-// src/components/AuthForm.js
 import { useState } from "react";
 import { useAuth } from "../context/authContext";
 import { useNavigate } from "react-router-dom";

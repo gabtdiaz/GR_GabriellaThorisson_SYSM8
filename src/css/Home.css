@@ -6,9 +6,9 @@
 }
 
 body {
-  overflow-x: hidden; /* Förhindra horisontell scrollning */
+  overflow-x: hidden; 
   width: 100%;
-  max-width: 100vw; /* Säkerställ att sidan inte överskrider skärmens bredd */
+  max-width: 100vw; 
 }
 
 .desktop-1 {
@@ -16,8 +16,8 @@ body {
   max-width: 100%;
   margin: 0 auto;
   position: relative;
-  overflow-x: hidden; /* Förhindra horisontell scrollning */
+  overflow-x: hidden; 
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Minst fulla skärmhöjden */
+  min-height: 100vh;
 }

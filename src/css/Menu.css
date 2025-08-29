@@ -39,7 +39,7 @@
 .menu-container {
   width: 100%;
   max-width: 600px;
-  position: relative; /* För att vara ovanför overlay */
+  position: relative; /* för att vara ovanför overlay */
   z-index: 1;
   margin-top: 100px;
   animation: slideUp 0.5s ease-out;

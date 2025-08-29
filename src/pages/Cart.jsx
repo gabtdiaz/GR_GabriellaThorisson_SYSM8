@@ -169,7 +169,7 @@ const Cart = () => {
                       <h3 className="customer-fields-title">
                         Delivery Information
                       </h3>
-                      {token && (
+                      {token && ( //Vid inloggad användare syns editknapp
                         <button
                           type="button"
                           className="edit-delivery-btn"
@@ -185,7 +185,7 @@ const Cart = () => {
                       placeholder="Your Name *"
                       value={customerInfo.name}
                       onChange={(e) =>
-                        handleCustomerInfoChange("name", e.target.value)
+                        handleCustomerInfoChange("name", e.target.value) // onChange triggas
                       }
                       className="customer-input"
                       disabled={token && !isEditing}

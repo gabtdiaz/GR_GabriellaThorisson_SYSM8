@@ -174,7 +174,7 @@
     height: auto;
     background: white;
     flex-direction: column;
-    transform: translateX(-100%); /* Göm menyn åt vänster */
+    transform: translateX(-100%); /* Gömmer menyn åt vänster */
     transition: transform 0.3s ease;
     z-index: 999;
     padding-top: 100px;
@@ -196,13 +196,13 @@
 /* Extra små skärmar */
 @media screen and (max-width: 480px) {
   .show-order-btn {
-    right: 80px; /* Lite närmare hamburger på mycket små skärmar */
+    right: 80px; 
     font-size: 12px;
     padding: 6px 10px;
   }
 
   .logo-frame {
-    left: 10px; /* Mindre marginal på små skärmar */
+    left: 10px; 
     width: 120px;
   }
 

@@ -1,4 +1,3 @@
-// src/components/MenuItem.jsx
 import React from "react";
 import "../css/MenuItem.css";
 

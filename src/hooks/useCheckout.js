@@ -35,6 +35,8 @@ export const useCheckout = () => {
   }, [token]);
 
   // Funktioner för checkout
+
+  // När användaren fyller i formuläret vid checkout
   const handleCustomerInfoChange = (field, value) => {
     setCustomerInfo((prev) => ({
       ...prev,

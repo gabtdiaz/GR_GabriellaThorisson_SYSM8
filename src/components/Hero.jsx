@@ -1,4 +1,3 @@
-// src/components/Hero.jsx
 import React from "react";
 import "../css/Hero.css";
 import { useNavigate } from "react-router-dom";

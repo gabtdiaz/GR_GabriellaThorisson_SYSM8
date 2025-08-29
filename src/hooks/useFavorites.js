@@ -3,19 +3,20 @@ import { useState, useEffect } from "react";
 import { useAuth } from "../context/authContext";
 
 export const useFavorites = () => {
-  const { token } = useAuth();
-  const [favorites, setFavorites] = useState([]);
+  const { token } = useAuth(); // kolla om inloggad
+  const [favorites, setFavorites] = useState([]); // Min array med favorit ID
 
   // Hämta favoriter när komponenten laddas
   useEffect(() => {
     if (token) {
+      // Hämta användardata från localstorage
       const userData = localStorage.getItem("userData");
       if (userData) {
         const user = JSON.parse(userData);
-        setFavorites(user.favorites || []);
+        setFavorites(user.favorites || []); // Sätt favoriter från userDta
       }
     } else {
-      setFavorites([]); // Tom om ej inloggad
+      setFavorites([]); // Töm om ej inloggad
     }
   }, [token]);
 
@@ -24,6 +25,7 @@ export const useFavorites = () => {
     if (!token) return; // Bara för inloggade
 
     const userData = JSON.parse(localStorage.getItem("userData"));
+    // Kolla om den redan är favoritmarkerad
     const isCurrentlyFavorite = favorites.includes(itemId);
 
     let newFavorites;
@@ -38,6 +40,7 @@ export const useFavorites = () => {
     // Uppdatera lokalt först
     setFavorites(newFavorites);
 
+    // Spara till databas + localStorage
     try {
       // Uppdatera användare i JSON server
       const updatedUser = {
