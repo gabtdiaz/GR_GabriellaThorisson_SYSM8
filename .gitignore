@@ -5,11 +5,31 @@
 /.pnp
 .pnp.js
 
+# environment variables
+.env
+server/.env
+
+# build files
+build/
+dist/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
 # testing
 /coverage
 
 # production
 /build
+
+# logs
+*.log
+npm-debug.log*
 
 # misc
 .DS_Store

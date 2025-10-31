@@ -138,7 +138,10 @@
       "createdAt": "2025-05-30T20:48:29.620Z",
       "favorites": [
         13,
-        14
+        14,
+        2,
+        4,
+        8
       ]
     }
   ],
@@ -402,6 +405,52 @@
       "deliveryAddress": "Kungsgatan 10",
       "specialInstructions": "",
       "createdAt": "2025-06-03T18:59:36.319Z"
+    },
+    {
+      "id": "3ee7",
+      "userId": null,
+      "guestInfo": {
+        "name": "gabriella thorisson",
+        "phone": "0730303030",
+        "address": "Amiralsgatan 30"
+      },
+      "items": [
+        {
+          "id": "10",
+          "name": "Elote",
+          "price": 40,
+          "quantity": 1
+        }
+      ],
+      "total": 79,
+      "status": "confirmed",
+      "paymentMethod": "swish",
+      "deliveryAddress": "Amiralsgatan 30",
+      "specialInstructions": "leave outside the door",
+      "createdAt": "2025-10-30T09:55:03.557Z"
+    },
+    {
+      "id": "5113",
+      "userId": null,
+      "guestInfo": {
+        "name": "Anna",
+        "phone": "0000000000",
+        "address": "ÖstraFäladsgatan 51"
+      },
+      "items": [
+        {
+          "id": "1",
+          "name": "Combo Plate",
+          "price": 90,
+          "quantity": 2
+        }
+      ],
+      "total": 219,
+      "status": "confirmed",
+      "paymentMethod": "swish",
+      "deliveryAddress": "ÖstraFäladsgatan 51",
+      "specialInstructions": "",
+      "createdAt": "2025-10-31T21:48:50.739Z"
     }
   ]
 }
